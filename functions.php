@@ -1,0 +1,23 @@
+<?php
+/**
+ * CB Global 4 — theme functions.
+ *
+ * Standalone theme, no parent theme. See style.css header for the
+ * "BS-flavored naming, not Bootstrap" note and browser support baseline.
+ *
+ * @package cb-global42026
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+define( 'CB_GLOBAL42026_DIR', get_template_directory() );
+
+require_once CB_GLOBAL42026_DIR . '/inc/setup.php';
+require_once CB_GLOBAL42026_DIR . '/inc/enqueue.php';
+require_once CB_GLOBAL42026_DIR . '/inc/class-cb-global-4-nav-walker.php';
+require_once CB_GLOBAL42026_DIR . '/inc/blocks.php';
+require_once CB_GLOBAL42026_DIR . '/inc/editor.php';
+require_once CB_GLOBAL42026_DIR . '/inc/options.php';
+require_once CB_GLOBAL42026_DIR . '/inc/head-tags.php';
+require_once CB_GLOBAL42026_DIR . '/inc/block-usage.php';
+require_once CB_GLOBAL42026_DIR . '/inc/utilities.php';
