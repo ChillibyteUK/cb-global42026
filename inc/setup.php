@@ -26,8 +26,11 @@ function cb_global42026_setup() {
 	// Rename/extend per project.
 	register_nav_menus(
 		array(
-			'primary' => __( 'Primary Menu', 'cb-global42026' ),
-			'footer'  => __( 'Footer Menu', 'cb-global42026' ),
+			'primary'           => __( 'Primary Menu', 'cb-global42026' ),
+			'footer-services'   => __( 'Footer Services Menu', 'cb-global42026' ),
+			'footer-industries' => __( 'Footer Industries Menu', 'cb-global42026' ),
+			'footer-company'    => __( 'Footer Company Menu', 'cb-global42026' ),
+			'footer-help'       => __( 'Footer Help Menu', 'cb-global42026' ),
 		)
 	);
 }

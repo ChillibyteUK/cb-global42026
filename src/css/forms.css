@@ -35,13 +35,33 @@ select {
 	padding: var(--space-2) var(--space-3);
 	border: 1px solid var(--col-primary);
 	border-radius: var(--radius-sm);
-	background-color: var(--col-primary);
-	color: var(--col-white);
 	text-decoration: none;
 	cursor: pointer;
+	transition: background-color var(--transition), color var(--transition);
+	font-size: var(--fs-h5);
+	font-weight: var(--fw-700);
 
 	&:focus-visible {
 		outline: 2px solid var(--col-primary);
 		outline-offset: 2px;
 	}
+}
+
+.btn-primary {
+	background-color: var(--col-primary);
+	color: var(--col-white);
+}
+
+.btn-primary:hover {
+	background-color: var(--col-primary-light);
+}
+
+.btn-secondary {
+	border: 1px solid var(--col-white);
+	background-color: transparent;
+	color: var(--col-white);
+}
+.btn-secondary:hover {
+	background-color: rgba( 255 255 255 / 0.2);
+	color: var(--col-white);
 }

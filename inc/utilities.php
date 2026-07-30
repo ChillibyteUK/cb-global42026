@@ -54,6 +54,58 @@ function pluralise( $quantity, $singular, $plural = null ) {
 }
 
 /**
+ * List available icons from img/icons/ as ACF select choices.
+ *
+ * Drop an .svg file into img/icons/ and it appears automatically — no
+ * registration step. Powers the acf/load_field filter below, which
+ * populates the choices of any ACF select field named "icon".
+ *
+ * @return array Slug => human-readable label pairs.
+ */
+function cb_get_icon_choices() {
+	$choices = array();
+	$files   = glob( get_template_directory() . '/img/icons/*.svg' );
+
+	if ( ! $files ) {
+		return $choices;
+	}
+
+	foreach ( $files as $file ) {
+		$slug             = basename( $file, '.svg' );
+		$choices[ $slug ] = ucwords( str_replace( array( '-', '_' ), ' ', $slug ) );
+	}
+
+	return $choices;
+}
+add_filter(
+	'acf/load_field/name=icon',
+	function ( $field ) {
+		$field['choices'] = cb_get_icon_choices();
+		return $field;
+	}
+);
+
+/**
+ * Inline an SVG icon from img/icons/ by slug.
+ *
+ * @param string $name Icon slug — matches an ACF "icon" select value / filename without extension.
+ * @return string SVG markup, or an empty string if the icon doesn't exist.
+ */
+function cb_icon( $name ) {
+	if ( ! $name ) {
+		return '';
+	}
+
+	$path = get_template_directory() . '/img/icons/' . basename( $name ) . '.svg';
+
+	if ( ! file_exists( $path ) ) {
+		return '';
+	}
+
+	return file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read.file_get_contents_file_get_contents
+}
+
+/**
  * Estimate reading time for a piece of content.
  *
  * @param string $content          Content to estimate.

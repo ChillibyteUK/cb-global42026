@@ -1,0 +1,45 @@
+.cb-home-hero {
+    /* background-color: var(--col-navy-900); */
+
+    background-image: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
+
+    color: var(--col-white);
+    min-height: 600px;
+    padding-top: var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+    }
+
+    .cb-home-hero__cta {
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        span {
+            font-weight: var(--fw-900);
+            font-size: calc( var(--fs-h1) * 1.2 );
+        }
+    }
+
+    .cb-home-hero__content {
+        padding-bottom: var(--space-4);
+    }
+
+    .cb-home-hero__cta {
+        display: flex;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+    }
+}

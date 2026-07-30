@@ -11,14 +11,14 @@
 get_header();
 ?>
 
-<div class="container">
+<main id="main">
 	<?php
 	while ( have_posts() ) {
 		the_post();
 		the_content();
 	}
 	?>
-</div>
+</main>
 
 <?php
 get_footer();

@@ -1,0 +1,97 @@
+.cb-icon-card-grid {
+	.cb-icon-card-grid__cards {
+		display: grid;
+		grid-template-columns: repeat(var(--cb-icon-card-grid-columns), 1fr);
+		gap: var(--grid-gutter);
+	}
+
+	.cb-icon-card-grid__card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		color: inherit;
+		text-decoration: none;
+		transition: box-shadow var(--transition), background-color var(--transition);
+	}
+
+	div.cb-icon-card-grid__card {
+		box-shadow: var(--shadow-sm);
+	}
+	a.cb-icon-card-grid__card {
+		box-shadow: var(--shadow-md);
+	}
+	a.cb-icon-card-grid__card:hover {
+		text-decoration: none;
+		background-color: var(--col-grey-100);
+		box-shadow: var(--shadow-lg);
+	}
+	a.cb-icon-card-grid__card--filled:hover {
+		background-color: var(--col-navy-600);
+	}
+
+	.cb-icon-card-grid__icon {
+		display: block;
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.cb-icon-card-grid__icon svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.cb-icon-card-grid__title {
+		margin: 0;
+		font-size: var(--fs-h5);
+		text-transform: uppercase;
+	}
+
+	.cb-icon-card-grid__content {
+		margin: 0;
+	}
+
+	.cb-icon-card-grid__link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		margin-top: auto;
+		font-weight: var(--fw-700);
+	}
+
+	.cb-icon-card-grid__arrow {
+		width: 0.875rem;
+		height: 0.875rem;
+		transition: transform var(--transition);
+	}
+
+	a.cb-icon-card-grid__card:hover .cb-icon-card-grid__arrow {
+		transform: translateX(0.25rem);
+	}
+
+	.cb-icon-card-grid__card--filled {
+		background-color: var(--col-navy-700);
+		color: var(--col-white);
+	}
+
+	.cb-icon-card-grid__card--bordered {
+		border: 1px solid var(--col-navy-700);
+		background-color: var(--col-white);
+	}
+
+	/* Below "md" (768px, src/build/tokens.config.js) */
+	@media (max-width: 991px) {
+		.cb-icon-card-grid__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-icon-card-grid__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}

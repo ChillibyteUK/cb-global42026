@@ -1,0 +1,55 @@
+footer {
+    color: var(--col-white);
+    background-color: var(--col-navy-900);
+
+    border-top: 6px solid var(--col-blue-500);
+
+    padding-block-start: var(--space-5);
+
+    .footer-description {
+        font-size: var(--fs-small);
+        line-height: var(--line-height-base);
+        margin-top: var(--space-3);
+        margin-bottom: var(--space-3);
+        text-wrap: pretty;
+        max-width: 40ch;
+    }
+
+
+    .footer-title {
+        font-weight: var(--fw-700);
+        font-size: var(--fs-h5);
+        text-transform: uppercase;
+        margin-bottom: var(--space-3);
+    }
+
+    a {
+        font-size: var(--fs-small);
+        color: var(--col-white);
+        text-decoration: none;
+        transition: var(--transition);
+        &:hover, &:focus {
+            color: var(--col-teal-400);
+        }
+    }
+
+    #colophon .container {
+        border-top: 1px solid var(--col-grey-800);
+        color: var(--col-grey-500);
+        font-size: var(--fs-xsmall);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3) var(--space-4) var(--space-3);
+
+        a {
+            font-size: var(--fs-xsmall);
+            color: var(--col-grey-500);
+            &:hover, &:focus {
+                color: var(--col-teal-400);
+            }
+        }
+    }
+}

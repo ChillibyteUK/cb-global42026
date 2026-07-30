@@ -9,19 +9,41 @@
 
 :root {
 	/* Colour palette — rename/replace per project, keep the slug shape */
+
+	/* Brand — navy/blue family (dominant across header, hero, and CTAs) */
+	--col-navy-900: #0c182b; /* darkest — largest single bg area on the page (header/hero band) */
+	--col-navy-800: #072a41; /* site's defined "brand colour 1" */
+	--col-navy-700: #172839; /* heading text on light backgrounds */
+	--col-navy-600: #1e3a5f; /*  */
+
+	--col-blue-500: #467cc6; /* site's defined "brand colour 3" — mid blue */
+	--col-blue-300: #99bbe3; /* site's defined "brand colour 2" — most-used link/accent blue */
+
+	--col-teal-400: #96cdd3; /* button/CTA background */
+	--col-coral-500: #e16242; /* site's defined "brand colour 4" — secondary accent */
+
+	/* Neutrals */
 	--col-white: #ffffff;
 	--col-black: #000000;
-	--col-grey-100: #f5f5f5;
-	--col-grey-300: #d9d9d9;
-	--col-grey-700: #4a4a4a;
-	--col-blue-700: #1d4ed8;
+	--col-grey-900: #32323a; /* charcoal, dark UI panels */
+	--col-grey-800: #333333; /* body copy */
+	--col-grey-500: #808080; /* muted text */
+	--col-grey-400: #999999; /* secondary/disabled text */
+	--col-grey-200: #eeeeee; /* light section background */
+	--col-grey-100: #f1f2f2; /* off-white section background */
 
-	--col-primary: var(--col-blue-700);
-	--col-body: var(--col-black);
+	/* Semantic aliases */
+	--col-primary: var(--col-blue-500);
+	--col-primary-light: var(--col-blue-300);
+	--col-accent: var(--col-teal-400);
+	--col-body: var(--col-grey-800);
 	--col-body-bg: var(--col-white);
+	--col-dark-bg: var(--col-navy-900);
+
 
 	/* Type scale */
-	--font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-family-base: 'Roboto', monospace, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
 	--fs-base: 1rem;
 	--fs-h1: clamp(2rem, 1.6rem + 2vw, 3rem);
 	--fs-h2: clamp(1.6rem, 1.35rem + 1.25vw, 2.25rem);
@@ -30,9 +52,12 @@
 	--fs-h5: 1.1rem;
 	--fs-h6: 1rem;
 	--fs-small: 0.875rem;
+	--fs-xsmall: 0.75rem;
+
 	--fw-400: 400;
-	--fw-600: 600;
 	--fw-700: 700;
+	--fw-900: 900;
+
 	--line-height-base: 1.5;
 	--line-height-heading: 1.2;
 
@@ -43,12 +68,16 @@
 	--space-3: 1rem;
 	--space-4: 1.5rem;
 	--space-5: 3rem;
+	--space-6: 4rem;
 
 	/* Radii / shadows / motion */
 	--radius-sm: 0.25rem;
 	--radius-lg: 0.5rem;
-	--shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
-	--shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12);
+	/* --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08); */
+	/* --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12); */
+	--shadow-sm: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; /* Tailwind's "sm" shadow #37 */
+	--shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; /* Tailwind's "md" shadow #38 */
+	--shadow-lg: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; /* Tailwind's "lg" shadow #39 */
 	--transition: 150ms ease-in-out;
 
 	/* Layout */
@@ -61,4 +90,8 @@
 	   inline style (e.g. style="--grid-min: 10rem") rather than adding
 	   a new class per layout. Smaller value = more columns fit. */
 	--grid-min: 16rem;
+
+	/* header { position: fixed; } height — used by .anchor (src/css/layout.css)
+	   to nudge ACF block anchors down clear of the fixed nav. */
+	--nav-height: 5.5rem;
 }
