@@ -969,7 +969,7 @@ select {
         height: 100%;
         opacity: 0.6;
     }
-.cb-home-hero .cb-home-hero__cta {
+.cb-home-hero .container {
         position: relative;
         z-index: 1;
     }
