@@ -162,7 +162,7 @@
       {
         "param": "block",
         "operator": "==",
-        "value": "acf\/cb-split-feature-list"
+        "value": "acf/cb-split-feature-list"
       }
     ]
   ],
@@ -178,5 +178,5 @@
   "display_title": "",
   "allow_ai_access": false,
   "ai_description": "",
-  "modified": 1785420854
+  "modified": 1785507249
 }

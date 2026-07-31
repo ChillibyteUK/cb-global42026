@@ -115,7 +115,7 @@
       {
         "param": "block",
         "operator": "==",
-        "value": "acf\/cb-cta"
+        "value": "acf/cb-cta"
       }
     ]
   ],
@@ -131,5 +131,5 @@
   "display_title": "",
   "allow_ai_access": false,
   "ai_description": "",
-  "modified": 1785424054
+  "modified": 1785507249
 }

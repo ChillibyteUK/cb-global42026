@@ -195,7 +195,7 @@
       {
         "param": "block",
         "operator": "==",
-        "value": "acf\/cb-contact-cards"
+        "value": "acf/cb-contact-cards"
       }
     ]
   ],
@@ -211,5 +211,5 @@
   "display_title": "",
   "allow_ai_access": false,
   "ai_description": "",
-  "modified": 1785486165
+  "modified": 1785507249
 }

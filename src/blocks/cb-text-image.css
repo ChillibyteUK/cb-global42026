@@ -9,6 +9,19 @@
 		align-items: center;
 	}
 
+	/* Keeps text markup first in the DOM (reading order, SEO) regardless of
+	   the "Order" ACF field — only the visual position swaps, via `order`,
+	   which grid items respect the same as flex items. */
+	.cb-text-image__grid--image-first {
+		.cb-text-image__text {
+			order: 2;
+		}
+
+		.cb-text-image__image {
+			order: 1;
+		}
+	}
+
 	.cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);

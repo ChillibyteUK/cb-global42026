@@ -7,13 +7,21 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$split    = get_field( 'split' ) ? get_field( 'split' ) : '50-50';
-$heading  = get_field( 'heading' );
-$subtitle = get_field( 'subtitle' );
-$content  = get_field( 'content' );
-$slink    = get_field( 'link' );
-$image    = get_field( 'image' );
-$has_link = ! empty( $slink['url'] );
+$split     = get_field( 'split' ) ? get_field( 'split' ) : '50-50';
+$col_order = get_field( 'order' ) ? get_field( 'order' ) : 'text-image';
+
+$split_columns = array(
+	'60-40' => '3fr 2fr',
+	'40-60' => '2fr 3fr',
+);
+
+$grid_columns = isset( $split_columns[ $split ] ) ? $split_columns[ $split ] : '1fr 1fr';
+$heading      = get_field( 'heading' );
+$subtitle     = get_field( 'subtitle' );
+$content      = get_field( 'content' );
+$slink        = get_field( 'link' );
+$image        = get_field( 'image' );
+$has_link     = ! empty( $slink['url'] );
 
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
@@ -35,7 +43,7 @@ if ( $block['anchor'] ) {
 ?>
 <section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
 	<div class="container">
-		<div class="cb-text-image__grid" style="--cb-text-image-split: <?= '60-40' === $split ? '3fr 2fr' : '1fr 1fr'; ?>;">
+		<div class="cb-text-image__grid<?= 'image-text' === $col_order ? ' cb-text-image__grid--image-first' : ''; ?>" style="--cb-text-image-split: <?= esc_attr( $grid_columns ); ?>;">
 			<div class="cb-text-image__text">
 				<?php
 				if ( $heading ) {

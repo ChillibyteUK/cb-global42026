@@ -574,7 +574,15 @@ label {
 	margin-bottom: var(--space-1);
 }
 
-input,
+/* Excludes button/checkbox/radio/range/color/file/image input types —
+   they're still <input> elements but this block/border/padding treatment
+   is meant for text-like fields only. Excluding them from the selector
+   entirely (rather than applying the rule then reverting it for those
+   types) means this rule never touches them in the first place — robust
+   regardless of style load order, unlike an "apply then all:revert" pass
+   which can fight with e.g. ACF's own admin CSS for its radio/checkbox UI
+   if that CSS happens to load earlier in the same document. */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="image"]),
 textarea,
 select {
 	display: block;
@@ -585,8 +593,7 @@ select {
 	background-color: var(--col-white);
 	color: var(--col-body);
 }
-
-:is(input,textarea,select):focus-visible {
+:is(input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="image"]),textarea,select):focus-visible {
 		outline: 2px solid var(--col-primary);
 		outline-offset: 1px;
 	}
@@ -1245,7 +1252,17 @@ select {
         background-image: var(--cb-hero-bg-image);
         background-size: cover;
         background-position: center;
+
+        /* Dark scrim so white text stays legible over an arbitrary photo —
+           no z-index needed: this stays at the default z-index:auto stacking
+           level, below .container's explicit z-index:1 above. */
     }
+.cb-hero.cb-hero--has-bg-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
+        }
 
 /* --- src/blocks/cb-icon-card-grid.css --- */
 .cb-icon-card-grid .cb-icon-card-grid__cards {
@@ -1474,6 +1491,15 @@ select {
 		row-gap: var(--space-4);
 		align-items: center;
 	}
+/* Keeps text markup first in the DOM (reading order, SEO) regardless of
+	   the "Order" ACF field — only the visual position swaps, via `order`,
+	   which grid items respect the same as flex items. */
+:is(.cb-text-image .cb-text-image__grid--image-first) .cb-text-image__text {
+			order: 2;
+		}
+:is(.cb-text-image .cb-text-image__grid--image-first) .cb-text-image__image {
+			order: 1;
+		}
 .cb-text-image .cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);
@@ -1496,6 +1522,28 @@ select {
 			grid-template-columns: 1fr;
 		}
 	}
+
+/* --- src/blocks/cb-text-testimonial.css --- */
+.cb-text-testimonial blockquote {
+        background-color: var(--col-white);
+        color: var(--col-navy-800);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+    }
+:is(.cb-text-testimonial blockquote) p {
+            font-weight: var(--fw-700);
+            font-size: var(--fs-h5);
+        }
+/* Plain inline quote marks at the text's own size — no indent, no
+           positioning, so cite below stays flush with the quote text
+           with no alignment to reconcile. */
+:is(.cb-text-testimonial blockquote) p::before {
+            content: '“';
+        }
+:is(.cb-text-testimonial blockquote) p::after {
+            content: '”';
+        }
 
 /* --- src/blocks/cb-usp-cards.css --- */
 .cb-usp-cards .cb-usp-cards__cards {

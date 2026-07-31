@@ -93,13 +93,18 @@ function initSplitFeatureList() {
 }
 
 /**
- * CB Text Image — text column fades in from the left, image column fades
- * in from the right, both when ~25% into the viewport.
+ * CB Text Image — whichever column sits visually on the left fades in from
+ * the left, whichever sits on the right fades in from the right, both when
+ * ~25% into the viewport. Direction follows the "Order" ACF field (via the
+ * .cb-text-image__grid--image-first modifier, see src/blocks/cb-text-image.css)
+ * rather than element type, since text/image swap visual position but not
+ * DOM order (DOM stays text-then-image for reading order/SEO regardless).
  */
 function initTextImage() {
 	document.querySelectorAll('.cb-text-image__grid').forEach((grid) => {
 		const text = grid.querySelector('.cb-text-image__text');
 		const image = grid.querySelector('.cb-text-image__image');
+		const imageFirst = grid.classList.contains('cb-text-image__grid--image-first');
 
 		const scrollTrigger = {
 			trigger: grid,
@@ -110,7 +115,7 @@ function initTextImage() {
 		if (text) {
 			window.gsap.from(text, {
 				opacity: 0,
-				x: -32,
+				x: imageFirst ? 32 : -32,
 				duration: 0.6,
 				ease: 'power2.out',
 				scrollTrigger,
@@ -120,7 +125,7 @@ function initTextImage() {
 		if (image) {
 			window.gsap.from(image, {
 				opacity: 0,
-				x: 32,
+				x: imageFirst ? -32 : 32,
 				duration: 0.6,
 				ease: 'power2.out',
 				scrollTrigger,

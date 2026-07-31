@@ -100,7 +100,7 @@
       {
         "param": "block",
         "operator": "==",
-        "value": "acf\/cb-button-cards"
+        "value": "acf/cb-button-cards"
       }
     ]
   ],
@@ -116,5 +116,5 @@
   "display_title": "",
   "allow_ai_access": false,
   "ai_description": "",
-  "modified": 1785490223
+  "modified": 1785507249
 }

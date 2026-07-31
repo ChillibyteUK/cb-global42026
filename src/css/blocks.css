@@ -299,6 +299,16 @@
         background-image: var(--cb-hero-bg-image);
         background-size: cover;
         background-position: center;
+
+        /* Dark scrim so white text stays legible over an arbitrary photo —
+           no z-index needed: this stays at the default z-index:auto stacking
+           level, below .container's explicit z-index:1 above. */
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
+        }
     }
 }
 
@@ -553,6 +563,19 @@
 		align-items: center;
 	}
 
+	/* Keeps text markup first in the DOM (reading order, SEO) regardless of
+	   the "Order" ACF field — only the visual position swaps, via `order`,
+	   which grid items respect the same as flex items. */
+	.cb-text-image__grid--image-first {
+		.cb-text-image__text {
+			order: 2;
+		}
+
+		.cb-text-image__image {
+			order: 1;
+		}
+	}
+
 	.cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);
@@ -579,6 +602,30 @@
 			grid-template-columns: 1fr;
 		}
 	}
+}
+
+/* --- src/blocks/cb-text-testimonial.css --- */
+.cb-text-testimonial {
+    blockquote {
+        background-color: var(--col-white);
+        color: var(--col-navy-800);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        p {
+            font-weight: var(--fw-700);
+            font-size: var(--fs-h5);
+        }
+        /* Plain inline quote marks at the text's own size — no indent, no
+           positioning, so cite below stays flush with the quote text
+           with no alignment to reconcile. */
+        p::before {
+            content: '“';
+        }
+        p::after {
+            content: '”';
+        }
+    }
 }
 
 /* --- src/blocks/cb-usp-cards.css --- */

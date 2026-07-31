@@ -1,0 +1,22 @@
+.cb-text-testimonial {
+    blockquote {
+        background-color: var(--col-white);
+        color: var(--col-navy-800);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        p {
+            font-weight: var(--fw-700);
+            font-size: var(--fs-h5);
+        }
+        /* Plain inline quote marks at the text's own size — no indent, no
+           positioning, so cite below stays flush with the quote text
+           with no alignment to reconcile. */
+        p::before {
+            content: '“';
+        }
+        p::after {
+            content: '”';
+        }
+    }
+}

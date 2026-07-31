@@ -54,5 +54,15 @@
         background-image: var(--cb-hero-bg-image);
         background-size: cover;
         background-position: center;
+
+        /* Dark scrim so white text stays legible over an arbitrary photo —
+           no z-index needed: this stays at the default z-index:auto stacking
+           level, below .container's explicit z-index:1 above. */
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
+        }
     }
 }
