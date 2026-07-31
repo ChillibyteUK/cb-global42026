@@ -1,0 +1,24 @@
+{
+  "key": "group_cb_all_customers",
+  "title": "CB All Customers",
+  "fields": [
+    {
+      "key": "field_cb_all_customers_title",
+      "label": "CB All Customers",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-all-customers"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1785511548
+}
