@@ -21,5 +21,6 @@ require_once CB_GLOBAL42026_DIR . '/inc/options.php';
 require_once CB_GLOBAL42026_DIR . '/inc/head-tags.php';
 require_once CB_GLOBAL42026_DIR . '/inc/block-usage.php';
 require_once CB_GLOBAL42026_DIR . '/inc/utilities.php';
+require_once CB_GLOBAL42026_DIR . '/inc/helpers.php';
 require_once CB_GLOBAL42026_DIR . '/inc/posttypes.php';
 require_once CB_GLOBAL42026_DIR . '/inc/taxonomies.php';

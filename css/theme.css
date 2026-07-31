@@ -1516,6 +1516,19 @@ select {
 	}
 }
 
+/* --- src/blocks/cb-selected-case-studies.css --- */
+/* Card grid itself intentionally reuses .cb-all-customers__cards/__card/etc.
+   (see blocks/cb-selected-case-studies.php and inc/helpers.php's
+   cb_render_case_study_card()) rather than duplicating that CSS here —
+   only the heading is specific to this block. */
+.cb-selected-case-studies {
+	padding-block: var(--space-5);
+}
+.cb-selected-case-studies .cb-selected-case-studies__heading {
+		margin-bottom: var(--space-4);
+		text-align: center;
+	}
+
 /* --- src/blocks/cb-spacer.css --- */
 .cb-spacer {
 	height: var(--cb-spacer-space);
@@ -1582,6 +1595,11 @@ select {
 :is(.cb-text-image .cb-text-image__grid--image-first) .cb-text-image__image {
 			order: 1;
 		}
+.cb-text-image .cb-text-image__logo {
+		width: auto;
+		max-height: 3rem;
+		margin-bottom: var(--space-4);
+	}
 .cb-text-image .cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);

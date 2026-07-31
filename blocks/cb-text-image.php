@@ -16,6 +16,7 @@ $split_columns = array(
 );
 
 $grid_columns = isset( $split_columns[ $split ] ) ? $split_columns[ $split ] : '1fr 1fr';
+$logo         = get_field( 'logo' );
 $heading      = get_field( 'heading' );
 $subtitle     = get_field( 'subtitle' );
 $content      = get_field( 'content' );
@@ -46,6 +47,11 @@ if ( $block['anchor'] ) {
 		<div class="cb-text-image__grid<?= 'image-text' === $col_order ? ' cb-text-image__grid--image-first' : ''; ?>" style="--cb-text-image-split: <?= esc_attr( $grid_columns ); ?>;">
 			<div class="cb-text-image__text">
 				<?php
+				if ( $logo ) {
+					?>
+				<img class="cb-text-image__logo" src="<?= esc_url( $logo['url'] ); ?>" alt="<?= esc_attr( $logo['alt'] ); ?>" width="<?= esc_attr( $logo['width'] ); ?>" height="<?= esc_attr( $logo['height'] ); ?>" />
+					<?php
+				}
 				if ( $heading ) {
 					?>
 				<h2 class="cb-text-image__heading"><?= esc_html( $heading ); ?></h2>

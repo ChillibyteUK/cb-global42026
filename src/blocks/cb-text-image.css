@@ -22,6 +22,12 @@
 		}
 	}
 
+	.cb-text-image__logo {
+		width: auto;
+		max-height: 3rem;
+		margin-bottom: var(--space-4);
+	}
+
 	.cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);

@@ -1,0 +1,82 @@
+{
+  "key": "group_cb_selected_case_studies",
+  "title": "CB Selected Case Studies",
+  "fields": [
+    {
+      "key": "field_cb_selected_case_studies_title",
+      "label": "CB Selected Case Studies",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_selected_case_studies_a658971cbb99",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_selected_case_studies_ada2d3580a15",
+      "label": "Case Studies",
+      "name": "case_studies",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Select up to 3.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "case_study"
+      ],
+      "taxonomy": [],
+      "filters": [
+        "search"
+      ],
+      "elements": [],
+      "min": 0,
+      "max": 3,
+      "return_format": "object",
+      "allow_in_bindings": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf\/cb-selected-case-studies"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "allow_ai_access": false,
+  "ai_description": "",
+  "modified": 1785513392
+}

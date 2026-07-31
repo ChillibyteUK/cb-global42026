@@ -1,0 +1,12 @@
+/* Card grid itself intentionally reuses .cb-all-customers__cards/__card/etc.
+   (see blocks/cb-selected-case-studies.php and inc/helpers.php's
+   cb_render_case_study_card()) rather than duplicating that CSS here —
+   only the heading is specific to this block. */
+.cb-selected-case-studies {
+	padding-block: var(--space-5);
+
+	.cb-selected-case-studies__heading {
+		margin-bottom: var(--space-4);
+		text-align: center;
+	}
+}

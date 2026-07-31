@@ -20,6 +20,23 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_selected_case_studies',
+				'title'           => __( 'CB Selected Case Studies' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-selected-case-studies.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_all_customers',
 				'title'           => __( 'CB All Customers' ),
 				'category'        => 'layout',
