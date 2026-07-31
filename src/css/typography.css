@@ -35,3 +35,15 @@ h2 {
   max-width: min(90vw, 85ch);
 
 }
+
+/* h2 and .wp-block-paragraph above are left-anchored block boxes capped by
+   max-width, not centered — .text-center (generated utility, see
+   src/css/utilities.css) only centers the text *within* that box, which
+   looks off-center on a wider container unless the box itself is centered
+   too. There's no real case where you'd want centered text inside a
+   left-anchored capped-width box, so centering the box whenever
+   .text-center is applied is always what's actually wanted here. */
+h2.text-center,
+.wp-block-paragraph.text-center {
+  margin-inline: auto;
+}

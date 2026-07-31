@@ -29,6 +29,7 @@
 	--col-grey-800: #333333; /* body copy */
 	--col-grey-500: #808080; /* muted text */
 	--col-grey-400: #999999; /* secondary/disabled text */
+	--col-grey-300: #e2e2e2; /* light UI panels, borders, dividers */
 	--col-grey-200: #eeeeee; /* light section background */
 	--col-grey-100: #f1f2f2; /* off-white section background */
 
@@ -84,7 +85,7 @@
 	--container-max-width: 1320px;
 	--container-padding: var(--space-3);
 	--grid-columns: 12;
-	--grid-gutter: var(--space-3);
+	--grid-gutter: var(--space-4);
 
 	/* Minimum item width for .grid — override per instance with an
 	   inline style (e.g. style="--grid-min: 10rem") rather than adding

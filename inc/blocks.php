@@ -20,6 +20,81 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_faqs',
+				'title'           => __( 'CB FAQs' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-faqs.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_form_full_width',
+				'title'           => __( 'CB Form (Full-Width)' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-form-full-width.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_button_cards',
+				'title'           => __( 'CB Button Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-button-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_contact_cards',
+				'title'           => __( 'CB Contact Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-contact-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_cta',
 				'title'           => __( 'CB CTA' ),
 				'category'        => 'layout',
@@ -147,11 +222,11 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'cb_home_hero',
-				'title'           => __( 'CB Home Hero' ),
+				'name'            => 'cb_hero',
+				'title'           => __( 'CB Hero' ),
 				'category'        => 'layout',
 				'icon'            => 'cover-image',
-				'render_template' => 'blocks/cb-home-hero.php',
+				'render_template' => 'blocks/cb-hero.php',
 				'mode'            => 'edit',
 				'supports'        => array(
 					'mode'      => false,

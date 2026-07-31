@@ -15,19 +15,25 @@ export function initScrollAnimate() {
 
 	window.gsap.registerPlugin(window.ScrollTrigger);
 
-	initIconCardGrid();
+	staggerFadeUpGrid('.cb-icon-card-grid__cards', '.cb-icon-card-grid__card');
+	staggerFadeUpGrid('.cb-button-cards__cards', '.cb-button-cards__card');
+	staggerFadeUpGrid('.cb-contact-cards__cards', '.cb-contact-cards__card');
 	initSplitFeatureList();
 	initTextImage();
 	initCta();
 }
 
 /**
- * CB Icon Card Grid — cards stagger fade up when the grid is ~25% into
- * the viewport.
+ * Shared "grid of cards" entrance — cards stagger fade up when the grid is
+ * ~25% into the viewport. Used by CB Icon Card Grid, CB Button Cards, and
+ * CB Contact Cards, which all share this exact layout shape.
+ *
+ * @param {string} gridSelector Selector for the grid container (the ScrollTrigger).
+ * @param {string} cardSelector Selector for the individual cards within it (the stagger targets).
  */
-function initIconCardGrid() {
-	document.querySelectorAll('.cb-icon-card-grid__cards').forEach((grid) => {
-		const cards = grid.querySelectorAll('.cb-icon-card-grid__card');
+function staggerFadeUpGrid(gridSelector, cardSelector) {
+	document.querySelectorAll(gridSelector).forEach((grid) => {
+		const cards = grid.querySelectorAll(cardSelector);
 
 		if (!cards.length) return;
 

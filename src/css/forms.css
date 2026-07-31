@@ -65,3 +65,13 @@ select {
 	background-color: rgba( 255 255 255 / 0.2);
 	color: var(--col-white);
 }
+
+.btn-primary-dark {
+	border-color: var(--col-navy-900);
+	background-color: var(--col-navy-900);
+	color: var(--col-white);
+}
+.btn-primary-dark:hover {
+	border-color: var(--col-navy-700);
+	background-color: var(--col-navy-700);
+}

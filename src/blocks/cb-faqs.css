@@ -1,0 +1,7 @@
+.cb-faqs {
+	padding-block: var(--space-5);
+
+	.cb-faqs__heading {
+		margin-bottom: var(--space-4);
+	}
+}

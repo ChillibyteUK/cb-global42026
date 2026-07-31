@@ -1,14 +1,17 @@
-.cb-home-hero {
-    /* background-color: var(--col-navy-900); */
-
+.cb-hero {
     background-image: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
 
     color: var(--col-white);
-    min-height: 600px;
     padding-top: var(--space-5);
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    min-height: 400px;
+
+    &.cb-hero--home {
+        min-height: 600px;
+    }
 
     position: relative;
 
@@ -33,13 +36,23 @@
         }
     }
 
-    .cb-home-hero__content {
+    .cb-hero__content {
         padding-bottom: var(--space-4);
     }
 
-    .cb-home-hero__cta {
+    .cb-hero__cta {
         display: flex;
         gap: var(--space-3);
         flex-wrap: wrap;
+    }
+
+    /* .cb-hero--home is applied on the front page only (blocks/cb-hero.php)
+       — no height override set here, add one if the homepage needs a
+       different min-height than the default above. */
+
+    &.cb-hero--has-bg-image {
+        background-image: var(--cb-hero-bg-image);
+        background-size: cover;
+        background-position: center;
     }
 }

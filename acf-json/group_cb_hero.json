@@ -1,10 +1,10 @@
 {
-    "key": "group_cb_home_hero",
-    "title": "CB Home Hero",
+    "key": "group_cb_hero",
+    "title": "CB Hero",
     "fields": [
         {
-            "key": "field_cb_home_hero_title",
-            "label": "CB Home Hero",
+            "key": "field_cb_hero_title",
+            "label": "CB Hero",
             "name": "",
             "aria-label": "",
             "type": "message",
@@ -72,7 +72,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -89,12 +89,38 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
             "return_format": "array",
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_cb_hero_ecfab583b773",
+            "label": "Background Image",
+            "name": "background_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Non-homepage only — the homepage always uses the animated canvas background.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "thumbnail"
         }
     ],
     "location": [
@@ -102,7 +128,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-home-hero"
+                "value": "acf\/cb-hero"
             }
         ]
     ],
@@ -118,5 +144,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785412345
+    "modified": 1785485103
 }

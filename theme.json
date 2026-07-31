@@ -90,6 +90,12 @@
           "origin": "theme"
         },
         {
+          "name": "grey-300",
+          "slug": "grey-300",
+          "color": "#e2e2e2",
+          "origin": "theme"
+        },
+        {
           "name": "grey-200",
           "slug": "grey-200",
           "color": "#eeeeee",

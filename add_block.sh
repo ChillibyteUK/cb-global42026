@@ -9,9 +9,14 @@ if [ -z "$block_name" ]; then
   exit 1
 fi
 
-# Convert to lowercase and replace spaces
-block_slug=$(echo "$block_name" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-block_kebab=$(echo "$block_name" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+# Lowercase, then collapse any run of non-alphanumeric characters (spaces,
+# parentheses, punctuation, etc.) into a single space and trim the ends —
+# so names like "CB Form (Full-Width)" produce a clean slug instead of
+# carrying stray characters like "(" / ")" into filenames and the ACF
+# block name (which isn't valid there anyway).
+sanitized_name=$(echo "$block_name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/ /g; s/^ +| +$//g')
+block_slug=$(echo "$sanitized_name" | tr ' ' '_')
+block_kebab=$(echo "$sanitized_name" | tr ' ' '-')
 
 # Define file paths
 php_file="./blocks/${block_kebab}.php"
@@ -41,6 +46,8 @@ echo "<?php
  *
  * @package ${package}
  */
+
+defined( 'ABSPATH' ) || exit;
 " > "$php_file"
 echo "Created: $php_file"
 

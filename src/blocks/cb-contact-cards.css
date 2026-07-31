@@ -1,0 +1,123 @@
+.cb-contact-cards {
+	background-color: var(--col-grey-100);
+	padding-block: var(--space-5);
+
+	.cb-contact-cards__cards {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--grid-gutter);
+	}
+
+	.cb-contact-cards__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-4);
+		background-color: var(--col-white);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		text-align: center;
+	}
+
+	/* Row-subgrid — icon/title/content/contact each align to a shared row
+	   height across the whole row of cards (sized to whichever card's
+	   content is tallest for that row), which is what actually pins
+	   .cb-contact-cards__contact to a consistent bottom position across
+	   cards — not a margin-top:auto hack. Falls back to the plain
+	   flex-column above where subgrid isn't supported: still readable,
+	   just not row-aligned. Same progressive-enhancement pattern as the
+	   nested .row .row rule in src/css/layout.css. */
+	@supports (grid-template-rows: subgrid) {
+		.cb-contact-cards__cards {
+			grid-template-rows: repeat(4, auto);
+		}
+
+		.cb-contact-cards__card {
+			display: grid;
+			grid-row: span 4;
+			grid-template-rows: subgrid;
+			justify-items: center;
+		}
+	}
+
+	.cb-contact-cards__contact {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		margin-top: auto;
+	}
+
+	.cb-contact-cards__icon {
+		display: block;
+		width: 2.5rem;
+		height: 2.5rem;
+		margin-bottom: var(--space-2);
+	}
+
+	.cb-contact-cards__icon svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.cb-contact-cards__title {
+		margin: 0;
+		color: var(--col-navy-700);
+		font-size: var(--fs-h5);
+	}
+
+	.cb-contact-cards__content {
+		margin: 0;
+		margin-bottom: var(--space-2);
+		color: var(--col-grey-500);
+		font-size: var(--fs-small);
+	}
+
+	.cb-contact-cards__email,
+	.cb-contact-cards__phone {
+		margin: 0;
+		font-weight: var(--fw-700);
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+
+	/* Pulls just the cards grid up over whatever's directly above it (e.g. a
+	   hero) — see the "Overlap Previous Block" ACF field. The section itself
+	   (and its own background) stays put in normal flow; only the grid gets
+	   the negative margin, so the section's grey background doesn't also
+	   extend up and cover the hero in the gaps around/between the cards.
+	   The margin cancels out the section's own top padding *and* pulls up
+	   an extra 4rem, so the overlap is a true 4rem past the section's own
+	   edge, not 4rem minus whatever padding-block is set to.
+	   position+z-index on the grid is needed, not just the negative margin:
+	   .cb-hero is itself position:relative (for its own canvas/content
+	   stacking), and a positioned element with z-index:auto still outranks
+	   a later static sibling in paint order regardless of DOM order — so
+	   without this, the hero paints over the overlapping part instead of
+	   under it. */
+	&.cb-contact-cards--overlap {
+		.cb-contact-cards__cards {
+			position: relative;
+			z-index: 1;
+			margin-top: calc(-1 * (var(--space-5) + 3rem));
+		}
+	}
+
+	/* Below "md" (768px, src/build/tokens.config.js) */
+	@media (max-width: 767px) {
+		.cb-contact-cards__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-contact-cards__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}

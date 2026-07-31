@@ -1,0 +1,120 @@
+{
+  "key": "group_cb_button_cards",
+  "title": "CB Button Cards",
+  "fields": [
+    {
+      "key": "field_cb_button_cards_title",
+      "label": "CB Button Cards",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_button_cards_2594fda7b6ea",
+      "label": "Cards",
+      "name": "cards",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "",
+      "button_label": "Add Card",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_button_cards_44e787591380",
+          "label": "Title",
+          "name": "title",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_button_cards_2594fda7b6ea"
+        },
+        {
+          "key": "field_cb_button_cards_9bf695b3a504",
+          "label": "Content",
+          "name": "content",
+          "aria-label": "",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "rows": 3,
+          "placeholder": "",
+          "new_lines": "",
+          "parent_repeater": "field_cb_button_cards_2594fda7b6ea"
+        },
+        {
+          "key": "field_cb_button_cards_button001",
+          "label": "Button",
+          "name": "button",
+          "aria-label": "",
+          "type": "link",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_button_cards_2594fda7b6ea"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf\/cb-button-cards"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "allow_ai_access": false,
+  "ai_description": "",
+  "modified": 1785490223
+}

@@ -106,6 +106,61 @@ function cb_icon( $name ) {
 }
 
 /**
+ * Queue Q&A pairs for the aggregated FAQPage JSON-LD schema, output once in
+ * the footer by cb_output_faq_schema(). Safe to call from multiple
+ * FAQ-style blocks on the same page — everything queued is combined into a
+ * single FAQPage block rather than one per block instance, matching
+ * Google's own guidance of one FAQPage schema per page.
+ *
+ * @param array $items Array of ['question' => string, 'answer' => string] pairs.
+ * @return void
+ */
+function cb_queue_faq_schema( array $items ) {
+	global $cb_faq_schema_items;
+
+	if ( ! isset( $cb_faq_schema_items ) ) {
+		$cb_faq_schema_items = array();
+	}
+
+	foreach ( $items as $item ) {
+		if ( empty( $item['question'] ) || empty( $item['answer'] ) ) {
+			continue;
+		}
+
+		$cb_faq_schema_items[] = array(
+			'@type'          => 'Question',
+			'name'           => wp_strip_all_tags( $item['question'] ),
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => wp_strip_all_tags( $item['answer'] ),
+			),
+		);
+	}
+}
+
+/**
+ * Output the aggregated FAQPage JSON-LD schema, if anything was queued.
+ *
+ * @return void
+ */
+function cb_output_faq_schema() {
+	global $cb_faq_schema_items;
+
+	if ( empty( $cb_faq_schema_items ) ) {
+		return;
+	}
+
+	$schema = array(
+		'@context'   => 'https://schema.org',
+		'@type'      => 'FAQPage',
+		'mainEntity' => $cb_faq_schema_items,
+	);
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+add_action( 'wp_footer', 'cb_output_faq_schema' );
+
+/**
  * Estimate reading time for a piece of content.
  *
  * @param string $content          Content to estimate.
