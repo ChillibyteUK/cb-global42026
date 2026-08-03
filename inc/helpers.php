@@ -26,7 +26,7 @@ function cb_render_case_study_card( $post_id ) {
 	$solution_terms   = get_the_terms( $post_id, 'solution' );
 	$card_description = get_field( 'card_description', $post_id );
 	?>
-<a href="<?= esc_url( get_permalink( $post_id ) ); ?>" class="cb-all-customers__card">
+<a href="<?= esc_url( get_permalink( $post_id ) ); ?>" class="cb-all-customers__card card-link">
 	<?php if ( has_post_thumbnail( $post_id ) ) { ?>
 	<div class="cb-all-customers__image">
 		<?= get_the_post_thumbnail( $post_id, 'medium_large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -55,9 +55,9 @@ function cb_render_case_study_card( $post_id ) {
 			<?php
 		}
 		?>
-		<span class="cb-all-customers__link">
+		<span class="link-arrow">
 			View case study
-			<svg class="cb-all-customers__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+			<svg class="link-arrow__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 				<path d="M2 7h10M8 3l4 4-4 4" />
 			</svg>
 		</span>

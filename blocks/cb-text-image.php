@@ -24,25 +24,14 @@ $slink        = get_field( 'link' );
 $image        = get_field( 'image' );
 $has_link     = ! empty( $slink['url'] );
 
-$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-
-$classes = array( 'cb-text-image', $bg, $fg );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
-$classes = array_filter( $classes );
-
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+list( $bg, $fg ) = cb_bg_fg_classes( $block );
+
+$classes = cb_block_classes( array( 'cb-text-image', $bg, $fg ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="cb-text-image__grid<?= 'image-text' === $col_order ? ' cb-text-image__grid--image-first' : ''; ?>" style="--cb-text-image-split: <?= esc_attr( $grid_columns ); ?>;">
 			<div class="cb-text-image__text">
@@ -69,15 +58,7 @@ if ( $block['anchor'] ) {
 				}
 				if ( $has_link ) {
 					?>
-				<a class="btn btn-primary cb-text-image__link" href="<?= esc_url( $slink['url'] ); ?>"
-					<?php
-					if ( '_blank' === $slink['target'] ) {
-						?>
-						target="_blank" rel="noopener"
-						<?php
-					}
-					?>
-				>
+				<a class="btn btn-primary cb-text-image__link" href="<?= esc_url( $slink['url'] ); ?>"<?= cb_link_target_attrs( $slink ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?= esc_html( $slink['title'] ); ?>
 				</a>
 					<?php

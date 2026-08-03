@@ -7,20 +7,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-logo-marquee-' );
+$block_id = $block['id'] ?? wp_unique_id( 'cb-logo-marquee-' );
 $logos    = get_field( 'logos' );
 
 if ( empty( $logos ) || ! is_array( $logos ) ) {
 	return;
 }
 
-$classes = array( 'cb-logo-marquee' );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
 ?>
-<section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section id="<?= esc_attr( $block_id ); ?>" class="cb-logo-marquee">
 	<div class="cb-logo-marquee__marquee" aria-label="<?= esc_attr__( 'Logo marquee', 'cb-global42026' ); ?>">
 		<div class="cb-logo-marquee__track">
 			<?php

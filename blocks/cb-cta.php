@@ -12,16 +12,21 @@ $heading    = get_field( 'heading' );
 $content    = get_field( 'content' );
 $button     = get_field( 'button' );
 $fine_print = get_field( 'fine_print' );
+$has_border = get_field( 'border' );
 $has_button = ! empty( $button['url'] );
 
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
+$base_classes = array( 'cb-cta' );
+
+if ( ! $has_border ) {
+	$base_classes[] = 'cb-cta--no-border';
 }
+
+$classes = cb_block_classes( $base_classes, $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="cb-cta">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-7">
@@ -47,15 +52,7 @@ if ( $block['anchor'] ) {
 				<?php
 				if ( $has_button ) {
 					?>
-				<a class="btn btn-primary cb-cta__button" href="<?= esc_url( $button['url'] ); ?>"
-					<?php
-					if ( '_blank' === $button['target'] ) {
-						?>
-						target="_blank" rel="noopener"
-						<?php
-					}
-					?>
-				>
+				<a class="btn btn-primary cb-cta__button" href="<?= esc_url( $button['url'] ); ?>"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?= esc_html( $button['title'] ); ?>
 				</a>
 					<?php

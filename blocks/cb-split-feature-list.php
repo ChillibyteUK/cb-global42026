@@ -13,25 +13,14 @@ $blink      = get_field( 'link' );
 $fine_print = get_field( 'fine_print' );
 $has_link   = ! empty( $blink['url'] );
 
-$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-
-$classes = array( 'cb-split-feature-list', $bg, $fg );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
-$classes = array_filter( $classes );
-
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+list( $bg, $fg ) = cb_bg_fg_classes( $block );
+
+$classes = cb_block_classes( array( 'cb-split-feature-list', $bg, $fg ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-6 cb-split-feature-list__intro">
@@ -48,15 +37,7 @@ if ( $block['anchor'] ) {
 				}
 				if ( $has_link ) {
 					?>
-				<a class="btn btn-primary" href="<?= esc_url( $blink['url'] ); ?>"
-					<?php
-					if ( '_blank' === $blink['target'] ) {
-						?>
-						target="_blank" rel="noopener"
-						<?php
-					}
-					?>
-				>
+				<a class="btn btn-primary" href="<?= esc_url( $blink['url'] ); ?>"<?= cb_link_target_attrs( $blink ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 					<?= esc_html( $blink['title'] ); ?>
 				</a>
 					<?php

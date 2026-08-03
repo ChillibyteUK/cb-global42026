@@ -53,22 +53,11 @@
 		margin: 0;
 	}
 
-	.cb-icon-card-grid__link {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-1);
+	/* .link-arrow/.link-arrow__icon/.card-link are the shared component in
+	   src/css/link-arrow.css — this is just the layout tweak specific to
+	   this card (pinned to the bottom of the flex-column card). */
+	.link-arrow {
 		margin-top: auto;
-		font-weight: var(--fw-700);
-	}
-
-	.cb-icon-card-grid__arrow {
-		width: 0.875rem;
-		height: 0.875rem;
-		transition: transform var(--transition);
-	}
-
-	a.cb-icon-card-grid__card:hover .cb-icon-card-grid__arrow {
-		transform: translateX(0.25rem);
 	}
 
 	.cb-icon-card-grid__card--filled {

@@ -161,6 +161,74 @@ function cb_output_faq_schema() {
 add_action( 'wp_footer', 'cb_output_faq_schema' );
 
 /**
+ * Render an ACF block's "HTML anchor" (Advanced > HTML anchor) target, if
+ * set — every block's own markup calls this immediately before its own
+ * wrapper element. Positioned via .anchor in src/css/layout.css so it's
+ * nudged clear of the fixed nav.
+ *
+ * @param array $block ACF block data.
+ * @return void
+ */
+function cb_render_anchor( $block ) {
+	if ( empty( $block['anchor'] ) ) {
+		return;
+	}
+	?>
+<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
+	<?php
+}
+
+/**
+ * Build a block's outer wrapper class string: appends the editor's
+ * "Additional CSS Class(es)" value if set, and drops any empty entries
+ * (e.g. unset $bg/$fg color classes from cb_bg_fg_classes()). Still needs
+ * esc_attr() at the point of output, same as any other dynamic attribute
+ * value in this theme.
+ *
+ * @param array $base_classes Base classes for this block, e.g. array( 'cb-cta', $bg, $fg ).
+ * @param array $block        ACF block data.
+ * @return string
+ */
+function cb_block_classes( array $base_classes, array $block ) {
+	if ( ! empty( $block['className'] ) ) {
+		$base_classes[] = $block['className'];
+	}
+
+	return implode( ' ', array_filter( $base_classes ) );
+}
+
+/**
+ * The two "has-*-background-color"/"has-*-color" classes for a block with
+ * ACF's color support enabled — empty strings if unset, safe to pass
+ * straight into cb_block_classes(), which filters empties out.
+ *
+ * @param array $block ACF block data.
+ * @return string[] array( $background_class, $text_class ).
+ */
+function cb_bg_fg_classes( $block ) {
+	$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
+	$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+
+	return array( $bg, $fg );
+}
+
+/**
+ * The target/rel attribute string for an ACF link field value, when it
+ * opens in a new tab — empty string otherwise. Echo directly into an <a>
+ * tag's attribute list.
+ *
+ * @param array $link ACF link field value.
+ * @return string
+ */
+function cb_link_target_attrs( $link ) {
+	if ( empty( $link['target'] ) || '_blank' !== $link['target'] ) {
+		return '';
+	}
+
+	return ' target="_blank" rel="noopener"';
+}
+
+/**
  * Estimate reading time for a piece of content.
  *
  * @param string $content          Content to estimate.

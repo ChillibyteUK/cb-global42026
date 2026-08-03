@@ -267,10 +267,9 @@ function cb_global42026_acf_blocks() {
 				'render_template' => 'blocks/cb-spacer.php',
 				'mode'            => 'edit',
 				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
+					'mode'   => false,
+					'anchor' => true,
+					'align'  => true,
 				),
 			)
 		);
@@ -301,10 +300,8 @@ function cb_global42026_acf_blocks() {
 				'render_template' => 'blocks/cb-logo-marquee.php',
 				'mode'            => 'edit',
 				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
+					'mode'  => false,
+					'align' => true,
 				),
 			)
 		);
@@ -318,10 +315,8 @@ function cb_global42026_acf_blocks() {
 				'render_template' => 'blocks/cb-hero.php',
 				'mode'            => 'edit',
 				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
+					'mode'  => false,
+					'align' => true,
 				),
 			)
 		);

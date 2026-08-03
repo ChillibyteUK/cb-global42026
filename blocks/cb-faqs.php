@@ -15,22 +15,14 @@ $heading = get_field( 'heading' );
 
 cb_queue_faq_schema( get_field( 'faqs' ) );
 
-$classes = array( 'cb-faqs' );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+$classes = cb_block_classes( array( 'cb-faqs' ), $block );
+
+cb_render_anchor( $block );
 
 $group_name = 'cb-faqs-' . $block['id'];
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<?php
 		if ( $heading ) {
@@ -62,7 +54,7 @@ $group_name = 'cb-faqs-' . $block['id'];
 			$button = get_field( 'button' );
 			?>
 		<div class="cb-faqs__button mt-5">
-			<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary-dark"><?= esc_html( $button['title'] ); ?></a>
+			<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary-dark"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
 		</div>
 			<?php
 		}

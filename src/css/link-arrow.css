@@ -1,0 +1,27 @@
+/*
+ * Link-arrow — Bootstrap-style class names, zero Bootstrap (same
+ * convention as .container/.row/.btn/.accordion elsewhere in this theme).
+ * A text + small arrow icon, matching the "View case study" / "Learn
+ * more" style link used inside several card blocks.
+ *
+ * Pair with .card-link on the hoverable ancestor (typically the whole
+ * card <a>) for the arrow to nudge right on hover — works standalone
+ * (static icon, no nudge) without it too.
+ */
+
+.link-arrow {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+	font-weight: var(--fw-700);
+}
+
+.link-arrow__icon {
+	width: 0.875rem;
+	height: 0.875rem;
+	transition: transform var(--transition);
+}
+
+.card-link:hover .link-arrow__icon {
+	transform: translateX(0.25rem);
+}

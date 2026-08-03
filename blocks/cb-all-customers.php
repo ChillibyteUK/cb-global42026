@@ -19,20 +19,12 @@ if ( ! $case_studies->have_posts() ) {
 	return;
 }
 
-$classes = array( 'cb-all-customers' );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+$classes = cb_block_classes( array( 'cb-all-customers' ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="cb-all-customers__cards">
 			<?php

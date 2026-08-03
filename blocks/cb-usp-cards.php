@@ -8,13 +8,11 @@
 defined( 'ABSPATH' ) || exit;
 
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+$classes = cb_block_classes( array( 'cb-usp-cards' ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="cb-usp-cards">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="cb-usp-cards__cards">
 			<?php

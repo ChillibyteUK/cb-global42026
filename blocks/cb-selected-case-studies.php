@@ -14,24 +14,16 @@ if ( empty( $case_studies ) ) {
 	return;
 }
 
+/** @var array $block ACF block data. */
 // cb-all-customers is a deliberate second class, not a typo — the shared
 // card styles in src/blocks/cb-all-customers.css are nested under that
 // class (e.g. compiles to ".cb-all-customers .cb-all-customers__card"), so
 // this section needs it present as an ancestor for those rules to match.
-$classes = array( 'cb-selected-case-studies', 'cb-all-customers' );
+$classes = cb_block_classes( array( 'cb-selected-case-studies', 'cb-all-customers' ), $block );
 
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
-/** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<?php if ( $heading ) { ?>
 		<h2 class="h2 text-center mb-4"><?= esc_html( $heading ); ?></h2>

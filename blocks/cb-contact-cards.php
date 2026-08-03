@@ -11,17 +11,20 @@ if ( ! have_rows( 'cards' ) ) {
 	return;
 }
 
-$classes = array( 'cb-contact-cards' );
+/** @var array $block ACF block data. */
+list( $bg ) = cb_bg_fg_classes( $block );
+
+$base_classes = array( 'cb-contact-cards', $bg );
 
 if ( get_field( 'overlap_previous' ) ) {
-	$classes[] = 'cb-contact-cards--overlap';
+	$base_classes[] = 'cb-contact-cards--overlap';
 }
 
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
+$classes = cb_block_classes( $base_classes, $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="cb-contact-cards__cards">
 			<?php

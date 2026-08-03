@@ -14,26 +14,14 @@ if ( ! $form_id ) {
 	return;
 }
 
-$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-
-$classes = array( 'cb-form py-5', $bg, $fg );
-
-if ( ! empty( $block['className'] ) ) {
-	$classes[] = $block['className'];
-}
-
-$classes = array_filter( $classes );
-
-
 /** @var array $block ACF block data. */
-if ( $block['anchor'] ) {
-	?>
-<a id="<?= esc_attr( $block['anchor'] ); ?>" class="anchor"></a>
-	<?php
-}
+list( $bg, $fg ) = cb_bg_fg_classes( $block );
+
+$classes = cb_block_classes( array( 'cb-form py-5', $bg, $fg ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<?php
 		if ( get_field( 'title' ) ) {

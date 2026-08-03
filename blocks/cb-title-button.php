@@ -7,8 +7,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/** @var array $block ACF block data. */
+$classes = cb_block_classes( array( 'cb-title-button' ), $block );
+
+cb_render_anchor( $block );
 ?>
-<section class="cb-title-button">
+<section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8">
@@ -26,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
 				if ( get_field( 'button' ) ) {
 					$button = get_field( 'button' );
 					?>
-				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary-dark" target="<?= esc_attr( $button['target'] ); ?>"><?= esc_html( $button['title'] ); ?></a>
+				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary-dark"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
 					<?php
 				}
 				?>

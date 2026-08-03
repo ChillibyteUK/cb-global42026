@@ -20,6 +20,11 @@
         padding: var(--space-5);
     }
 
+    &.cb-cta--no-border .row {
+        border: none;
+        padding: 0;
+    }
+
     .cb-cta__heading {
 
     }
