@@ -18,6 +18,7 @@ require_once CB_GLOBAL42026_DIR . '/inc/class-cb-global-4-nav-walker.php';
 require_once CB_GLOBAL42026_DIR . '/inc/blocks.php';
 require_once CB_GLOBAL42026_DIR . '/inc/editor.php';
 require_once CB_GLOBAL42026_DIR . '/inc/options.php';
+require_once CB_GLOBAL42026_DIR . '/inc/icon-upload.php';
 require_once CB_GLOBAL42026_DIR . '/inc/head-tags.php';
 require_once CB_GLOBAL42026_DIR . '/inc/block-usage.php';
 require_once CB_GLOBAL42026_DIR . '/inc/utilities.php';

@@ -1376,6 +1376,9 @@ select {
         }
 
 /* --- src/blocks/cb-icon-card-grid.css --- */
+.cb-icon-card-grid .cb-icon-card-grid__heading {
+		margin-bottom: var(--space-5);
+	}
 .cb-icon-card-grid .cb-icon-card-grid__cards {
 		display: grid;
 		grid-template-columns: repeat(var(--cb-icon-card-grid-columns), 1fr);
@@ -1436,6 +1439,17 @@ select {
 .cb-icon-card-grid .cb-icon-card-grid__card--bordered {
 		border: 1px solid var(--col-navy-700);
 		background-color: var(--col-white);
+	}
+.cb-icon-card-grid .cb-icon-card-grid__card--plain {
+		align-items: center;
+		padding: 0;
+		text-align: center;
+	}
+.cb-icon-card-grid div.cb-icon-card-grid__card--plain,.cb-icon-card-grid a.cb-icon-card-grid__card--plain {
+		box-shadow: none;
+	}
+.cb-icon-card-grid a.cb-icon-card-grid__card--plain:hover {
+		background-color: transparent;
 	}
 /* Below "md" (768px, src/build/tokens.config.js) */
 @media (max-width: 991px) {

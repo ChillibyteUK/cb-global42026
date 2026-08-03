@@ -21,6 +21,27 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_cb_icon_card_grid_a1b2c3d4e5f6",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_cb_icon_card_grid_8a3762bd2103",
             "label": "Columns",
             "name": "columns",
@@ -115,7 +136,8 @@
                     },
                     "choices": {
                         "filled": "Filled",
-                        "bordered": "Bordered"
+                        "bordered": "Bordered",
+                        "plain": "Plain"
                     },
                     "default_value": "filled",
                     "return_format": "value",
@@ -212,5 +234,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785419300
+    "modified": 1785752958
 }

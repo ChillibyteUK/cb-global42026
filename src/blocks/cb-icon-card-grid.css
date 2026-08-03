@@ -1,4 +1,8 @@
 .cb-icon-card-grid {
+	.cb-icon-card-grid__heading {
+		margin-bottom: var(--space-5);
+	}
+
 	.cb-icon-card-grid__cards {
 		display: grid;
 		grid-template-columns: repeat(var(--cb-icon-card-grid-columns), 1fr);
@@ -68,6 +72,21 @@
 	.cb-icon-card-grid__card--bordered {
 		border: 1px solid var(--col-navy-700);
 		background-color: var(--col-white);
+	}
+
+	.cb-icon-card-grid__card--plain {
+		align-items: center;
+		padding: 0;
+		text-align: center;
+	}
+
+	div.cb-icon-card-grid__card--plain,
+	a.cb-icon-card-grid__card--plain {
+		box-shadow: none;
+	}
+
+	a.cb-icon-card-grid__card--plain:hover {
+		background-color: transparent;
 	}
 
 	/* Below "md" (768px, src/build/tokens.config.js) */
