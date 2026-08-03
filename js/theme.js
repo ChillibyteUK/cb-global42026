@@ -174,6 +174,7 @@
 	  initSplitFeatureList();
 	  initTextImage();
 	  initCta();
+	  initLogoGrid();
 	}
 
 	/**
@@ -292,6 +293,32 @@
 	      ease: 'power2.out',
 	      scrollTrigger: {
 	        trigger: box,
+	        start: 'top 75%',
+	        once: true
+	      }
+	    });
+	  });
+	}
+
+	/**
+	 * CB Logo Grid — heading, intro, and each logo stagger fade up together,
+	 * in that DOM order, when ~25% into the viewport.
+	 */
+	function initLogoGrid() {
+	  document.querySelectorAll('.cb-logo-grid').forEach(section => {
+	    const heading = section.querySelector('.cb-logo-grid__heading');
+	    const intro = section.querySelector('.cb-logo-grid__intro');
+	    const logos = section.querySelectorAll('.cb-logo-grid__logo');
+	    const targets = [heading, intro, ...logos].filter(Boolean);
+	    if (!targets.length) return;
+	    window.gsap.from(targets, {
+	      opacity: 0,
+	      y: 32,
+	      duration: 0.6,
+	      ease: 'power2.out',
+	      stagger: 0.08,
+	      scrollTrigger: {
+	        trigger: section,
 	        start: 'top 75%',
 	        once: true
 	      }

@@ -20,6 +20,23 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_awards',
+				'title'           => __( 'CB Awards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-awards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_tabbed_content',
 				'title'           => __( 'CB Tabbed Content' ),
 				'category'        => 'layout',

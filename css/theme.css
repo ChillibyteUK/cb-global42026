@@ -1091,6 +1091,62 @@ select {
 		}
 	}
 
+/* --- src/blocks/cb-awards.css --- */
+.cb-awards {
+
+	background-color: var(--col-grey-100);
+}
+.cb-awards .cb-awards__heading {
+		margin-bottom: var(--space-5);
+		text-align: center;
+		margin-inline: auto;
+	}
+.cb-awards .cb-awards__cards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--grid-gutter);
+	}
+.cb-awards .cb-awards__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		background-color: var(--col-white);
+		padding: 1rem;
+	}
+.cb-awards .cb-awards__image {
+		max-width: 350px;
+		max-height: 150px;
+		height: auto;
+		width: auto;
+		margin-bottom: 0.75rem;
+	}
+.cb-awards .cb-awards__name {
+		margin: 0;
+		font-size: var(--fs-small);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 1.2;
+	}
+.cb-awards .cb-awards__detail {
+		margin: 0;
+		color: var(--col-grey-500);
+		font-size: var(--fs-small);
+		margin-top: 0.25rem;
+	}
+/* Below "lg" (992px, src/build/tokens.config.js) — tablet: 2 cols */
+@media (max-width: 991px) {
+		.cb-awards .cb-awards__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+/* Below "md" (768px, src/build/tokens.config.js) — mobile: 1 col */
+@media (max-width: 767px) {
+		.cb-awards .cb-awards__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+
 /* --- src/blocks/cb-button-cards.css --- */
 .cb-button-cards {
 	background-color: var(--col-grey-100);

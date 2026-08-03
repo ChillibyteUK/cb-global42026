@@ -1,0 +1,140 @@
+{
+  "key": "group_cb_awards",
+  "title": "CB Awards",
+  "fields": [
+    {
+      "key": "field_cb_awards_title",
+      "label": "CB Awards",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_awards_heading",
+      "label": "Title",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_awards_items",
+      "label": "Awards",
+      "name": "awards",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "field_cb_awards_item_name",
+      "button_label": "Add Award",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_awards_item_image",
+          "label": "Award",
+          "name": "award",
+          "aria-label": "",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "allow_in_bindings": 0,
+          "preview_size": "thumbnail",
+          "parent_repeater": "field_cb_awards_items"
+        },
+        {
+          "key": "field_cb_awards_item_name",
+          "label": "Award Name",
+          "name": "award_name",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_awards_items"
+        },
+        {
+          "key": "field_cb_awards_item_detail",
+          "label": "Award Detail",
+          "name": "award_detail",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "Optional.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_awards_items"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-awards"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1785768900
+}
