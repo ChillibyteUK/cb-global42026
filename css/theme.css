@@ -410,7 +410,7 @@ h2.text-center,
 .navbar-nav {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-4);
+	gap: var(--space-2);
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -424,23 +424,59 @@ h2.text-center,
 }
 
 .nav-link.active,.nav-link[aria-current="page"] {
-		font-weight: var(--fw-600);
+		font-weight: var(--fw-700);
 	}
 
-/* Submenus — nested, always visible on mobile; shown via click as a
-   floating panel from "lg" up. */
+/* Blue only for the active leaf link, not the dropdown-toggle parent —
+	   that sits directly on the transparent (non-.scrolled) header state,
+	   where the blue reads oddly against the page behind it. */
+
+.nav-link.active:not(.dropdown-toggle),.nav-link[aria-current="page"] {
+		color: var(--col-blue-500);
+	}
+
+/* Submenus — nested (in normal flow) below "lg", shown via click as an
+   absolutely-positioned floating panel from "lg" up.
+ *
+ * Below "lg" this collapses via max-height/overflow, not visibility/opacity
+ * like .navbar-collapse above — that panel is position: absolute, so it's
+ * already out of flow and hiding it doesn't affect layout. This nested list
+ * isn't (it needs to push later nav items down when it opens), and
+ * visibility/opacity don't remove an element's height from flow — a
+ * "hidden" dropdown would still reserve its full open height, which is
+ * exactly the "everything is spread out" bug this replaced. max-height: 0
+ * collapses it for real, and still animates. */
 .dropdown-menu {
 	list-style: none;
-	margin: var(--space-1) 0 var(--space-1) var(--space-3);
+	margin: 0;
 	padding: 0;
-	display: none;
 	/* Own opaque background regardless of header state, so links must not
 	   inherit the header's white (non-.scrolled) text colour. */
 	color: var(--col-body);
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: max-height var(--transition), opacity var(--transition);
 }
 
 .dropdown-menu.is-open {
-	display: block;
+	/* No JS height measurement, so this is a generous fixed cap rather than
+	   the submenu's own exact height — comfortably above any current menu's
+	   real height, at the cost of not being able to animate to "auto". */
+	max-height: 30rem;
+	opacity: 1;
+}
+
+.dropdown-menu .nav-link {
+	padding: var(--space-2) var(--space-3);
+	border-radius: var(--radius-sm);
+	font-size: var(--fs-small);
+	white-space: nowrap;
+	transition: background-color var(--transition);
+}
+
+.dropdown-menu .nav-link:hover {
+	background-color: var(--col-grey-100);
 }
 
 .dropdown-toggle {
@@ -479,6 +515,7 @@ h2.text-center,
 
 	.navbar-nav {
 		flex-direction: row;
+		gap: var(--space-4);
 		margin: 0;
 	}
 
@@ -486,11 +523,19 @@ h2.text-center,
 		position: relative;
 	}
 
+	/* position: absolute takes this out of flow, so the mobile max-height
+	   collapse mechanism is neither needed nor wanted here — back to
+	   visibility/opacity/transform (see .navbar-collapse for why), which
+	   this can use freely since nothing downstream needs to shift for it. */
 	.dropdown-menu {
 		position: absolute;
 		top: 100%;
 		left: 0;
+		/* min-width is a floor for short menus; width: max-content sizes the
+		   panel to its longest item (e.g. "Awards and Accreditations") instead
+		   of wrapping it inside a fixed-width box. */
 		min-width: 10rem;
+		width: max-content;
 		margin: 0;
 		padding: var(--space-2);
 		background-color: var(--col-body-bg);
@@ -498,6 +543,17 @@ h2.text-center,
 		border-radius: var(--radius-sm);
 		box-shadow: var(--shadow-lg);
 		z-index: 10;
+		max-height: none;
+		overflow: visible;
+		visibility: hidden;
+		transform: translateY(-0.5rem);
+		transition: opacity var(--transition), transform var(--transition), visibility 0s linear var(--transition);
+	}
+
+	.dropdown-menu.is-open {
+		visibility: visible;
+		transform: translateY(0);
+		transition: opacity var(--transition), transform var(--transition), visibility 0s linear;
 	}
 
 }
@@ -1468,7 +1524,7 @@ select {
     align-items: center;
     justify-content: center;
     
-    min-height: 400px;
+    min-height: 500px;
 }
 .cb-hero.cb-hero--home {
         min-height: 600px;

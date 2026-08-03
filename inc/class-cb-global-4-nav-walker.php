@@ -63,6 +63,7 @@ if ( ! class_exists( 'CB_Global_4_Nav_Walker' ) ) {
 		public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 			$has_children = in_array( 'menu-item-has-children', $item->classes, true );
 			$is_current   = in_array( 'current-menu-item', $item->classes, true );
+			$is_ancestor  = in_array( 'current-menu-ancestor', $item->classes, true );
 
 			$li_classes = array( 'nav-item' );
 			if ( $has_children ) {
@@ -73,8 +74,13 @@ if ( ! class_exists( 'CB_Global_4_Nav_Walker' ) ) {
 
 			if ( $has_children ) {
 				// Dropdown parents never navigate — the whole item is the toggle.
+				$toggle_classes = array( 'nav-link', 'dropdown-toggle' );
+				if ( $is_current || $is_ancestor ) {
+					$toggle_classes[] = 'active';
+				}
+
 				$this->current_submenu_id = 'dropdown-' . $item->ID;
-				$output                  .= '<button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="' . esc_attr( $this->current_submenu_id ) . '">';
+				$output                  .= '<button type="button" class="' . esc_attr( implode( ' ', $toggle_classes ) ) . '" aria-haspopup="true" aria-expanded="false" aria-controls="' . esc_attr( $this->current_submenu_id ) . '">';
 				$output                  .= '<span>' . esc_html( $item->title ) . '</span>';
 				$output                  .= '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" /></svg>';
 				$output                  .= '</button>';
