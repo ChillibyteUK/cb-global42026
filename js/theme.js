@@ -171,6 +171,7 @@
 	  staggerFadeUpGrid('.cb-icon-card-grid__cards', '.cb-icon-card-grid__card');
 	  staggerFadeUpGrid('.cb-button-cards__cards', '.cb-button-cards__card');
 	  staggerFadeUpGrid('.cb-contact-cards__cards', '.cb-contact-cards__card');
+	  staggerFadeUpGrid('.cb-accreditations__cards', '.cb-accreditations__card');
 	  initSplitFeatureList();
 	  initTextImage();
 	  initCta();
