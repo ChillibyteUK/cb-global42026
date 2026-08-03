@@ -4,6 +4,7 @@ import { initNavScroll } from './nav-scroll';
 import { initDialogs } from './dialog';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollAnimate } from './scroll-animate';
+import { initTabbedContent } from './tabbed-content';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initDialogs();
 	initSmoothScroll();
 	initScrollAnimate();
+	initTabbedContent();
 });

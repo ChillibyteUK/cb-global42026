@@ -1,21 +1,22 @@
 /*
- * Same underlying idea as src/css/accordion.css (native <details name="...">
- * exclusivity, zero JS) — below "lg" it stacks and behaves exactly like that
- * accordion. At "lg" and up, each .cb-tabbed-content__item is flattened with
- * `display: contents` so its label/panel become direct children of the
- * .cb-tabbed-content__items grid, letting CSS Grid place the label in
- * column 1 and the (currently open) panel in column 2 — a two-pane
- * list/content layout built entirely from the same markup, no JS toggle.
+ * Below "lg" this is a plain native <details name="..."> accordion (same
+ * pattern as src/css/accordion.css) — .cb-tabbed-content__display is
+ * hidden entirely and each item's own .panel shows/hides natively via
+ * [open], zero JS.
+ *
+ * At "lg" and up, this becomes the standard vertical-tabs layout: .list
+ * (all the <details>, showing only their <summary> — each item's own
+ * .panel is hidden at this width) and .display (one single, always-present
+ * content pane) sit side by side as plain flex children. .display is
+ * populated by src/js/tabbed-content.js copying the open item's .panel
+ * content into it on toggle — nothing is nested, spanned, or taken out of
+ * flow, so it can't cause the row-sizing or overflow bugs earlier attempts
+ * at this hit. Its height is just its own content, like any other block.
  */
 
 .cb-tabbed-content {
 	.cb-tabbed-content__heading {
 		margin-bottom: var(--space-4);
-	}
-
-	.cb-tabbed-content__items {
-		display: flex;
-		flex-direction: column;
 	}
 
 	.cb-tabbed-content__item {
@@ -62,21 +63,23 @@
 		color: var(--col-body);
 	}
 
+	.cb-tabbed-content__display {
+		display: none;
+	}
+
 	/* Above "lg" (992px, src/build/tokens.config.js) */
 	@media (min-width: 992px) {
 		.cb-tabbed-content__items {
-			display: grid;
-			grid-template-columns: minmax(14rem, 20rem) 1fr;
-			gap: 0 var(--space-5);
-			align-items: start;
+			display: flex;
+			align-items: flex-start;
+			gap: var(--space-5);
 		}
 
-		.cb-tabbed-content__item {
-			display: contents;
+		.cb-tabbed-content__list {
+			flex: 0 0 20rem;
 		}
 
 		.cb-tabbed-content__label {
-			grid-column: 1;
 			border-radius: var(--radius-sm);
 			padding-inline: var(--space-3);
 		}
@@ -90,16 +93,18 @@
 			display: none;
 		}
 
-		.cb-tabbed-content__panel {
+		.cb-tabbed-content__item .cb-tabbed-content__panel {
 			display: none;
-			grid-column: 2;
-			grid-row: 1 / -1;
-			padding: var(--space-5);
-			border-radius: var(--radius-lg);
 		}
 
-		.cb-tabbed-content__item[open] > .cb-tabbed-content__panel {
+		.cb-tabbed-content__display {
 			display: block;
+			flex: 1;
+			background-color: var(--col-white);
+			color: var(--col-body);
+			padding: var(--space-4);
+			border-radius: var(--radius-lg);
+			box-shadow: var(--shadow-sm);
 		}
 	}
 }

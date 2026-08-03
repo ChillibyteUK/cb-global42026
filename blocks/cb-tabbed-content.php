@@ -19,8 +19,9 @@ $classes          = cb_block_classes( array( 'cb-tabbed-content', $bg, $fg ), $b
 
 cb_render_anchor( $block );
 
-$group_name = 'cb-tabbed-content-' . $block['id'];
-$row_index  = 0;
+$group_name           = 'cb-tabbed-content-' . $block['id'];
+$row_index            = 0;
+$first_panel_content  = '';
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
@@ -32,23 +33,31 @@ $row_index  = 0;
 		}
 		?>
 		<div class="cb-tabbed-content__items">
-			<?php
-			while ( have_rows( 'items' ) ) {
-				the_row();
-				?>
-			<details class="cb-tabbed-content__item" name="<?= esc_attr( $group_name ); ?>"<?= 0 === $row_index ? ' open' : ''; ?>>
-				<summary class="cb-tabbed-content__label">
-					<?= esc_html( get_sub_field( 'label' ) ); ?>
-					<svg class="cb-tabbed-content__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-						<path d="M8 2v12M2 8h12" />
-					</svg>
-				</summary>
-				<div class="cb-tabbed-content__panel"><?= wp_kses_post( get_sub_field( 'content' ) ); ?></div>
-			</details>
+			<div class="cb-tabbed-content__list">
 				<?php
-				++$row_index;
-			}
-			?>
+				while ( have_rows( 'items' ) ) {
+					the_row();
+					$item_content = get_sub_field( 'content' );
+
+					if ( 0 === $row_index ) {
+						$first_panel_content = $item_content;
+					}
+					?>
+				<details class="cb-tabbed-content__item" name="<?= esc_attr( $group_name ); ?>"<?= 0 === $row_index ? ' open' : ''; ?>>
+					<summary class="cb-tabbed-content__label">
+						<?= esc_html( get_sub_field( 'label' ) ); ?>
+						<svg class="cb-tabbed-content__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+							<path d="M8 2v12M2 8h12" />
+						</svg>
+					</summary>
+					<div class="cb-tabbed-content__panel"><?= wp_kses_post( $item_content ); ?></div>
+				</details>
+					<?php
+					++$row_index;
+				}
+				?>
+			</div>
+			<div class="cb-tabbed-content__display"><?= wp_kses_post( $first_panel_content ); ?></div>
 		</div>
 	</div>
 </section>
