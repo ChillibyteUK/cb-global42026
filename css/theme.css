@@ -1287,6 +1287,9 @@ select {
             max-width: auto;
             margin-inline: auto;
         }
+.cb-cta.cb-cta--centered h2 {
+            max-width: auto;
+        }
 .cb-cta .cb-cta__heading {
 
     }

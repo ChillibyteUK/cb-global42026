@@ -32,6 +32,10 @@
             max-width: auto;
             margin-inline: auto;
         }
+
+        h2 {
+            max-width: auto;
+        }
     }
 
     .cb-cta__heading {
