@@ -191,6 +191,13 @@ function initLogoGrid() {
  * together — so scrolling fast straight to the bottom doesn't leave the
  * last row waiting on a stagger chain that started back when the first
  * row appeared.
+ *
+ * Cards are hidden with gsap.set() up front rather than relying on
+ * onEnter's gsap.from() to establish the hidden state — onEnter only runs
+ * once a batch actually crosses the trigger, so until then the cards would
+ * just sit there fully visible (a flash of visible content, not "no
+ * animation yet"). Pre-hiding matches how every other scroll-in animation
+ * in this file behaves: hidden from first paint, revealed on scroll.
  */
 function initAwards() {
 	document.querySelectorAll('.cb-awards__cards').forEach((grid) => {
@@ -198,13 +205,15 @@ function initAwards() {
 
 		if (!cards.length) return;
 
+		window.gsap.set(cards, { opacity: 0, y: 32 });
+
 		window.ScrollTrigger.batch(cards, {
 			start: 'top 85%',
 			once: true,
 			onEnter: (batch) =>
-				window.gsap.from(batch, {
-					opacity: 0,
-					y: 32,
+				window.gsap.to(batch, {
+					opacity: 1,
+					y: 0,
 					duration: 0.6,
 					ease: 'power2.out',
 					stagger: 0.08,
