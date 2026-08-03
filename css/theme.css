@@ -1471,10 +1471,17 @@ select {
 .cb-logo-grid .cb-logo-grid__heading {
 		margin-bottom: var(--space-4);
 		text-align: center;
+		margin-inline: auto;
+	}
+.cb-logo-grid .cb-logo-grid__intro {
+		max-width: 40rem;
+		margin-inline: auto;
+		margin-bottom: var(--space-4);
+		text-align: center;
 	}
 .cb-logo-grid .cb-logo-grid__logos {
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
+		grid-template-columns: repeat(var(--cb-logo-grid-columns), 1fr);
 		gap: var(--grid-gutter);
 		align-items: center;
 	}
@@ -1484,7 +1491,8 @@ select {
 		justify-content: center;
 	}
 .cb-logo-grid .cb-logo-grid__logo img {
-		width: 100%;
+		/* width: 100%; */
+		width: initial; /* reconsider this later perhaps */
 		height: auto;
 		max-height: 185px;
 		object-fit: contain;

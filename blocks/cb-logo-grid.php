@@ -8,6 +8,8 @@
 defined( 'ABSPATH' ) || exit;
 
 $heading = get_field( 'heading' );
+$intro   = get_field( 'intro' );
+$columns = get_field( 'columns' ) ? get_field( 'columns' ) : '6';
 $logos   = get_field( 'logos' );
 
 if ( empty( $logos ) ) {
@@ -15,7 +17,8 @@ if ( empty( $logos ) ) {
 }
 
 /** @var array $block ACF block data. */
-$classes = cb_block_classes( array( 'cb-logo-grid' ), $block );
+list( $bg, $fg ) = cb_bg_fg_classes( $block );
+$classes          = cb_block_classes( array( 'cb-logo-grid', $bg, $fg ), $block );
 
 cb_render_anchor( $block );
 ?>
@@ -24,11 +27,16 @@ cb_render_anchor( $block );
 		<?php
 		if ( $heading ) {
 			?>
-		<h2 class="text-center mb-4"><?= esc_html( $heading ); ?></h2>
+		<h2 class="cb-logo-grid__heading"><?= esc_html( $heading ); ?></h2>
+			<?php
+		}
+		if ( $intro ) {
+			?>
+		<p class="cb-logo-grid__intro"><?= esc_html( $intro ); ?></p>
 			<?php
 		}
 		?>
-		<div class="cb-logo-grid__logos">
+		<div class="cb-logo-grid__logos" style="--cb-logo-grid-columns: <?= esc_attr( $columns ); ?>;">
 			<?php
 			foreach ( $logos as $logo ) {
 				?>

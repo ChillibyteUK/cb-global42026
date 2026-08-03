@@ -52,6 +52,9 @@ function cb_global42026_acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
+					'color'     => array(
+						'background' => true,
+					),
 				),
 			)
 		);
