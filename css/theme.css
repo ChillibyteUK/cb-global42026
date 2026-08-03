@@ -1284,7 +1284,7 @@ select {
         text-align: center;
     }
 .cb-cta.cb-cta--centered .row > div {
-            max-width: 42rem;
+            max-width: auto;
             margin-inline: auto;
         }
 .cb-cta .cb-cta__heading {

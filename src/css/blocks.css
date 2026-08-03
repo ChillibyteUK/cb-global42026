@@ -305,7 +305,7 @@
         text-align: center;
 
         .row > div {
-            max-width: 42rem;
+            max-width: auto;
             margin-inline: auto;
         }
     }
