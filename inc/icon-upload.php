@@ -347,13 +347,63 @@ function cb_handle_icon_upload( $post_id ) {
 	}
 
 	$icons_dir = get_template_directory() . '/img/icons';
-	wp_mkdir_p( $icons_dir );
+
+	// Don't touch the attachment/field unless the file actually lands on
+	// disk — some hosts make the theme directory read-only to the PHP
+	// process (unlike wp-content/uploads, which core requires to be
+	// writable), so a silent write failure here would otherwise vanish the
+	// upload from both the Media Library *and* img/icons/ with no trace of
+	// why. Surface it as an admin notice instead.
+	if ( ! wp_mkdir_p( $icons_dir ) ) {
+		cb_queue_icon_upload_notice( sprintf( 'Couldn\'t create %s — check the theme directory is writable by the web server.', $icons_dir ) );
+		return;
+	}
 
 	$target = $icons_dir . '/' . $slug . '.svg';
-	file_put_contents( $target, $svg_markup ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+	$written = file_put_contents( $target, $svg_markup ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+
+	if ( false === $written ) {
+		cb_queue_icon_upload_notice( sprintf( 'Couldn\'t write %s — check the theme directory is writable by the web server. The upload is still in the Media Library.', $target ) );
+		return;
+	}
+
 	chmod( $target, 0664 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod
 
 	wp_delete_attachment( $attachment_id, true );
 	update_field( 'icon_upload', false, 'option' );
 }
 add_action( 'acf/save_post', 'cb_handle_icon_upload', 20 );
+
+/**
+ * Queue an admin notice to survive the options-page save's redirect (the
+ * request that calls cb_handle_icon_upload() ends in a redirect, so a
+ * notice can't just be echoed inline — it needs to persist one request via
+ * a transient, same pattern as WP core's own post-redirect-get notices).
+ *
+ * @param string $message Notice text.
+ * @return void
+ */
+function cb_queue_icon_upload_notice( $message ) {
+	set_transient( 'cb_icon_upload_error', $message, 45 );
+}
+
+/**
+ * Display and clear any queued icon-upload failure notice.
+ *
+ * @return void
+ */
+function cb_render_icon_upload_notice() {
+	$message = get_transient( 'cb_icon_upload_error' );
+
+	if ( ! $message ) {
+		return;
+	}
+
+	delete_transient( 'cb_icon_upload_error' );
+	?>
+<div class="notice notice-error">
+	<p><?= esc_html( $message ); ?></p>
+</div>
+	<?php
+}
+add_action( 'admin_notices', 'cb_render_icon_upload_notice' );

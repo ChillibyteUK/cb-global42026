@@ -1,0 +1,112 @@
+{
+  "key": "group_cb_tabbed_content",
+  "title": "CB Tabbed Content",
+  "fields": [
+    {
+      "key": "field_cb_tabbed_content_title",
+      "label": "CB Tabbed Content",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_tabbed_content_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_tabbed_content_items",
+      "label": "Items",
+      "name": "items",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "First item is open/selected by default.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "field_cb_tabbed_content_item_label",
+      "button_label": "Add Item",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_tabbed_content_item_label",
+          "label": "Label",
+          "name": "label",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_tabbed_content_items"
+        },
+        {
+          "key": "field_cb_tabbed_content_item_content",
+          "label": "Content",
+          "name": "content",
+          "aria-label": "",
+          "type": "wysiwyg",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "tabs": "all",
+          "toolbar": "basic",
+          "media_upload": 0,
+          "delay": 0,
+          "parent_repeater": "field_cb_tabbed_content_items"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-tabbed-content"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1785757200
+}

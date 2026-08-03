@@ -716,6 +716,113 @@
 	}
 }
 
+/* --- src/blocks/cb-tabbed-content.css --- */
+/*
+ * Same underlying idea as src/css/accordion.css (native <details name="...">
+ * exclusivity, zero JS) — below "lg" it stacks and behaves exactly like that
+ * accordion. At "lg" and up, each .cb-tabbed-content__item is flattened with
+ * `display: contents` so its label/panel become direct children of the
+ * .cb-tabbed-content__items grid, letting CSS Grid place the label in
+ * column 1 and the (currently open) panel in column 2 — a two-pane
+ * list/content layout built entirely from the same markup, no JS toggle.
+ */
+
+.cb-tabbed-content {
+	.cb-tabbed-content__heading {
+		margin-bottom: var(--space-4);
+	}
+
+	.cb-tabbed-content__items {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.cb-tabbed-content__item {
+		border-bottom: 1px solid var(--col-grey-300);
+	}
+
+	.cb-tabbed-content__item:first-child {
+		border-top: 1px solid var(--col-grey-300);
+	}
+
+	.cb-tabbed-content__label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		padding-block: var(--space-3);
+		list-style: none;
+		cursor: pointer;
+		font-weight: var(--fw-700);
+	}
+
+	.cb-tabbed-content__label::-webkit-details-marker {
+		display: none;
+	}
+
+	.cb-tabbed-content__icon {
+		flex-shrink: 0;
+		width: 1rem;
+		height: 1rem;
+		transition: transform var(--transition);
+	}
+
+	.cb-tabbed-content__item[open] .cb-tabbed-content__icon {
+		transform: rotate(45deg);
+	}
+
+	/* Content is always a white card with dark text, whatever background/text
+	   colour the block itself is given (has-*-background-color/has-*-color on
+	   the section) — those are meant to theme the section/label list, not the
+	   content pane. */
+	.cb-tabbed-content__panel {
+		padding-block: var(--space-3);
+		background-color: var(--col-white);
+		color: var(--col-body);
+	}
+
+	/* Above "lg" (992px, src/build/tokens.config.js) */
+	@media (min-width: 992px) {
+		.cb-tabbed-content__items {
+			display: grid;
+			grid-template-columns: minmax(14rem, 20rem) 1fr;
+			gap: 0 var(--space-5);
+			align-items: start;
+		}
+
+		.cb-tabbed-content__item {
+			display: contents;
+		}
+
+		.cb-tabbed-content__label {
+			grid-column: 1;
+			border-radius: var(--radius-sm);
+			padding-inline: var(--space-3);
+		}
+
+		.cb-tabbed-content__item[open] > .cb-tabbed-content__label {
+			background-color: var(--col-grey-100);
+			color: var(--col-navy-900);
+		}
+
+		.cb-tabbed-content__icon {
+			display: none;
+		}
+
+		.cb-tabbed-content__panel {
+			display: none;
+			grid-column: 2;
+			grid-row: 1 / -1;
+			padding: var(--space-5);
+			border-radius: var(--radius-lg);
+		}
+
+		.cb-tabbed-content__item[open] > .cb-tabbed-content__panel {
+			display: block;
+		}
+	}
+}
+
 /* --- src/blocks/cb-text-image.css --- */
 .cb-text-image {
 	padding-block: var(--space-5);

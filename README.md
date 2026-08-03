@@ -47,7 +47,15 @@ Bootstrap docs/behaviour, especially for anything not covered below.
 - **Buttons/cards**: no framework opinion at all — bring your own per project.
 - **Tables**: real but optional (`src/css/tables.css`) — uncomment the
   `@import` in `src/css/theme.css` if a project needs one.
-- **Icons**: inline SVG, no icon font.
+- **Icons**: inline SVG, no icon font. Source from
+  [Lucide](https://lucide.dev/), [Phosphor](https://phosphoricons.com/), or
+  [Tabler](https://tabler.io/icons) — all three share the same 24×24,
+  2px-stroke, round-cap outline style, so they mix without looking like
+  mismatched sets. Add an icon either by uploading its SVG via Site-Wide
+  Settings → Icons (sanitised and saved to `img/icons/` automatically,
+  `inc/icon-upload.php`), or by dropping the file into `img/icons/` directly
+  — either way it's picked up with no registration step
+  (`cb_get_icon_choices()`/`cb_icon()`, `inc/utilities.php`).
 - **No sidebars, no comments, no tags, no author archives, no `archive.php`,
   no `search.php`** — all confirmed rare-to-never in real usage; add them
   per-project if a project genuinely needs one.
