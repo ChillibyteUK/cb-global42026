@@ -301,6 +301,15 @@
         padding: 0;
     }
 
+    &.cb-cta--centered {
+        text-align: center;
+
+        .row > div {
+            max-width: 42rem;
+            margin-inline: auto;
+        }
+    }
+
     .cb-cta__heading {
 
     }

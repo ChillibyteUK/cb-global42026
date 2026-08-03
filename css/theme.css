@@ -1280,6 +1280,13 @@ select {
         border: none;
         padding: 0;
     }
+.cb-cta.cb-cta--centered {
+        text-align: center;
+    }
+.cb-cta.cb-cta--centered .row > div {
+            max-width: 42rem;
+            margin-inline: auto;
+        }
 .cb-cta .cb-cta__heading {
 
     }
