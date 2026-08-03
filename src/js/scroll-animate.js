@@ -22,6 +22,7 @@ export function initScrollAnimate() {
 	initTextImage();
 	initCta();
 	initLogoGrid();
+	initAwards();
 }
 
 /**
@@ -178,6 +179,36 @@ function initLogoGrid() {
 				start: 'top 75%',
 				once: true,
 			},
+		});
+	});
+}
+
+/**
+ * CB Awards — cards fade up row-by-row as they actually scroll into view,
+ * not one long stagger across the whole grid. ScrollTrigger.batch groups
+ * cards that cross the trigger point around the same time (i.e. the same
+ * visual row, whatever the current column count) and animates each batch
+ * together — so scrolling fast straight to the bottom doesn't leave the
+ * last row waiting on a stagger chain that started back when the first
+ * row appeared.
+ */
+function initAwards() {
+	document.querySelectorAll('.cb-awards__cards').forEach((grid) => {
+		const cards = grid.querySelectorAll('.cb-awards__card');
+
+		if (!cards.length) return;
+
+		window.ScrollTrigger.batch(cards, {
+			start: 'top 85%',
+			once: true,
+			onEnter: (batch) =>
+				window.gsap.from(batch, {
+					opacity: 0,
+					y: 32,
+					duration: 0.6,
+					ease: 'power2.out',
+					stagger: 0.08,
+				}),
 		});
 	});
 }
