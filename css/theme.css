@@ -1284,15 +1284,12 @@ select {
         text-align: center;
     }
 .cb-cta.cb-cta--centered .row > div {
-            max-width: auto;
+            max-width: unset;
             margin-inline: auto;
         }
 .cb-cta.cb-cta--centered h2 {
-            max-width: auto;
+            max-width: unset;
         }
-.cb-cta .cb-cta__heading {
-
-    }
 .cb-cta .cb-cta__content {
         margin-bottom: 0;
     }

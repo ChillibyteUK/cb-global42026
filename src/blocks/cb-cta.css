@@ -29,17 +29,13 @@
         text-align: center;
 
         .row > div {
-            max-width: auto;
+            max-width: unset;
             margin-inline: auto;
         }
 
         h2 {
-            max-width: auto;
+            max-width: unset;
         }
-    }
-
-    .cb-cta__heading {
-
     }
 
     .cb-cta__content {
