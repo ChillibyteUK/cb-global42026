@@ -102,7 +102,7 @@
             "name": "background_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Non-homepage only — the homepage always uses the animated canvas background.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -144,5 +144,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785485103
+    "modified": 1785847226
 }

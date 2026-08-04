@@ -1,5 +1,7 @@
 .cb-hero {
-    background-image: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
+    --cb-hero-gradient: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
+
+    background-image: var(--cb-hero-gradient);
 
     color: var(--col-white);
     padding-top: var(--space-5);
@@ -14,15 +16,7 @@
     }
 
     position: relative;
-
-    canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.6;
-    }
+    overflow: hidden;
 
     .container {
         position: relative;
@@ -46,23 +40,45 @@
         flex-wrap: wrap;
     }
 
-    /* .cb-hero--home is applied on the front page only (blocks/cb-hero.php)
-       — no height override set here, add one if the homepage needs a
-       different min-height than the default above. */
+    /* .cb-hero--has-bg-image renders two stacked layers ahead of .container
+       (paint order = DOM order, so they sit below it without needing z-index):
+       __bg is the one and only photo. __scrim is an SVG rect painted in the
+       hero's dark navy over the top of it, punched through with logo-shaped
+       holes via an SVG <mask> — the photo shows through brighter there, with
+       no second copy of the image involved anywhere. Both layers are
+       oversized/bled on purpose — see blocks/cb-hero.php — to leave headroom
+       for the scroll parallax driven by initHeroParallax() in
+       src/js/scroll-animate.js (GSAP ScrollTrigger, scrubbed to scroll position —
+       .cb-hero__clip-parallax moves further than .cb-hero__bg for a stronger
+       parallax on the mask holes). */
+    .cb-hero__bg {
+        position: absolute;
+        top: -15%;
+        left: 0;
+        width: 100%;
+        height: 130%;
+        /* Same navy gradient as .cb-hero's own fallback background, multiplied
+           over the photo as a treatment. .cb-hero__scrim then darkens
+           everywhere again on top of this — except the mask holes, which
+           only get this one pass, so they read brighter by comparison. */
+        background-image: var(--cb-hero-gradient), var(--cb-hero-bg-image);
+        /* background-blend-mode: multiply; */
+        background-blend-mode: hard-light;
+        background-size: cover, cover;
+        background-position: center, center;
+        will-change: transform;
+    }
 
-    &.cb-hero--has-bg-image {
-        background-image: var(--cb-hero-bg-image);
-        background-size: cover;
-        background-position: center;
+    .cb-hero__scrim {
+        position: absolute;
+        top: -15%;
+        left: 0;
+        width: 100%;
+        height: 130%;
+        pointer-events: none;
 
-        /* Dark scrim so white text stays legible over an arbitrary photo —
-           no z-index needed: this stays at the default z-index:auto stacking
-           level, below .container's explicit z-index:1 above. */
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
+        .cb-hero__scrim-rect {
+            fill: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
         }
     }
 }

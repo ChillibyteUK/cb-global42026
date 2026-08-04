@@ -24,6 +24,7 @@ export function initScrollAnimate() {
 	initCta();
 	initLogoGrid();
 	initAwards();
+	initHeroParallax();
 }
 
 /**
@@ -181,6 +182,70 @@ function initLogoGrid() {
 				once: true,
 			},
 		});
+	});
+}
+
+/**
+ * CB Hero — background photo and SVG mask holes (blocks/cb-hero.php) drift
+ * at different rates as the hero scrolls through the viewport, the mask
+ * holes moving noticeably further than the photo behind them. Both layers
+ * are deliberately oversized/bled past the hero's edges in CSS to leave
+ * room for this before anything crops.
+ *
+ * The logo group lives inside an SVG <mask>, which — like <clipPath> — is
+ * never actually rendered (it's only referenced for its effect), so a plain
+ * CSS transform on it is unreliable: browsers may skip style/animation
+ * updates on elements that aren't rendered. So the parallax is driven by
+ * writing the "transform" attribute directly on every tick instead, which
+ * always affects the mask geometry regardless of render status.
+ */
+function initHeroParallax() {
+	document.querySelectorAll('.cb-hero--has-bg-image').forEach((hero) => {
+		const bg = hero.querySelector('.cb-hero__bg');
+		const clip = hero.querySelector('.cb-hero__clip-parallax');
+		const scrollTrigger = {
+			trigger: hero,
+			start: 'top bottom',
+			end: 'bottom top',
+			scrub: true,
+		};
+
+		if (bg) {
+			window.gsap.fromTo(
+				bg,
+				{ yPercent: -6 },
+				{ yPercent: 6, ease: 'none', scrollTrigger }
+			);
+		}
+
+		if (clip) {
+			const targetX = parseFloat(clip.dataset.targetX);
+			const targetY = parseFloat(clip.dataset.targetY);
+			const halfW = parseFloat(clip.dataset.halfW);
+			const halfH = parseFloat(clip.dataset.halfH);
+			const baseScale = parseFloat(clip.dataset.baseScale);
+			const proxy = { offset: -70, scaleFactor: 0.025 };
+
+			window.gsap.fromTo(
+				proxy,
+				{ offset: -70, scaleFactor: 0.025 },
+				{
+					offset: 70,
+					scaleFactor: 1.2,
+					ease: 'none',
+					scrollTrigger,
+					onUpdate: () => {
+						// Anchored on (targetX, targetY) rather than the raw path
+						// origin, so growing/shrinking reads as scaling in place
+						// instead of drifting toward the corner.
+						const s = baseScale * proxy.scaleFactor;
+						const tx = targetX - s * halfW;
+						const ty = targetY - s * halfH + proxy.offset;
+						clip.setAttribute('transform', `translate(${tx}, ${ty}) scale(${s})`);
+					},
+				}
+			);
+		}
 	});
 }
 
