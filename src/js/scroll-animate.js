@@ -230,8 +230,11 @@ function initHeroParallax() {
 			// naturally is at the current scroll position (see below), then gets
 			// out of the way — reveal.progress just stays at 1 once its tween
 			// finishes, leaving the scrub tween as the only thing still driving
-			// the transform.
-			const reveal = { progress: 0 };
+			// the transform. Homepage only — replaying a "grow in from nothing"
+			// every time the mask scrolls into view on inner pages would get
+			// old fast, so everywhere else just starts at its natural size.
+			const isHome = hero.classList.contains('cb-hero--home');
+			const reveal = { progress: isHome ? 0 : 1 };
 
 			const applyTransform = () => {
 				// Anchored on (targetX, targetY) rather than the raw path
@@ -255,12 +258,14 @@ function initHeroParallax() {
 				}
 			);
 
-			window.gsap.to(reveal, {
-				progress: 1,
-				duration: 1,
-				ease: 'power2.out',
-				onUpdate: applyTransform,
-			});
+			if (isHome) {
+				window.gsap.to(reveal, {
+					progress: 1,
+					duration: 1,
+					ease: 'power2.out',
+					onUpdate: applyTransform,
+				});
+			}
 		}
 	});
 }
