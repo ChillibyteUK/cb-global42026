@@ -83,3 +83,13 @@ select {
 	border-color: var(--col-navy-700);
 	background-color: var(--col-navy-700);
 }
+
+.btn-secondary-dark {
+	border-color: var(--col-navy-900);
+	background-color: transparent;
+	color: var(--col-navy-900);
+}
+.btn-secondary-dark:hover {
+	background-color: color-mix(in srgb, var(--col-navy-900) 20%, transparent);
+	color: var(--col-navy-900);
+}

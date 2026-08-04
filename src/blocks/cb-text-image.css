@@ -6,7 +6,9 @@
 		grid-template-columns: var(--cb-text-image-split, 1fr 1fr);
 		column-gap: var(--space-5);
 		row-gap: var(--space-4);
-		align-items: center;
+		/* stretch (not center) so .cb-text-image__image has a real height to
+		   shrink an oversized image into — see that rule below. */
+		align-items: stretch;
 	}
 
 	/* Keeps text markup first in the DOM (reading order, SEO) regardless of
@@ -43,8 +45,21 @@
 		margin-top: var(--space-3);
 	}
 
+	/* An image bigger than the available space shrinks to fit (no crop);
+	   an image smaller than it stays at its own native size (no enlarging
+	   it to fill the space, which would just blur it) — one rule handles
+	   both, no field/toggle needed. */
+	.cb-text-image__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.cb-text-image__image img {
-		width: 100%;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
 		border-radius: var(--radius-lg);
 	}
 

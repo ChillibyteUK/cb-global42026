@@ -699,6 +699,16 @@ select {
 	border-color: var(--col-navy-700);
 	background-color: var(--col-navy-700);
 }
+
+.btn-secondary-dark {
+	border-color: var(--col-navy-900);
+	background-color: transparent;
+	color: var(--col-navy-900);
+}
+.btn-secondary-dark:hover {
+	background-color: color-mix(in srgb, var(--col-navy-900) 20%, transparent);
+	color: var(--col-navy-900);
+}
 /*
  * Accordion — Bootstrap-style class names, zero Bootstrap (same convention
  * as .container/.row/.btn/.navbar elsewhere in this theme). Built on native
@@ -1977,7 +1987,9 @@ select {
 		grid-template-columns: var(--cb-text-image-split, 1fr 1fr);
 		column-gap: var(--space-5);
 		row-gap: var(--space-4);
-		align-items: center;
+		/* stretch (not center) so .cb-text-image__image has a real height to
+		   shrink an oversized image into — see that rule below. */
+		align-items: stretch;
 	}
 /* Keeps text markup first in the DOM (reading order, SEO) regardless of
 	   the "Order" ACF field — only the visual position swaps, via `order`,
@@ -2005,8 +2017,20 @@ select {
 		display: inline-block;
 		margin-top: var(--space-3);
 	}
+/* An image bigger than the available space shrinks to fit (no crop);
+	   an image smaller than it stays at its own native size (no enlarging
+	   it to fill the space, which would just blur it) — one rule handles
+	   both, no field/toggle needed. */
+.cb-text-image .cb-text-image__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 .cb-text-image .cb-text-image__image img {
-		width: 100%;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
 		border-radius: var(--radius-lg);
 	}
 /* Below "md" (768px, src/build/tokens.config.js) */
@@ -2037,6 +2061,50 @@ select {
 :is(.cb-text-testimonial blockquote) p::after {
             content: '”';
         }
+
+/* --- src/blocks/cb-text-usps.css --- */
+.cb-text-usps {
+	padding-block: var(--space-6);
+}
+.cb-text-usps .cb-text-usps__eyebrow {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+		color: var(--col-blue-300);
+	}
+.cb-text-usps .cb-text-usps__heading {
+		color: var(--col-navy-900);
+	}
+.cb-text-usps .cb-text-usps__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+/* Always a navy card with white text, whatever background colour the
+	   block itself is given — that's for the section behind the text
+	   column, not these. */
+.cb-text-usps .cb-text-usps__usps {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+.cb-text-usps .cb-text-usps__usp {
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-navy-900);
+		color: var(--col-white);
+	}
+.cb-text-usps .cb-text-usps__usp-title {
+		margin-bottom: var(--space-2);
+		font-size: var(--fs-h4);
+	}
+.cb-text-usps .cb-text-usps__usp-content {
+		margin: 0;
+		font-size: var(--fs-small);
+	}
 
 /* --- src/blocks/cb-usp-cards.css --- */
 .cb-usp-cards .cb-usp-cards__cards {

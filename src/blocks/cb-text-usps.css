@@ -1,0 +1,49 @@
+.cb-text-usps {
+	padding-block: var(--space-6);
+
+	.cb-text-usps__eyebrow {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+		color: var(--col-blue-300);
+	}
+
+	.cb-text-usps__heading {
+		color: var(--col-navy-900);
+	}
+
+	.cb-text-usps__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+
+	/* Always a navy card with white text, whatever background colour the
+	   block itself is given — that's for the section behind the text
+	   column, not these. */
+	.cb-text-usps__usps {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.cb-text-usps__usp {
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-navy-900);
+		color: var(--col-white);
+	}
+
+	.cb-text-usps__usp-title {
+		margin-bottom: var(--space-2);
+		font-size: var(--fs-h4);
+	}
+
+	.cb-text-usps__usp-content {
+		margin: 0;
+		font-size: var(--fs-small);
+	}
+}

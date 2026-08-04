@@ -30,7 +30,7 @@ cb_render_anchor( $block );
 				if ( get_field( 'button' ) ) {
 					$button = get_field( 'button' );
 					?>
-				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary-dark"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
+				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
 					<?php
 				}
 				?>
