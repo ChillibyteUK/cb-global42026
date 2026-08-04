@@ -178,6 +178,7 @@
 	  initLogoGrid();
 	  initAwards();
 	  initHeroParallax();
+	  initHeroContent();
 	}
 
 	/**
@@ -391,6 +392,34 @@
 	        }
 	      });
 	    }
+	  });
+	}
+
+	/**
+	 * CB Hero — heading, intro copy, and CTA buttons stagger fade up together,
+	 * in that order. The hero sits at the top of the page, so `start: 'top 75%'`
+	 * is already satisfied the moment the page loads — this doubles as a load-in
+	 * animation without needing a separate DOMContentLoaded-driven mechanism.
+	 */
+	function initHeroContent() {
+	  document.querySelectorAll('.cb-hero').forEach(hero => {
+	    const heading = hero.querySelector('h1');
+	    const content = hero.querySelector('.cb-hero__content');
+	    const cta = hero.querySelector('.cb-hero__cta');
+	    const targets = [heading, content, cta].filter(Boolean);
+	    if (!targets.length) return;
+	    window.gsap.from(targets, {
+	      opacity: 0,
+	      y: 32,
+	      duration: 0.6,
+	      ease: 'power2.out',
+	      stagger: 0.12,
+	      scrollTrigger: {
+	        trigger: hero,
+	        start: 'top 75%',
+	        once: true
+	      }
+	    });
 	  });
 	}
 
