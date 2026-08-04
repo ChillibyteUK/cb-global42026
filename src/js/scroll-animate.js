@@ -226,6 +226,22 @@ function initHeroParallax() {
 			const halfH = parseFloat(clip.dataset.halfH);
 			const baseScale = parseFloat(clip.dataset.baseScale);
 			const proxy = { offset: -70, scaleFactor: 0.025 };
+			// Load-in reveal: grows from nothing up to whatever proxy.scaleFactor
+			// naturally is at the current scroll position (see below), then gets
+			// out of the way — reveal.progress just stays at 1 once its tween
+			// finishes, leaving the scrub tween as the only thing still driving
+			// the transform.
+			const reveal = { progress: 0 };
+
+			const applyTransform = () => {
+				// Anchored on (targetX, targetY) rather than the raw path
+				// origin, so growing/shrinking reads as scaling in place
+				// instead of drifting toward the corner.
+				const s = baseScale * proxy.scaleFactor * reveal.progress;
+				const tx = targetX - s * halfW;
+				const ty = targetY - s * halfH + proxy.offset;
+				clip.setAttribute('transform', `translate(${tx}, ${ty}) scale(${s})`);
+			};
 
 			window.gsap.fromTo(
 				proxy,
@@ -235,17 +251,16 @@ function initHeroParallax() {
 					scaleFactor: 1.2,
 					ease: 'none',
 					scrollTrigger,
-					onUpdate: () => {
-						// Anchored on (targetX, targetY) rather than the raw path
-						// origin, so growing/shrinking reads as scaling in place
-						// instead of drifting toward the corner.
-						const s = baseScale * proxy.scaleFactor;
-						const tx = targetX - s * halfW;
-						const ty = targetY - s * halfH + proxy.offset;
-						clip.setAttribute('transform', `translate(${tx}, ${ty}) scale(${s})`);
-					},
+					onUpdate: applyTransform,
 				}
 			);
+
+			window.gsap.to(reveal, {
+				progress: 1,
+				duration: 1,
+				ease: 'power2.out',
+				onUpdate: applyTransform,
+			});
 		}
 	});
 }
