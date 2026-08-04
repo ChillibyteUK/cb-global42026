@@ -6,6 +6,14 @@ footer {
 
     padding-block-start: var(--space-5);
 
+    /* Matches the old <img>'s natural PNG dimensions (202x37) — the inline
+       svg has no intrinsic size of its own to fall back on. */
+    .footer-logo {
+        display: block;
+        width: 202px;
+        height: 37px;
+    }
+
     .footer-description {
         font-size: var(--fs-small);
         line-height: var(--line-height-base);

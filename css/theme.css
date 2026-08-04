@@ -343,25 +343,27 @@ h2.text-center,
 }
 
 .navbar-brand {
-	position: relative;
+	display: block;
 	width: 202px;
 	height: 37px;
-	background-image: url("../img/global-4-logo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
 }
 
-/* Dark logo sits on top as a separate layer so the swap can crossfade via
-   opacity — background-image itself can't be transitioned/animated. */
-.navbar-brand::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-image: url("../img/global-4-logo--dk.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	opacity: 0;
-	transition: opacity var(--transition);
+.navbar-brand .cb-logo {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+/* Inline logo SVG (rendered by cb_render_logo_svg() — see inc/helpers.php).
+   __wordmark and __device start white for the transparent/dark-hero header
+   state, transitioning to their preset colours (grey wordmark, gradient
+   device) once .scrolled puts a white bar behind the header — see
+   img/global4-logo.svg for the un-namespaced original. __dots is never
+   touched here; it's already a light blue that reads fine either way. */
+.cb-logo__wordmark,
+.cb-logo__device {
+	fill: var(--col-white);
+	transition: fill var(--transition);
 }
 
 .navbar-toggler {
@@ -563,9 +565,13 @@ h2.text-center,
 	color: var(--col-body);
 }
 
-.scrolled .navbar-brand::after {
-		opacity: 1;
-	}
+:is(.scrolled .navbar-brand) .cb-logo__wordmark {
+			fill: #424241;
+		}
+
+:is(.scrolled .navbar-brand) .cb-logo__device {
+			fill: url(#cb-logo-gradient-nav);
+		}
 footer {
     color: var(--col-white);
     background-color: var(--col-navy-900);
@@ -573,7 +579,15 @@ footer {
     border-top: 6px solid var(--col-blue-500);
 
     padding-block-start: var(--space-5);
+
+    /* Matches the old <img>'s natural PNG dimensions (202x37) — the inline
+       svg has no intrinsic size of its own to fall back on. */
 }
+footer .footer-logo {
+        display: block;
+        width: 202px;
+        height: 37px;
+    }
 footer .footer-description {
         font-size: var(--fs-small);
         line-height: var(--line-height-base);
@@ -1503,6 +1517,7 @@ select {
         }
 .cb-cta .cb-cta__content {
         margin-bottom: 0;
+        text-wrap: pretty;
     }
 .cb-cta .cb-cta__button-container {
         margin-block: auto;
@@ -2156,5 +2171,43 @@ select {
 :is(.cb-usp-cards .cb-usp-cards__content) span {
             font-weight: var(--fw-700);
         } /* generated — concatenation of src/blocks/*.css, see src/build/generate-utilities.js */
+/* Pre-hides elements that src/js/scroll-animate.js reveals via GSAP
+   .from()/.set() on scroll — without this, they paint fully visible on
+   first render, then jump to hidden the instant GSAP runs, then animate
+   back in: a visible flash both ways. Hiding them here in CSS (loaded
+   render-blocking, before any JS runs) means they're invisible from the
+   first frame instead.
+
+   Selectors here must stay in sync with the ones GSAP targets in
+   scroll-animate.js — same convention as the breakpoint sync note in
+   nav.css, enforced by convention rather than tooling.
+
+   Skipped entirely under prefers-reduced-motion: reduce, matching
+   initScrollAnimate()'s own early return there. That's not just
+   consistency — it's required: reduced-motion visitors never run the GSAP
+   code that would set opacity back to 1, so if this applied unconditionally
+   this content would stay invisible forever for them. */
+@media (prefers-reduced-motion: no-preference) {
+    .cb-icon-card-grid__card,
+    .cb-button-cards__card,
+    .cb-contact-cards__card,
+    .cb-accreditations__card,
+    .cb-split-feature-list__intro,
+    .cb-split-feature-list__point,
+    .cb-text-image__text,
+    .cb-text-image__image,
+    .cb-text-usps .col-lg-7,
+    .cb-text-usps__usp,
+    .cb-cta .row,
+    .cb-logo-grid__heading,
+    .cb-logo-grid__intro,
+    .cb-logo-grid__logo,
+    .cb-awards__card,
+    .cb-hero h1,
+    .cb-hero__content,
+    .cb-hero__cta {
+        opacity: 0;
+    }
+} /* last, so it wins any specificity ties against the block rules above */
 
 /*# sourceMappingURL=theme.css.map */

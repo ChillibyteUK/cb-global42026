@@ -468,6 +468,7 @@
 
     .cb-cta__content {
         margin-bottom: 0;
+        text-wrap: pretty;
     }
 
     .cb-cta__button-container {

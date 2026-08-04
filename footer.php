@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-4">
-				<img src="<?php echo esc_url( get_template_directory_uri() . '/img/global-4-logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" class="footer-logo" />
+				<?php cb_render_logo_svg( 'footer', 'footer-logo', get_bloginfo( 'name', 'display' ) ); ?>
 				<p class="footer-description">
 					<?php bloginfo( 'description' ); ?>
 				</p>

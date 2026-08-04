@@ -1,0 +1,38 @@
+/* Pre-hides elements that src/js/scroll-animate.js reveals via GSAP
+   .from()/.set() on scroll — without this, they paint fully visible on
+   first render, then jump to hidden the instant GSAP runs, then animate
+   back in: a visible flash both ways. Hiding them here in CSS (loaded
+   render-blocking, before any JS runs) means they're invisible from the
+   first frame instead.
+
+   Selectors here must stay in sync with the ones GSAP targets in
+   scroll-animate.js — same convention as the breakpoint sync note in
+   nav.css, enforced by convention rather than tooling.
+
+   Skipped entirely under prefers-reduced-motion: reduce, matching
+   initScrollAnimate()'s own early return there. That's not just
+   consistency — it's required: reduced-motion visitors never run the GSAP
+   code that would set opacity back to 1, so if this applied unconditionally
+   this content would stay invisible forever for them. */
+@media (prefers-reduced-motion: no-preference) {
+    .cb-icon-card-grid__card,
+    .cb-button-cards__card,
+    .cb-contact-cards__card,
+    .cb-accreditations__card,
+    .cb-split-feature-list__intro,
+    .cb-split-feature-list__point,
+    .cb-text-image__text,
+    .cb-text-image__image,
+    .cb-text-usps .col-lg-7,
+    .cb-text-usps__usp,
+    .cb-cta .row,
+    .cb-logo-grid__heading,
+    .cb-logo-grid__intro,
+    .cb-logo-grid__logo,
+    .cb-awards__card,
+    .cb-hero h1,
+    .cb-hero__content,
+    .cb-hero__cta {
+        opacity: 0;
+    }
+}

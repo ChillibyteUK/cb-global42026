@@ -25,25 +25,27 @@
 }
 
 .navbar-brand {
-	position: relative;
+	display: block;
 	width: 202px;
 	height: 37px;
-	background-image: url("../img/global-4-logo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+
+	.cb-logo {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 }
 
-/* Dark logo sits on top as a separate layer so the swap can crossfade via
-   opacity — background-image itself can't be transitioned/animated. */
-.navbar-brand::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-image: url("../img/global-4-logo--dk.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	opacity: 0;
-	transition: opacity var(--transition);
+/* Inline logo SVG (rendered by cb_render_logo_svg() — see inc/helpers.php).
+   __wordmark and __device start white for the transparent/dark-hero header
+   state, transitioning to their preset colours (grey wordmark, gradient
+   device) once .scrolled puts a white bar behind the header — see
+   img/global4-logo.svg for the un-namespaced original. __dots is never
+   touched here; it's already a light blue that reads fine either way. */
+.cb-logo__wordmark,
+.cb-logo__device {
+	fill: var(--col-white);
+	transition: fill var(--transition);
 }
 
 .navbar-toggler {
@@ -245,8 +247,14 @@
 	background-color: var(--col-white);
 	color: var(--col-body);
 
-	.navbar-brand::after {
-		opacity: 1;
+	.navbar-brand {
+		.cb-logo__wordmark {
+			fill: #424241;
+		}
+
+		.cb-logo__device {
+			fill: url(#cb-logo-gradient-nav);
+		}
 	}
 }
 

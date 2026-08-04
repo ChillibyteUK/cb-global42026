@@ -174,6 +174,7 @@
 	  staggerFadeUpGrid('.cb-accreditations__cards', '.cb-accreditations__card');
 	  initSplitFeatureList();
 	  initTextImage();
+	  initTextUsps();
 	  initCta();
 	  initLogoGrid();
 	  initAwards();
@@ -193,9 +194,12 @@
 	  document.querySelectorAll(gridSelector).forEach(grid => {
 	    const cards = grid.querySelectorAll(cardSelector);
 	    if (!cards.length) return;
-	    window.gsap.from(cards, {
+	    window.gsap.fromTo(cards, {
 	      opacity: 0,
-	      y: 32,
+	      y: 32
+	    }, {
+	      opacity: 1,
+	      y: 0,
 	      duration: 0.6,
 	      ease: 'power2.out',
 	      stagger: 0.12,
@@ -217,9 +221,12 @@
 	    const intro = section.querySelector('.cb-split-feature-list__intro');
 	    const points = section.querySelectorAll('.cb-split-feature-list__point');
 	    if (intro) {
-	      window.gsap.from(intro, {
+	      window.gsap.fromTo(intro, {
 	        opacity: 0,
-	        y: 32,
+	        y: 32
+	      }, {
+	        opacity: 1,
+	        y: 0,
 	        duration: 0.6,
 	        ease: 'power2.out',
 	        scrollTrigger: {
@@ -230,9 +237,12 @@
 	      });
 	    }
 	    if (points.length) {
-	      window.gsap.from(points, {
+	      window.gsap.fromTo(points, {
 	        opacity: 0,
-	        x: 32,
+	        x: 32
+	      }, {
+	        opacity: 1,
+	        x: 0,
 	        duration: 0.6,
 	        ease: 'power2.out',
 	        stagger: 0.12,
@@ -265,20 +275,67 @@
 	      once: true
 	    };
 	    if (text) {
-	      window.gsap.from(text, {
+	      window.gsap.fromTo(text, {
 	        opacity: 0,
-	        x: imageFirst ? 32 : -32,
+	        x: imageFirst ? 32 : -32
+	      }, {
+	        opacity: 1,
+	        x: 0,
 	        duration: 0.6,
 	        ease: 'power2.out',
 	        scrollTrigger
 	      });
 	    }
 	    if (image) {
-	      window.gsap.from(image, {
+	      window.gsap.fromTo(image, {
 	        opacity: 0,
-	        x: imageFirst ? -32 : 32,
+	        x: imageFirst ? -32 : 32
+	      }, {
+	        opacity: 1,
+	        x: 0,
 	        duration: 0.6,
 	        ease: 'power2.out',
+	        scrollTrigger
+	      });
+	    }
+	  });
+	}
+
+	/**
+	 * CB Text USPs — left text column slides in from the left, right-hand USP
+	 * cards stagger fade in from the right, both when ~25% into the viewport.
+	 */
+	function initTextUsps() {
+	  document.querySelectorAll('.cb-text-usps').forEach(section => {
+	    const text = section.querySelector('.col-lg-7');
+	    const usps = section.querySelectorAll('.cb-text-usps__usp');
+	    const scrollTrigger = {
+	      trigger: section,
+	      start: 'top 75%',
+	      once: true
+	    };
+	    if (text) {
+	      window.gsap.fromTo(text, {
+	        opacity: 0,
+	        x: -32
+	      }, {
+	        opacity: 1,
+	        x: 0,
+	        duration: 0.6,
+	        ease: 'power2.out',
+	        scrollTrigger
+	      });
+	    }
+	    if (usps.length) {
+	      window.gsap.fromTo(usps, {
+	        opacity: 0,
+	        x: 32
+	      }, {
+	        opacity: 1,
+	        x: 0,
+	        duration: 0.6,
+	        ease: 'power2.out',
+	        stagger: 0.12,
 	        scrollTrigger
 	      });
 	    }
@@ -290,9 +347,12 @@
 	 */
 	function initCta() {
 	  document.querySelectorAll('.cb-cta .row').forEach(box => {
-	    window.gsap.from(box, {
+	    window.gsap.fromTo(box, {
 	      opacity: 0,
-	      y: 32,
+	      y: 32
+	    }, {
+	      opacity: 1,
+	      y: 0,
 	      duration: 0.6,
 	      ease: 'power2.out',
 	      scrollTrigger: {
@@ -315,9 +375,12 @@
 	    const logos = section.querySelectorAll('.cb-logo-grid__logo');
 	    const targets = [heading, intro, ...logos].filter(Boolean);
 	    if (!targets.length) return;
-	    window.gsap.from(targets, {
+	    window.gsap.fromTo(targets, {
 	      opacity: 0,
-	      y: 32,
+	      y: 32
+	    }, {
+	      opacity: 1,
+	      y: 0,
 	      duration: 0.6,
 	      ease: 'power2.out',
 	      stagger: 0.08,
@@ -428,9 +491,12 @@
 	    const cta = hero.querySelector('.cb-hero__cta');
 	    const targets = [heading, content, cta].filter(Boolean);
 	    if (!targets.length) return;
-	    window.gsap.from(targets, {
+	    window.gsap.fromTo(targets, {
 	      opacity: 0,
-	      y: 32,
+	      y: 32
+	    }, {
+	      opacity: 1,
+	      y: 0,
 	      duration: 0.6,
 	      ease: 'power2.out',
 	      stagger: 0.12,

@@ -21,6 +21,7 @@ export function initScrollAnimate() {
 	staggerFadeUpGrid('.cb-accreditations__cards', '.cb-accreditations__card');
 	initSplitFeatureList();
 	initTextImage();
+	initTextUsps();
 	initCta();
 	initLogoGrid();
 	initAwards();
@@ -42,18 +43,22 @@ function staggerFadeUpGrid(gridSelector, cardSelector) {
 
 		if (!cards.length) return;
 
-		window.gsap.from(cards, {
-			opacity: 0,
-			y: 32,
-			duration: 0.6,
-			ease: 'power2.out',
-			stagger: 0.12,
-			scrollTrigger: {
-				trigger: grid,
-				start: 'top 75%',
-				once: true,
-			},
-		});
+		window.gsap.fromTo(
+			cards,
+			{ opacity: 0, y: 32 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: 'power2.out',
+				stagger: 0.12,
+				scrollTrigger: {
+					trigger: grid,
+					start: 'top 75%',
+					once: true,
+				},
+			}
+		);
 	});
 }
 
@@ -67,32 +72,40 @@ function initSplitFeatureList() {
 		const points = section.querySelectorAll('.cb-split-feature-list__point');
 
 		if (intro) {
-			window.gsap.from(intro, {
-				opacity: 0,
-				y: 32,
-				duration: 0.6,
-				ease: 'power2.out',
-				scrollTrigger: {
-					trigger: intro,
-					start: 'top 75%',
-					once: true,
-				},
-			});
+			window.gsap.fromTo(
+				intro,
+				{ opacity: 0, y: 32 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+					scrollTrigger: {
+						trigger: intro,
+						start: 'top 75%',
+						once: true,
+					},
+				}
+			);
 		}
 
 		if (points.length) {
-			window.gsap.from(points, {
-				opacity: 0,
-				x: 32,
-				duration: 0.6,
-				ease: 'power2.out',
-				stagger: 0.12,
-				scrollTrigger: {
-					trigger: section.querySelector('.cb-split-feature-list__points') || section,
-					start: 'top 75%',
-					once: true,
-				},
-			});
+			window.gsap.fromTo(
+				points,
+				{ opacity: 0, x: 32 },
+				{
+					opacity: 1,
+					x: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+					stagger: 0.12,
+					scrollTrigger: {
+						trigger: section.querySelector('.cb-split-feature-list__points') || section,
+						start: 'top 75%',
+						once: true,
+					},
+				}
+			);
 		}
 	});
 }
@@ -118,23 +131,59 @@ function initTextImage() {
 		};
 
 		if (text) {
-			window.gsap.from(text, {
-				opacity: 0,
-				x: imageFirst ? 32 : -32,
-				duration: 0.6,
-				ease: 'power2.out',
-				scrollTrigger,
-			});
+			window.gsap.fromTo(
+				text,
+				{ opacity: 0, x: imageFirst ? 32 : -32 },
+				{ opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', scrollTrigger }
+			);
 		}
 
 		if (image) {
-			window.gsap.from(image, {
-				opacity: 0,
-				x: imageFirst ? -32 : 32,
-				duration: 0.6,
-				ease: 'power2.out',
-				scrollTrigger,
-			});
+			window.gsap.fromTo(
+				image,
+				{ opacity: 0, x: imageFirst ? -32 : 32 },
+				{ opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', scrollTrigger }
+			);
+		}
+	});
+}
+
+/**
+ * CB Text USPs — left text column slides in from the left, right-hand USP
+ * cards stagger fade in from the right, both when ~25% into the viewport.
+ */
+function initTextUsps() {
+	document.querySelectorAll('.cb-text-usps').forEach((section) => {
+		const text = section.querySelector('.col-lg-7');
+		const usps = section.querySelectorAll('.cb-text-usps__usp');
+
+		const scrollTrigger = {
+			trigger: section,
+			start: 'top 75%',
+			once: true,
+		};
+
+		if (text) {
+			window.gsap.fromTo(
+				text,
+				{ opacity: 0, x: -32 },
+				{ opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', scrollTrigger }
+			);
+		}
+
+		if (usps.length) {
+			window.gsap.fromTo(
+				usps,
+				{ opacity: 0, x: 32 },
+				{
+					opacity: 1,
+					x: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+					stagger: 0.12,
+					scrollTrigger,
+				}
+			);
 		}
 	});
 }
@@ -144,17 +193,21 @@ function initTextImage() {
  */
 function initCta() {
 	document.querySelectorAll('.cb-cta .row').forEach((box) => {
-		window.gsap.from(box, {
-			opacity: 0,
-			y: 32,
-			duration: 0.6,
-			ease: 'power2.out',
-			scrollTrigger: {
-				trigger: box,
-				start: 'top 75%',
-				once: true,
-			},
-		});
+		window.gsap.fromTo(
+			box,
+			{ opacity: 0, y: 32 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: box,
+					start: 'top 75%',
+					once: true,
+				},
+			}
+		);
 	});
 }
 
@@ -171,18 +224,22 @@ function initLogoGrid() {
 
 		if (!targets.length) return;
 
-		window.gsap.from(targets, {
-			opacity: 0,
-			y: 32,
-			duration: 0.6,
-			ease: 'power2.out',
-			stagger: 0.08,
-			scrollTrigger: {
-				trigger: section,
-				start: 'top 75%',
-				once: true,
-			},
-		});
+		window.gsap.fromTo(
+			targets,
+			{ opacity: 0, y: 32 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: 'power2.out',
+				stagger: 0.08,
+				scrollTrigger: {
+					trigger: section,
+					start: 'top 75%',
+					once: true,
+				},
+			}
+		);
 	});
 }
 
@@ -285,18 +342,22 @@ function initHeroContent() {
 
 		if (!targets.length) return;
 
-		window.gsap.from(targets, {
-			opacity: 0,
-			y: 32,
-			duration: 0.6,
-			ease: 'power2.out',
-			stagger: 0.12,
-			scrollTrigger: {
-				trigger: hero,
-				start: 'top 75%',
-				once: true,
-			},
-		});
+		window.gsap.fromTo(
+			targets,
+			{ opacity: 0, y: 32 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: 'power2.out',
+				stagger: 0.12,
+				scrollTrigger: {
+					trigger: hero,
+					start: 'top 75%',
+					once: true,
+				},
+			}
+		);
 	});
 }
 
