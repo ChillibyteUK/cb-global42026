@@ -30,6 +30,15 @@
 		margin-bottom: var(--space-4);
 	}
 
+	.cb-text-image__eyebrow {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+		color: var(--col-blue-300);
+	}
+
 	.cb-text-image__subtitle {
 		margin-top: 0;
 		color: var(--col-grey-500);
@@ -50,6 +59,7 @@
 	   it to fill the space, which would just blur it) — one rule handles
 	   both, no field/toggle needed. */
 	.cb-text-image__image {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -61,6 +71,30 @@
 		max-width: 100%;
 		max-height: 100%;
 		border-radius: var(--radius-lg);
+	}
+
+	/* Optional "Image Overlay Logo" field — covers the image box (not just
+	   the <img>, so it still looks intentional if the image is narrower than
+	   its column) with a dark scrim, the logo centred on top of that. */
+	.cb-text-image__image-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: color-mix(in srgb, var(--col-navy-900) 60%, transparent);
+		border-radius: var(--radius-lg);
+
+		/* Nested (not a standalone top-level rule) so this beats the more
+		   specific ".cb-text-image__image img" rule above on specificity
+		   alone (3 classes vs. 2 classes + element) rather than depending on
+		   source order. */
+		.cb-text-image__image-overlay-logo {
+			width: auto;
+			height: auto;
+			max-width: 300px;
+			max-height: 75px;
+		}
 	}
 
 	/* Below "md" (768px, src/build/tokens.config.js) */

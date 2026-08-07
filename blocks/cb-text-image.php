@@ -17,11 +17,13 @@ $split_columns = array(
 
 $grid_columns = isset( $split_columns[ $split ] ) ? $split_columns[ $split ] : '1fr 1fr';
 $logo         = get_field( 'logo' );
+$eyebrow      = get_field( 'eyebrow' );
 $heading      = get_field( 'heading' );
 $subtitle     = get_field( 'subtitle' );
 $content      = get_field( 'content' );
 $slink        = get_field( 'link' );
 $image        = get_field( 'image' );
+$image_logo   = get_field( 'image_logo' );
 $has_link     = ! empty( $slink['url'] );
 
 /** @var array $block ACF block data. */
@@ -39,6 +41,11 @@ cb_render_anchor( $block );
 				if ( $logo ) {
 					?>
 				<img class="cb-text-image__logo" src="<?= esc_url( $logo['url'] ); ?>" alt="<?= esc_attr( $logo['alt'] ); ?>" width="<?= esc_attr( $logo['width'] ); ?>" height="<?= esc_attr( $logo['height'] ); ?>" />
+					<?php
+				}
+				if ( $eyebrow ) {
+					?>
+				<div class="cb-text-image__eyebrow"><?= esc_html( $eyebrow ); ?></div>
 					<?php
 				}
 				if ( $heading ) {
@@ -70,6 +77,15 @@ cb_render_anchor( $block );
 				?>
 			<div class="cb-text-image__image">
 				<img src="<?= esc_url( $image['url'] ); ?>" alt="<?= esc_attr( $image['alt'] ); ?>" width="<?= esc_attr( $image['width'] ); ?>" height="<?= esc_attr( $image['height'] ); ?>" />
+				<?php
+				if ( $image_logo ) {
+					?>
+				<div class="cb-text-image__image-overlay">
+					<img class="cb-text-image__image-overlay-logo" src="<?= esc_url( $image_logo['url'] ); ?>" alt="<?= esc_attr( $image_logo['alt'] ); ?>" width="<?= esc_attr( $image_logo['width'] ); ?>" height="<?= esc_attr( $image_logo['height'] ); ?>" />
+				</div>
+					<?php
+				}
+				?>
 			</div>
 				<?php
 			}
