@@ -44,6 +44,7 @@ h2 {
    left-anchored capped-width box, so centering the box whenever
    .text-center is applied is always what's actually wanted here. */
 h2.text-center,
-.wp-block-paragraph.text-center {
+.wp-block-paragraph.text-center,
+h2.wp-block-heading.has-text-align-center {
   margin-inline: auto;
 }
