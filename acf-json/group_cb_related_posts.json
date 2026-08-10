@@ -1,0 +1,102 @@
+{
+  "key": "group_cb_related_posts",
+  "title": "CB Related Posts",
+  "fields": [
+    {
+      "key": "field_cb_related_posts_title",
+      "label": "CB Related Posts",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_related_posts_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_related_posts_categories",
+      "label": "Categories",
+      "name": "categories",
+      "aria-label": "",
+      "type": "taxonomy",
+      "instructions": "Optional — leave empty to pull from the most recent posts regardless of category.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "taxonomy": "category",
+      "add_term": 0,
+      "save_terms": 0,
+      "load_terms": 0,
+      "return_format": "id",
+      "field_type": "checkbox",
+      "allow_null": 1,
+      "multiple": 0,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_related_posts_count",
+      "label": "Count",
+      "name": "count",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": 3,
+      "min": 1,
+      "max": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "step": 1,
+      "prepend": "",
+      "append": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-related-posts"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "allow_ai_access": false,
+  "ai_description": "",
+  "modified": 1786362948
+}

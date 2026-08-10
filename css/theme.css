@@ -1901,6 +1901,70 @@ select {
         }
     }
 
+/* --- src/blocks/cb-related-posts.css --- */
+.cb-related-posts {
+	padding-block: var(--space-5);
+}
+.cb-related-posts .cb-related-posts__heading {
+		margin-bottom: var(--space-5);
+	}
+.cb-related-posts .cb-related-posts__cards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--grid-gutter);
+	}
+.cb-related-posts .cb-related-posts__card {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--col-white);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		overflow: hidden;
+		color: inherit;
+		text-decoration: none;
+		transition: box-shadow var(--transition);
+	}
+.cb-related-posts .cb-related-posts__card:hover {
+		box-shadow: var(--shadow-lg);
+	}
+.cb-related-posts .cb-related-posts__image {
+		aspect-ratio: 16 / 9;
+	}
+.cb-related-posts .cb-related-posts__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+.cb-related-posts .cb-related-posts__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-4);
+	}
+.cb-related-posts .cb-related-posts__category {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		color: var(--col-blue-300);
+	}
+.cb-related-posts .cb-related-posts__title {
+		margin: 0;
+		font-size: var(--fs-h4);
+	}
+/* Below "md" (768px, src/build/tokens.config.js) */
+@media (max-width: 767px) {
+		.cb-related-posts .cb-related-posts__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+/* Below "sm" (576px, src/build/tokens.config.js) */
+@media (max-width: 575px) {
+		.cb-related-posts .cb-related-posts__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+
 /* --- src/blocks/cb-selected-case-studies.css --- */
 /* Card grid itself intentionally reuses .cb-all-customers__cards/__card/etc.
    (see blocks/cb-selected-case-studies.php and inc/helpers.php's
