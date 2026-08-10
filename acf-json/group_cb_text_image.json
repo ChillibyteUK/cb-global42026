@@ -227,6 +227,32 @@
             "preview_size": "thumbnail"
         },
         {
+            "key": "field_cb_text_image_aspect",
+            "label": "Image Aspect",
+            "name": "image_aspect",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "native": "Native",
+                "16-9": "16 \/ 9"
+            },
+            "default_value": "native",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
+        },
+        {
             "key": "field_cb_text_image_overlay_logo",
             "label": "Image Overlay Logo",
             "name": "image_logo",
@@ -274,5 +300,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786113615
+    "modified": 1786374309
 }

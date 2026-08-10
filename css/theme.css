@@ -2537,6 +2537,23 @@ select {
 		max-height: 100%;
 		border-radius: var(--radius-lg);
 	}
+/* "Image Aspect" field, "16 / 9" option — constrains and crops instead
+	   of the native shrink-to-fit behaviour above. overflow:hidden matters
+	   here, not just for the crop: without it, aspect-ratio loses to the
+	   img's own intrinsic ratio (.cb-text-image__image is a flex container
+	   for centering, and a percentage-sized img left in normal flow inside
+	   one fights its aspect-ratio-derived auto height otherwise). */
+.cb-text-image .cb-text-image__image--16-9 {
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+	}
+.cb-text-image .cb-text-image__image--16-9 img {
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		max-height: none;
+		object-fit: cover;
+	}
 /* Optional "Image Overlay Logo" field — covers the image box (not just
 	   the <img>, so it still looks intentional if the image is narrower than
 	   its column) with a dark scrim, the logo centred on top of that. */

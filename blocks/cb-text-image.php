@@ -23,6 +23,7 @@ $subtitle     = get_field( 'subtitle' );
 $content      = get_field( 'content' );
 $slink        = get_field( 'link' );
 $image        = get_field( 'image' );
+$image_aspect = get_field( 'image_aspect' ) ? get_field( 'image_aspect' ) : 'native';
 $image_logo   = get_field( 'image_logo' );
 $has_link     = ! empty( $slink['url'] );
 
@@ -75,7 +76,7 @@ cb_render_anchor( $block );
 			<?php
 			if ( $image ) {
 				?>
-			<div class="cb-text-image__image">
+			<div class="cb-text-image__image<?= '16-9' === $image_aspect ? ' cb-text-image__image--16-9' : ''; ?>">
 				<img src="<?= esc_url( $image['url'] ); ?>" alt="<?= esc_attr( $image['alt'] ); ?>" width="<?= esc_attr( $image['width'] ); ?>" height="<?= esc_attr( $image['height'] ); ?>" />
 				<?php
 				if ( $image_logo ) {
