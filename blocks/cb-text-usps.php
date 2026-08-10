@@ -85,7 +85,7 @@ cb_render_anchor( $block );
 					}
 					if ( $usp_content ) {
 						?>
-					<p class="cb-text-usps__usp-content"><?= esc_html( $usp_content ); ?></p>
+					<p class="cb-text-usps__usp-content"><?= wp_kses_post( $usp_content ); ?></p>
 						<?php
 					}
 					?>
