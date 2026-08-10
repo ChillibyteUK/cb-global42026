@@ -1,0 +1,24 @@
+{
+  "key": "group_cb_trustpilot_banner",
+  "title": "CB Trustpilot Banner",
+  "fields": [
+    {
+      "key": "field_cb_trustpilot_banner_title",
+      "label": "CB Trustpilot Banner",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-trustpilot-banner"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1786354570
+}
