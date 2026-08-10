@@ -264,3 +264,23 @@ function estimate_reading_time_in_minutes( $content = '', $words_per_minute = 30
 
 	return $minutes;
 }
+
+/**
+ * Extract the 11-character video ID from a YouTube URL — watch, youtu.be,
+ * embed, and shorts links all handled. Empty string if it's not a
+ * recognisable YouTube URL.
+ *
+ * @param string $url YouTube URL.
+ * @return string
+ */
+function cb_get_youtube_id( $url ) {
+	if ( ! $url ) {
+		return '';
+	}
+
+	if ( preg_match( '/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $url, $matches ) ) {
+		return $matches[1];
+	}
+
+	return '';
+}

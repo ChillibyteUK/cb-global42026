@@ -47,6 +47,36 @@ function cb_global42026_register_theme_post_types() {
 			),
 		)
 	);
+	register_post_type(
+		'webinar',
+		array(
+			'labels'          => array(
+				'name'               => 'Webinars',
+				'singular_name'      => 'Webinar',
+				'add_new_item'       => 'Add New Webinar',
+				'edit_item'          => 'Edit Webinar',
+				'new_item'           => 'New Webinar',
+				'view_item'          => 'View Webinar',
+				'search_items'       => 'Search Webinars',
+				'not_found'          => 'No webinars found',
+				'not_found_in_trash' => 'No webinars in trash',
+			),
+			'has_archive'     => false,
+			'public'          => true,
+			'show_ui'         => true,
+			'show_in_menu'    => true,
+			'show_in_rest'    => true,
+			'menu_position'   => 26,
+			'menu_icon'       => 'dashicons-video-alt3',
+			'supports'        => array( 'title', 'thumbnail' ),
+			'capability_type' => 'post',
+			'map_meta_cap'    => true,
+			'rewrite'         => array(
+				'slug'       => 'webinars',
+				'with_front' => false,
+			),
+		)
+	);
 }
 add_action( 'init', 'cb_global42026_register_theme_post_types' );
 
