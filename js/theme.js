@@ -660,6 +660,17 @@
 	        applyFilters();
 	      });
 	    });
+
+	    // Category archives redirect here with ?filter={slug} (see
+	    // cb_redirect_category_archives() in inc/post-index.php) — land
+	    // with that category already selected instead of on everything.
+	    const requestedFilter = new URLSearchParams(window.location.search).get('filter');
+	    if (requestedFilter) {
+	      const matchingFilter = block.querySelector(`.cb-post-index__filter[data-filter="${CSS.escape(requestedFilter)}"]`);
+	      if (matchingFilter) {
+	        matchingFilter.click();
+	      }
+	    }
 	    if (!searchInput) {
 	      return;
 	    }

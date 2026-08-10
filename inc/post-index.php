@@ -137,3 +137,31 @@ function cb_ajax_post_index_search() {
 }
 add_action( 'wp_ajax_cb_post_index_search', 'cb_ajax_post_index_search' );
 add_action( 'wp_ajax_nopriv_cb_post_index_search', 'cb_ajax_post_index_search' );
+
+/**
+ * Category archives are turned off in favour of the CB Post Index block on
+ * /news/ — this theme has no category.php/archive.php, so without this
+ * redirect they'd fall through to the bare index.php loop instead.
+ * Permanent (301) since this is a deliberate, lasting URL structure
+ * change, not a temporary reroute. The category slug is passed through as
+ * ?filter= so post-index.js can pre-select the matching filter button on
+ * load — see initPostIndex() there.
+ *
+ * @return void
+ */
+function cb_redirect_category_archives() {
+	if ( ! is_category() ) {
+		return;
+	}
+
+	$category = get_queried_object();
+	$url      = home_url( '/news/' );
+
+	if ( $category instanceof WP_Term ) {
+		$url = add_query_arg( 'filter', $category->slug, $url );
+	}
+
+	wp_safe_redirect( $url, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'cb_redirect_category_archives' );
