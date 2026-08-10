@@ -826,6 +826,180 @@
 	}
 }
 
+/* --- src/blocks/cb-post-index.css --- */
+.cb-post-index {
+	padding-block: var(--space-5);
+
+	.cb-post-index__controls {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		margin-bottom: var(--space-5);
+	}
+
+	.cb-post-index__filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.cb-post-index__filter {
+		padding: var(--space-1) var(--space-3);
+		border: 1px solid var(--col-grey-300);
+		border-radius: 100vw;
+		background-color: var(--col-white);
+		color: var(--col-body);
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		cursor: pointer;
+		transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+	}
+
+	.cb-post-index__filter:hover {
+		border-color: var(--col-primary);
+	}
+
+	.cb-post-index__filter--active {
+		border-color: var(--col-primary);
+		background-color: var(--col-primary);
+		color: var(--col-white);
+	}
+
+	.cb-post-index__search {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.cb-post-index__search-input {
+		width: auto;
+		min-width: 16rem;
+	}
+
+	.cb-post-index__year-heading {
+		margin-bottom: var(--space-4);
+	}
+
+	.cb-post-index__year-group + .cb-post-index__year-group {
+		margin-top: var(--space-6);
+	}
+
+	.cb-post-index__cards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--grid-gutter);
+	}
+
+	/* Card styling matches .cb-related-posts__card/.cb-all-customers__card —
+	   the shared "white card, 16:9 image, shadow on hover" look used
+	   everywhere else in this theme for post/case-study listings. */
+	.cb-post-index__card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		background-color: var(--col-white);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		overflow: hidden;
+		color: inherit;
+		text-decoration: none;
+		transition: box-shadow var(--transition);
+	}
+
+	.cb-post-index__card:hover {
+		box-shadow: var(--shadow-lg);
+	}
+
+	/* .cb-post-index__card is a column flex container, and without
+	   overflow:hidden here, .cb-post-index__image (a flex item) ends up
+	   sized to the <img>'s own intrinsic ratio instead of the aspect-ratio
+	   set below — overflow:hidden is what makes aspect-ratio actually win. */
+	.cb-post-index__image {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+	}
+
+	.cb-post-index__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.cb-post-index__pill {
+		position: absolute;
+		top: var(--space-2);
+		left: var(--space-2);
+		padding: var(--space-1) var(--space-2);
+		border-radius: 100vw;
+		background-color: var(--col-navy-900);
+		color: var(--col-white);
+		font-size: var(--fs-xsmall);
+		font-weight: var(--fw-700);
+	}
+
+	.cb-post-index__body {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		gap: var(--space-2);
+		padding: var(--space-4);
+	}
+
+	.cb-post-index__category {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		color: var(--col-blue-300);
+	}
+
+	.cb-post-index__title {
+		margin: 0;
+		font-size: var(--fs-h4);
+	}
+
+	.cb-post-index__date {
+		color: var(--col-grey-500);
+		font-size: var(--fs-small);
+	}
+
+	.cb-post-index__excerpt {
+		margin: 0;
+	}
+
+	/* .link-arrow/.link-arrow__icon/.card-link are the shared component in
+	   src/css/link-arrow.css — this is just the layout tweak specific to
+	   this card (pinned to the bottom of the flex-column body). */
+	.link-arrow {
+		margin-top: auto;
+	}
+
+	.cb-post-index__empty {
+		color: var(--col-grey-500);
+	}
+
+	/* Below "md" (768px, src/build/tokens.config.js) */
+	@media (max-width: 767px) {
+		.cb-post-index__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.cb-post-index__search-input {
+			min-width: 0;
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-post-index__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
 /* --- src/blocks/cb-quote-slider.css --- */
 .cb-quote-slider {
     padding-block: var(--space-6);

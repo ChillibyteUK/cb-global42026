@@ -6,6 +6,7 @@ import { initSmoothScroll } from './smooth-scroll';
 import { initScrollAnimate } from './scroll-animate';
 import { initTabbedContent } from './tabbed-content';
 import { initQuoteSliders } from './quote-slider';
+import { initPostIndex } from './post-index';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initScrollAnimate();
 	initTabbedContent();
 	initQuoteSliders();
+	initPostIndex();
 });

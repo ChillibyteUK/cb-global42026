@@ -25,3 +25,9 @@ require_once CB_GLOBAL42026_DIR . '/inc/utilities.php';
 require_once CB_GLOBAL42026_DIR . '/inc/helpers.php';
 require_once CB_GLOBAL42026_DIR . '/inc/posttypes.php';
 require_once CB_GLOBAL42026_DIR . '/inc/taxonomies.php';
+require_once CB_GLOBAL42026_DIR . '/inc/post-index.php';
+
+// TEMPORARY — one-off media dedup after a WP All Import run. Remove this
+// line and delete inc/run-once-dedup-media.php once it's been run on the
+// target site and the report confirms success.
+require_once CB_GLOBAL42026_DIR . '/inc/run-once-dedup-media.php';
