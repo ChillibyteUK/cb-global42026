@@ -45,6 +45,7 @@ h2 {
    .text-center is applied is always what's actually wanted here. */
 h2.text-center,
 .wp-block-paragraph.text-center,
-h2.wp-block-heading.has-text-align-center {
+h2.wp-block-heading.has-text-align-center,
+p.has-text-align-center.wp-block-paragraph {
   margin-inline: auto;
 }
