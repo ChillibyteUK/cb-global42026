@@ -225,9 +225,12 @@ h2 {
   max-width: min(90vw, 35ch);
 }
 
-.wp-block-paragraph {
+/* Scoped to .page (WordPress's own body class for static pages) — a blog
+   post's content already sits in the narrower col-lg-9 column in
+   single.php, so this ch-based cap would just fight that width instead of
+   complementing it. */
+.page .wp-block-paragraph {
   max-width: min(90vw, 85ch);
-
 }
 
 /* h2 and .wp-block-paragraph above are left-anchored block boxes capped by
@@ -631,6 +634,188 @@ footer #colophon .container {
 :is(:is(footer #colophon .container) a):hover,:is(:is(footer #colophon .container) a):focus {
                 color: var(--col-teal-400);
             }
+/* Single post template (single.php) — not an ACF block, so this lives
+   alongside nav.css/footer.css rather than in src/blocks/. */
+
+.cb-single__intro {
+	background-color: var(--col-navy-900);
+	color: var(--col-white);
+	/* Header is position:fixed (nav.css) and sits on top of this, not
+	   pushing it down — space-6 alone wasn't enough clearance and the
+	   breadcrumbs collided with the logo/nav row. */
+	padding-top: calc(var(--space-6) + var(--space-6));
+	padding-bottom: var(--space-5);
+}
+
+.cb-single__breadcrumbs {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	margin-bottom: var(--space-5);
+	font-size: var(--fs-xsmall);
+}
+
+.cb-single__breadcrumbs a {
+	color: color-mix(in srgb, var(--col-white) 70%, transparent);
+	text-decoration: none;
+}
+
+.cb-single__breadcrumbs a:hover {
+	color: var(--col-white);
+	text-decoration: underline;
+}
+
+.cb-single__breadcrumbs [aria-hidden] {
+	color: color-mix(in srgb, var(--col-white) 40%, transparent);
+}
+
+.cb-single__title {
+	color: var(--col-white);
+	margin-bottom: var(--space-3);
+}
+
+.cb-single__meta {
+	display: flex;
+	gap: var(--space-3);
+	color: color-mix(in srgb, var(--col-white) 70%, transparent);
+	font-size: var(--fs-small);
+}
+
+.cb-single__meta span + span {
+	position: relative;
+	padding-left: var(--space-3);
+}
+
+.cb-single__meta span + span::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background-color: currentColor;
+}
+
+.cb-single__image {
+	margin-top: var(--space-5);
+}
+
+.cb-single__image img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 21 / 9;
+	object-fit: cover;
+	border-radius: var(--radius-lg);
+}
+
+.cb-single__content {
+	padding-block: var(--space-5);
+}
+
+.cb-single__prev-next {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--space-3);
+	margin-bottom: var(--space-6);
+	padding-top: var(--space-4);
+	border-top: 1px solid var(--col-grey-300);
+}
+
+.cb-single__prev,
+.cb-single__next {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	padding: var(--space-3);
+	border-radius: var(--radius-sm);
+	color: inherit;
+	text-decoration: none;
+	transition: background-color var(--transition);
+}
+
+.cb-single__prev:hover,
+.cb-single__next:hover {
+	background-color: var(--col-grey-100);
+}
+
+.cb-single__next {
+	text-align: right;
+	grid-column: 2;
+}
+
+.cb-single__nav-label {
+	font-size: var(--fs-small);
+	font-weight: var(--fw-700);
+	color: var(--col-blue-300);
+}
+
+.cb-single__nav-title {
+	font-weight: var(--fw-700);
+}
+
+.cb-single__sidebar {
+	padding-block: var(--space-5);
+}
+
+.cb-single__sidebar-heading {
+	font-size: var(--fs-h5);
+	margin-bottom: var(--space-3);
+}
+
+.cb-single__related {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.cb-single__related-item {
+	display: flex;
+	gap: var(--space-2);
+	color: inherit;
+	text-decoration: none;
+	border-radius: var(--radius-sm);
+	padding: var(--space-1);
+	transition: background-color var(--transition);
+}
+
+.cb-single__related-item:hover {
+	background-color: var(--col-grey-100);
+}
+
+.cb-single__related-image {
+	flex-shrink: 0;
+	width: 4.5rem;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: var(--radius-sm);
+}
+
+.cb-single__related-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.cb-single__related-title {
+	font-size: var(--fs-small);
+	font-weight: var(--fw-700);
+	line-height: var(--line-height-heading);
+}
+
+.cb-single__related-date {
+	margin-top: var(--space-1);
+	font-size: var(--fs-xsmall);
+	color: var(--col-grey-500);
+}
+
+/* Below "lg" (992px, src/build/tokens.config.js) */
+@media (max-width: 991px) {
+	.cb-single__sidebar {
+		border-top: 1px solid var(--col-grey-300);
+	}
+}
 /* Minimal, deliberately unopinionated form base — expected to be overridden per project. */
 
 input,

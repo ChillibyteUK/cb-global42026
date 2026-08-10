@@ -31,9 +31,12 @@ h2 {
   max-width: min(90vw, 35ch);
 }
 
-.wp-block-paragraph {
+/* Scoped to .page (WordPress's own body class for static pages) — a blog
+   post's content already sits in the narrower col-lg-9 column in
+   single.php, so this ch-based cap would just fight that width instead of
+   complementing it. */
+.page .wp-block-paragraph {
   max-width: min(90vw, 85ch);
-
 }
 
 /* h2 and .wp-block-paragraph above are left-anchored block boxes capped by

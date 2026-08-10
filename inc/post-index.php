@@ -165,3 +165,68 @@ function cb_redirect_category_archives() {
 	exit;
 }
 add_action( 'template_redirect', 'cb_redirect_category_archives' );
+
+/**
+ * The imported blog content is inconsistent — some posts open with a
+ * heading that just repeats the post title (single.php already prints the
+ * title itself in .cb-single__intro), leaving a duplicate h1 or h2 sitting
+ * right at the start of the content and breaking the page's heading
+ * outline. Strips it, but only when it's the very first thing in the
+ * content and its text is an exact match for the title — a heading
+ * further into the article, or one that's merely similar, is left alone.
+ *
+ * Scoped to single blog posts only (not pages/CPTs) — the_content runs on
+ * every ACF-block page too, and a block legitimately outputting an
+ * h1/h2 that happens to match the page title shouldn't be touched.
+ *
+ * @param string $content Post content, already through wpautop/block rendering.
+ * @return string
+ */
+function cb_strip_duplicate_title_heading( $content ) {
+	if ( ! is_singular( 'post' ) ) {
+		return $content;
+	}
+
+	$title = trim( wp_strip_all_tags( get_the_title() ) );
+
+	if ( ! $title ) {
+		return $content;
+	}
+
+	if ( ! preg_match( '/<(h[12])[^>]*>(.*?)<\/\1>/is', $content, $matches, PREG_OFFSET_CAPTURE ) ) {
+		return $content;
+	}
+
+	list( $full_match, $offset ) = $matches[0];
+	$heading_tag = strtolower( $matches[1][0] );
+
+	// Some blocks on this site render wrapped in their own <div
+	// class="container"> (see the cbp-blog-options plugin) — the heading
+	// still counts as "first" if only whitespace or wrapper divs/sections
+	// precede it, just not literally the first byte of the string. Leaving
+	// those wrapper tags in place (rather than trying to strip them too)
+	// keeps the HTML balanced even though it leaves an empty wrapper behind,
+	// which is invisible either way since .container has no visual chrome.
+	$before          = substr( $content, 0, $offset );
+	$before_stripped = preg_replace( '/<\/?(div|section)[^>]*>|\s+/i', '', $before );
+
+	if ( '' !== $before_stripped ) {
+		return $content;
+	}
+
+	// single.php always prints its own <h1> for the title already, so a
+	// second one in the content is always wrong regardless of its text —
+	// unlike an h2, which isn't structurally wrong, just possibly a
+	// redundant repeat of the title (so that case still requires an exact
+	// text match before stripping it).
+	if ( 'h1' !== $heading_tag ) {
+		$heading_text = trim( wp_strip_all_tags( $matches[2][0] ) );
+
+		if ( 0 !== strcasecmp( $heading_text, $title ) ) {
+			return $content;
+		}
+	}
+
+	return substr_replace( $content, '', $offset, strlen( $full_match ) );
+}
+add_filter( 'the_content', 'cb_strip_duplicate_title_heading', 20 );
