@@ -1,0 +1,71 @@
+.cb-quote-slider {
+    padding-block: var(--space-6);
+
+    .cb-quote-slider__track {
+        /* All slides stacked in the same grid cell — the track is sized to
+           the tallest slide automatically, no fixed/aspect-ratio height
+           needed. See src/js/quote-slider.js for the .is-active cycling. */
+        display: grid;
+        justify-items: center;
+    }
+
+    .cb-quote-slider__slide {
+        grid-area: 1 / 1;
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        opacity: 0;
+        transition: opacity var(--transition);
+    }
+
+    .cb-quote-slider__slide.is-active {
+        opacity: 1;
+    }
+
+    .cb-quote-slider__image {
+        max-width: 20rem;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        flex-shrink: 0;
+        border-radius: var(--radius-sm);
+    }
+
+    .cb-quote-slider__quote {
+        margin: 0;
+        max-width: 40rem;
+
+        p {
+            font-size: var(--fs-h4);
+            font-weight: var(--fw-700);
+        }
+
+        /* Plain inline quote marks at the text's own size — same pattern as
+           CB Text Testimonial's blockquote. */
+        p::before {
+            content: '“';
+        }
+
+        p::after {
+            content: '”';
+        }
+
+        cite {
+            display: block;
+            margin-top: var(--space-3);
+            font-style: normal;
+            color: var(--col-grey-500);
+        }
+    }
+
+    /* Below "md" (768px, src/build/tokens.config.js) */
+    @media (max-width: 767px) {
+        .cb-quote-slider__slide {
+            flex-direction: column;
+        }
+
+        .cb-quote-slider__image {
+            width: 100%;
+            max-width: 20rem;
+        }
+    }
+}

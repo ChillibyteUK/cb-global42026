@@ -5,6 +5,7 @@ import { initDialogs } from './dialog';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollAnimate } from './scroll-animate';
 import { initTabbedContent } from './tabbed-content';
+import { initQuoteSliders } from './quote-slider';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initSmoothScroll();
 	initScrollAnimate();
 	initTabbedContent();
+	initQuoteSliders();
 });
