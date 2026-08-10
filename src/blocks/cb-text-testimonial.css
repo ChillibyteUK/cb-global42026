@@ -19,4 +19,18 @@
             content: '”';
         }
     }
+
+    /* No heading/content column (blocks/cb-text-testimonial.php) — the
+       quote is the whole block, so the white card reads as an odd floating
+       box rather than a "text column vs. quote column" contrast. Drop it in
+       favour of plain white text directly on the block's own background
+       colour (set per-instance via the block's own colour support). */
+    &.cb-text-testimonial--quote-only {
+        blockquote {
+            background-color: transparent;
+            color: var(--col-white);
+            padding: 0;
+            box-shadow: none;
+        }
+    }
 }
