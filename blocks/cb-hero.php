@@ -10,6 +10,8 @@ defined( 'ABSPATH' ) || exit;
 $is_front_page    = is_front_page();
 $background_image = get_field( 'background_image' );
 $has_bg_image      = ! empty( $background_image['url'] );
+$badge             = get_field( 'badge' );
+$has_badge         = ! empty( $badge['url'] );
 
 $classes = array( 'cb-hero' );
 
@@ -145,4 +147,9 @@ $logo_paths = array(
 			</div>
 		</div>
 	</div>
+	<?php if ( $has_badge ) { ?>
+	<div class="cb-hero__badge">
+		<img src="<?= esc_url( $badge['url'] ); ?>" alt="<?= esc_attr( $badge['alt'] ); ?>" />
+	</div>
+	<?php } ?>
 </section>

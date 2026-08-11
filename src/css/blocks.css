@@ -683,6 +683,34 @@
         flex-wrap: wrap;
     }
 
+    /* Last child in the DOM (see blocks/cb-hero.php), so it paints above
+       .cb-hero__bg/.cb-hero__scrim and .container with no z-index needed.
+       Static/centered on mobile (stacked below the content column),
+       absolutely pinned to the right on desktop. */
+    .cb-hero__badge {
+        margin-top: var(--space-4);
+        text-align: center;
+    }
+
+    .cb-hero__badge img {
+        display: inline-block;
+        max-width: 300px;
+        max-height: 170px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    @media (min-width: 992px) {
+        .cb-hero__badge {
+            position: absolute;
+            top: 50%;
+            right: var(--space-4);
+            transform: translateY(-50%);
+            margin-top: 0;
+        }
+    }
+
     /* .cb-hero--has-bg-image renders two stacked layers ahead of .container
        (paint order = DOM order, so they sit below it without needing z-index):
        __bg is the one and only photo. __scrim is an SVG rect painted in the
