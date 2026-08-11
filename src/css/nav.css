@@ -198,7 +198,10 @@
 		transition: none;
 	}
 
-	.navbar-nav {
+	/* Scoped to .navbar-collapse — the footer reuses .navbar-nav for its own
+	   column menus and must stay a flex column there, not switch to a row
+	   like the header nav does at this breakpoint. */
+	.navbar-collapse .navbar-nav {
 		flex-direction: row;
 		gap: var(--space-4);
 		margin: 0;
