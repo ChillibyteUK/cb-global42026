@@ -4,7 +4,7 @@ footer {
 
     border-top: 6px solid var(--col-blue-500);
 
-    padding-block-start: var(--space-5);
+    padding-block: var(--space-5);
 
     /* Matches the old <img>'s natural PNG dimensions (202x37) — the inline
        svg has no intrinsic size of its own to fall back on. */
