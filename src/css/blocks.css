@@ -301,6 +301,67 @@
 	}
 }
 
+/* --- src/blocks/cb-charity-spinner.css --- */
+.cb-charity-spinner {
+	padding-block: var(--space-6);
+
+	.cb-charity-spinner__eyebrow {
+		text-transform: uppercase;
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+		color: var(--col-blue-300);
+	}
+
+	.cb-charity-spinner__heading {
+		color: var(--col-navy-900);
+	}
+
+	.cb-charity-spinner__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+
+	.cb-charity-spinner__card {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+		gap: var(--space-2);
+		padding: var(--space-4) var(--space-5);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-navy-700);
+		color: var(--col-white);
+	}
+
+	.cb-charity-spinner__icon svg {
+		width: 4rem;
+		height: 4rem;
+		object-fit: contain;
+	}
+
+	.cb-charity-spinner__card-title {
+		margin: 0 0 2rem 0;
+		font-size: var(--fs-h4);
+		max-width: 15ch;
+		text-wrap: pretty;
+	}
+
+	.cb-charity-spinner__value {
+		font-size: var(--fs-h1);
+		font-weight: var(--fw-700);
+		line-height: 1;
+	}
+
+	.cb-charity-spinner__subtitle {
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+	}
+}
+
 /* --- src/blocks/cb-contact-cards.css --- */
 .cb-contact-cards {
 	background-color: var(--col-grey-100);

@@ -8,6 +8,7 @@ import { initTabbedContent } from './tabbed-content';
 import { initQuoteSliders } from './quote-slider';
 import { initPostIndex } from './post-index';
 import { initWebinars } from './webinars';
+import { initCounters } from './counter';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -20,4 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initQuoteSliders();
 	initPostIndex();
 	initWebinars();
+	initCounters();
 });

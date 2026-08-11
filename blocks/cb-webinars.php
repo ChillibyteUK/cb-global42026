@@ -61,13 +61,13 @@ cb_render_anchor( $block );
 					if ( $presenters ) {
 						?>
 					<div class="cb-webinars__presenters"><strong>Presenters:</strong><br><?= wp_kses_post( $presenters ); ?></div>
-						<?php 
+						<?php
 					}
 					if ( $overview ) {
 						?>
 					<div class="cb-webinars__overview"><?= wp_kses_post( $overview ); ?></div>
 						<?php
-					} 
+					}
 					if ( ! empty( $file_download['url'] ) ) {
 						$button_text = get_field( 'download_button_title', $webinar_id );
 
