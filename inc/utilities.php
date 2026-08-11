@@ -274,6 +274,10 @@ function estimate_reading_time_in_minutes( $content = '', $words_per_minute = 30
  * @return string
  */
 function cb_get_youtube_id( $url ) {
+	if ( is_array( $url ) ) {
+		$url = $url['url'] ?? '';
+	}
+
 	if ( ! $url ) {
 		return '';
 	}

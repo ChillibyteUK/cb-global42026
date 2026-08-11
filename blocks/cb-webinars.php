@@ -60,7 +60,7 @@ cb_render_anchor( $block );
 					<?php
 					if ( $presenters ) {
 						?>
-					<div class="cb-webinars__presenters">Presenters: <?= wp_kses_post( $presenters ); ?></div>
+					<div class="cb-webinars__presenters"><strong>Presenters:</strong><br><?= wp_kses_post( $presenters ); ?></div>
 						<?php 
 					}
 					if ( $overview ) {
