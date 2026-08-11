@@ -683,10 +683,11 @@
         flex-wrap: wrap;
     }
 
-    /* Last child in the DOM (see blocks/cb-hero.php), so it paints above
-       .cb-hero__bg/.cb-hero__scrim and .container with no z-index needed.
-       Static/centered on mobile (stacked below the content column),
-       absolutely pinned to the right on desktop. */
+    /* A normal .row column, same as the content column beside it — inside
+       .container (position:relative; z-index:1, above .cb-hero__bg/
+       .cb-hero__scrim), so it paints above both with no extra z-index
+       needed. Centered on mobile (stacks below the content column),
+       right-aligned from "lg" up. */
     .cb-hero__badge {
         margin-top: var(--space-4);
         text-align: center;
@@ -703,11 +704,8 @@
 
     @media (min-width: 992px) {
         .cb-hero__badge {
-            position: absolute;
-            top: 50%;
-            right: var(--space-4);
-            transform: translateY(-50%);
             margin-top: 0;
+            text-align: right;
         }
     }
 

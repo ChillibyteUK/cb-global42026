@@ -145,11 +145,11 @@ $logo_paths = array(
 				}
 				?>
 			</div>
+			<?php if ( $has_badge ) { ?>
+			<div class="col-12 col-md-4 col-lg-6 cb-hero__badge">
+				<img src="<?= esc_url( $badge['url'] ); ?>" alt="<?= esc_attr( $badge['alt'] ); ?>" />
+			</div>
+			<?php } ?>
 		</div>
 	</div>
-	<?php if ( $has_badge ) { ?>
-	<div class="cb-hero__badge">
-		<img src="<?= esc_url( $badge['url'] ); ?>" alt="<?= esc_attr( $badge['alt'] ); ?>" />
-	</div>
-	<?php } ?>
 </section>
