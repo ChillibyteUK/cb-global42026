@@ -90,6 +90,11 @@
 		color: var(--col-white);
 	}
 
+	.cb-icon-card-grid__card--white {
+		background-color: var(--col-white);
+		color: var(--col-navy-900);
+	}
+
 	.cb-icon-card-grid__card--bordered {
 		border: 1px solid var(--col-navy-700);
 		background-color: var(--col-white);
