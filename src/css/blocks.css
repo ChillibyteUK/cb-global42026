@@ -1593,7 +1593,7 @@
 	.cb-webinars__cards {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-5);
+		gap: var(--space-4);
 	}
 
 	.cb-webinars__card {
@@ -1654,7 +1654,7 @@
 
 	.cb-webinars__title {
 		margin: 0;
-		font-size: var(--fs-h4);
+		font-size: var(--fs-h3);
 	}
 
 	.cb-webinars__presenters {

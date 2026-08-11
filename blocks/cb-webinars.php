@@ -65,7 +65,7 @@ cb_render_anchor( $block );
 					<div class="cb-webinars__overview"><?= wp_kses_post( $overview ); ?></div>
 					<?php } ?>
 					<?php if ( ! empty( $file_download['url'] ) ) { ?>
-					<a class="btn btn-secondary-dark cb-webinars__download" href="<?= esc_url( $file_download['url'] ); ?>" target="_blank" rel="noopener">
+					<a class="btn btn-primary cb-webinars__download" href="<?= esc_url( $file_download['url'] ); ?>" target="_blank" rel="noopener">
 						Download <?= esc_html( $file_download['title'] ? $file_download['title'] : 'file' ); ?>
 					</a>
 					<?php } ?>

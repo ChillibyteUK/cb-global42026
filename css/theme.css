@@ -2704,7 +2704,7 @@ select {
 .cb-webinars .cb-webinars__cards {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-5);
+		gap: var(--space-4);
 	}
 .cb-webinars .cb-webinars__card {
 		align-items: start;
@@ -2757,7 +2757,7 @@ select {
 	}
 .cb-webinars .cb-webinars__title {
 		margin: 0;
-		font-size: var(--fs-h4);
+		font-size: var(--fs-h3);
 	}
 .cb-webinars .cb-webinars__presenters {
 		font-size: var(--fs-small);
