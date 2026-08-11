@@ -12,33 +12,58 @@ if ( ! have_rows( 'cards' ) ) {
 }
 
 $heading = get_field( 'heading' );
+$intro   = get_field( 'intro' );
 $columns = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
 
 /** @var array $block ACF block data. */
-$classes = cb_block_classes( array( 'cb-icon-card-grid' ), $block );
+list( $bg, $fg ) = cb_bg_fg_classes( $block );
+$classes          = cb_block_classes( array( 'cb-icon-card-grid', $bg ), $block );
 
 cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php
-		if ( $heading ) {
-			?>
-		<h2 class="cb-icon-card-grid__heading"><?= esc_html( $heading ); ?></h2>
+		<?php if ( $heading || $intro ) { ?>
+		<div class="<?= esc_attr( trim( 'cb-icon-card-grid__intro-wrap ' . $fg ) ); ?>">
 			<?php
-		}
-		?>
+			if ( $heading ) {
+				?>
+			<h2 class="cb-icon-card-grid__heading"><?= esc_html( $heading ); ?></h2>
+				<?php
+			}
+			if ( $intro ) {
+				?>
+			<div class="cb-icon-card-grid__intro"><?= wp_kses_post( $intro ); ?></div>
+				<?php
+			}
+			?>
+		</div>
+		<?php } ?>
 		<div class="cb-icon-card-grid__cards" style="--cb-icon-card-grid-columns: <?= esc_attr( $columns ); ?>;">
 			<?php
 			while ( have_rows( 'cards' ) ) {
 				the_row();
-				$card_style   = get_sub_field( 'style' ) ? get_sub_field( 'style' ) : 'filled';
-				$card_content = get_sub_field( 'content' );
-				$clink        = get_sub_field( 'link' );
-				$has_link     = ! empty( $clink['url'] );
-				$card_tag     = $has_link ? 'a' : 'div';
+				$card_style     = get_sub_field( 'style' ) ? get_sub_field( 'style' ) : 'filled';
+				$content_format = get_sub_field( 'content_format' ) ? get_sub_field( 'content_format' ) : 'plain';
+				$card_content   = 'wysiwyg' === $content_format ? get_sub_field( 'content_wysiwyg' ) : get_sub_field( 'content' );
+				$clink          = get_sub_field( 'link' );
+				$has_link       = ! empty( $clink['url'] );
+				$card_tag       = $has_link ? 'a' : 'div';
+
+				$card_classes = array(
+					'cb-icon-card-grid__card',
+					'cb-icon-card-grid__card--' . $card_style,
+				);
+
+				if ( 'wysiwyg' === $content_format ) {
+					$card_classes[] = 'cb-icon-card-grid__card--left';
+				}
+
+				if ( $has_link ) {
+					$card_classes[] = 'card-link';
+				}
 				?>
-			<<?= esc_attr( $card_tag ); ?> class="cb-icon-card-grid__card cb-icon-card-grid__card--<?= esc_attr( $card_style ); ?><?= $has_link ? ' card-link' : ''; ?>"
+			<<?= esc_attr( $card_tag ); ?> class="<?= esc_attr( implode( ' ', $card_classes ) ); ?>"
 				<?php
 				if ( $has_link ) {
 					?>
@@ -52,7 +77,7 @@ cb_render_anchor( $block );
 				<?php
 				if ( $card_content ) {
 					?>
-				<p class="cb-icon-card-grid__content"><?= wp_kses_post( $card_content ); ?></p>
+				<div class="cb-icon-card-grid__content"><?= wp_kses_post( $card_content ); ?></div>
 					<?php
 				}
 				if ( $has_link ) {

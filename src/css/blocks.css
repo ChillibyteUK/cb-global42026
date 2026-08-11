@@ -728,8 +728,16 @@
 
 /* --- src/blocks/cb-icon-card-grid.css --- */
 .cb-icon-card-grid {
-	.cb-icon-card-grid__heading {
+	.cb-icon-card-grid__intro-wrap {
 		margin-bottom: var(--space-5);
+	}
+
+	.cb-icon-card-grid__heading {
+		margin-bottom: var(--space-3);
+	}
+
+	.cb-icon-card-grid__intro:last-child {
+		margin-bottom: 0;
 	}
 
 	.cb-icon-card-grid__cards {
@@ -816,6 +824,14 @@
 
 	a.cb-icon-card-grid__card--plain:hover {
 		background-color: transparent;
+	}
+
+	/* WYSIWYG content is left-aligned regardless of card style — mainly
+	   overrides --plain's centered layout, a no-op on --filled/--bordered
+	   which are already left-aligned by default. */
+	.cb-icon-card-grid__card--left {
+		align-items: flex-start;
+		text-align: left;
 	}
 
 	/* Below "md" (768px, src/build/tokens.config.js) */

@@ -42,6 +42,27 @@
             "append": ""
         },
         {
+            "key": "field_cb_icon_card_grid_intro",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
             "key": "field_cb_icon_card_grid_8a3762bd2103",
             "label": "Columns",
             "name": "columns",
@@ -171,6 +192,33 @@
                     "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
                 },
                 {
+                    "key": "field_cb_icon_card_grid_content_format",
+                    "label": "Content Format",
+                    "name": "content_format",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "plain": "Plain",
+                        "wysiwyg": "WYSIWYG"
+                    },
+                    "default_value": "plain",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "allow_in_bindings": 0,
+                    "layout": "horizontal",
+                    "save_other_choice": 0,
+                    "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
+                },
+                {
                     "key": "field_cb_icon_card_grid_f64c4d033302",
                     "label": "Content",
                     "name": "content",
@@ -178,7 +226,15 @@
                     "type": "textarea",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cb_icon_card_grid_content_format",
+                                "operator": "==",
+                                "value": "plain"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -190,6 +246,36 @@
                     "rows": 4,
                     "placeholder": "",
                     "new_lines": "",
+                    "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
+                },
+                {
+                    "key": "field_cb_icon_card_grid_content_wysiwyg",
+                    "label": "Content",
+                    "name": "content_wysiwyg",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cb_icon_card_grid_content_format",
+                                "operator": "==",
+                                "value": "wysiwyg"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "allow_in_bindings": 0,
                     "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
                 },
                 {
@@ -234,5 +320,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785752958
+    "modified": 1786449083
 }
