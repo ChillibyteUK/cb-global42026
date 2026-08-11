@@ -686,15 +686,15 @@
     /* A normal .row column, same as the content column beside it — inside
        .container (position:relative; z-index:1, above .cb-hero__bg/
        .cb-hero__scrim), so it paints above both with no extra z-index
-       needed. Centered on mobile (stacks below the content column),
-       right-aligned from "lg" up. */
+       needed. Centered both ways within the column at every width. */
     .cb-hero__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: var(--space-4);
-        text-align: center;
     }
 
     .cb-hero__badge img {
-        display: inline-block;
         max-width: 300px;
         max-height: 170px;
         width: auto;
@@ -705,7 +705,6 @@
     @media (min-width: 992px) {
         .cb-hero__badge {
             margin-top: 0;
-            text-align: right;
         }
     }
 
