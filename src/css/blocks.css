@@ -839,12 +839,17 @@
 		background-color: transparent;
 	}
 
-	/* WYSIWYG content is left-aligned regardless of card style — mainly
-	   overrides --plain's centered layout, a no-op on --filled/--bordered
-	   which are already left-aligned by default. */
-	.cb-icon-card-grid__card--left {
+	/* Explicit alignment always wins over the style's own default — WYSIWYG
+	   content is forced to --align-left (see block template), Plain content
+	   follows its own Content Alignment field (default --align-center). */
+	.cb-icon-card-grid__card--align-left {
 		align-items: flex-start;
 		text-align: left;
+	}
+
+	.cb-icon-card-grid__card--align-center {
+		align-items: center;
+		text-align: center;
 	}
 
 	/* Below "md" (768px, src/build/tokens.config.js) */

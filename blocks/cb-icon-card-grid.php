@@ -59,6 +59,8 @@ cb_render_anchor( $block );
 				$card_style     = get_sub_field( 'style' ) ? get_sub_field( 'style' ) : 'filled';
 				$content_format = get_sub_field( 'content_format' ) ? get_sub_field( 'content_format' ) : 'plain';
 				$card_content   = 'wysiwyg' === $content_format ? get_sub_field( 'content_wysiwyg' ) : get_sub_field( 'content' );
+				$content_align  = 'wysiwyg' === $content_format ? 'left' : ( get_sub_field( 'content_align' ) ? get_sub_field( 'content_align' ) : 'center' );
+				$card_icon      = get_sub_field( 'icon' );
 				$clink          = get_sub_field( 'link' );
 				$has_link       = ! empty( $clink['url'] );
 				$card_tag       = $has_link ? 'a' : 'div';
@@ -66,11 +68,8 @@ cb_render_anchor( $block );
 				$card_classes = array(
 					'cb-icon-card-grid__card',
 					'cb-icon-card-grid__card--' . $card_style,
+					'cb-icon-card-grid__card--align-' . $content_align,
 				);
-
-				if ( 'wysiwyg' === $content_format ) {
-					$card_classes[] = 'cb-icon-card-grid__card--left';
-				}
 
 				if ( $has_link ) {
 					$card_classes[] = 'card-link';
@@ -85,7 +84,9 @@ cb_render_anchor( $block );
 				}
 				?>
 			>
-				<span class="cb-icon-card-grid__icon"><?= cb_icon( get_sub_field( 'icon' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<?php if ( $card_icon ) { ?>
+				<span class="cb-icon-card-grid__icon"><?= cb_icon( $card_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<?php } ?>
 				<h3 class="cb-icon-card-grid__title"><?= esc_html( get_sub_field( 'title' ) ); ?></h3>
 				<?php
 				if ( $card_content ) {
