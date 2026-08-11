@@ -102,7 +102,7 @@ function cb_icon( $name ) {
 		return '';
 	}
 
-	return file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read.file_get_contents_file_get_contents
+	return file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 }
 
 /**

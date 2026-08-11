@@ -1,0 +1,179 @@
+{
+  "key": "group_cb_charity_cards",
+  "title": "CB Charity Cards",
+  "fields": [
+    {
+      "key": "field_cb_charity_cards_title",
+      "label": "CB Charity Cards",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_charity_cards_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_charity_cards_intro",
+      "label": "Intro",
+      "name": "intro",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "rows": 4,
+      "placeholder": "",
+      "new_lines": "br"
+    },
+    {
+      "key": "field_cb_charity_cards_cards",
+      "label": "Cards",
+      "name": "cards",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "field_cb_charity_cards_card_title",
+      "button_label": "Add Card",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_charity_cards_card_image",
+          "label": "Image",
+          "name": "image",
+          "aria-label": "",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "preview_size": "thumbnail",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_charity_cards_cards"
+        },
+        {
+          "key": "field_cb_charity_cards_card_title",
+          "label": "Title",
+          "name": "title",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_charity_cards_cards"
+        },
+        {
+          "key": "field_cb_charity_cards_card_description",
+          "label": "Description",
+          "name": "description",
+          "aria-label": "",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "rows": 4,
+          "placeholder": "",
+          "new_lines": "br",
+          "parent_repeater": "field_cb_charity_cards_cards"
+        },
+        {
+          "key": "field_cb_charity_cards_card_link",
+          "label": "Link",
+          "name": "link",
+          "aria-label": "",
+          "type": "link",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_charity_cards_cards"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-charity-cards"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1786438496
+}

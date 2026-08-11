@@ -301,6 +301,85 @@
 	}
 }
 
+/* --- src/blocks/cb-charity-cards.css --- */
+.cb-charity-cards {
+	padding-block: var(--space-5);
+
+	.cb-charity-cards__heading {
+		margin-bottom: var(--space-3);
+	}
+
+	.cb-charity-cards__intro {
+		margin-bottom: var(--space-5);
+	}
+
+	.cb-charity-cards__cards {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--grid-gutter);
+	}
+
+	.cb-charity-cards__card {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--col-white);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		overflow: hidden;
+		color: inherit;
+		text-decoration: none;
+		transition: box-shadow var(--transition);
+	}
+
+	.cb-charity-cards__card:hover {
+		box-shadow: var(--shadow-lg);
+	}
+
+	.cb-charity-cards__image {
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+	}
+
+	.cb-charity-cards__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.cb-charity-cards__body {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		gap: var(--space-2);
+		padding: var(--space-4);
+	}
+
+	.cb-charity-cards__title {
+		margin: 0;
+		font-size: var(--fs-h3);
+	}
+
+	.cb-charity-cards__description {
+		margin: 0;
+		color: var(--col-grey-500);
+	}
+
+	/* .link-arrow/.link-arrow__icon/.card-link are the shared component in
+	   src/css/link-arrow.css — this is just the layout tweak specific to
+	   this card (pinned to the bottom of the flex-column body). */
+	.link-arrow {
+		margin-top: auto;
+		padding-top: var(--space-2);
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-charity-cards__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
 /* --- src/blocks/cb-charity-spinner.css --- */
 .cb-charity-spinner {
 	padding-block: var(--space-6);

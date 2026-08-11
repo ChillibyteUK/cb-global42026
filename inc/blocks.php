@@ -20,6 +20,23 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_charity_cards',
+				'title'           => __( 'CB Charity Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-charity-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_charity_spinner',
 				'title'           => __( 'CB Charity Spinner' ),
 				'category'        => 'layout',
