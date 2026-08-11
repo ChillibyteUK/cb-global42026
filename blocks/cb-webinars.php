@@ -58,17 +58,35 @@ cb_render_anchor( $block );
 				</div>
 				<div class="col-12 col-lg-7 cb-webinars__content">
 					<h2 class="cb-webinars__title"><?= esc_html( $webinar_title ); ?></h2>
-					<?php if ( $presenters ) { ?>
+					<?php
+					if ( $presenters ) {
+						?>
 					<div class="cb-webinars__presenters">Presenters: <?= wp_kses_post( $presenters ); ?></div>
-					<?php } ?>
-					<?php if ( $overview ) { ?>
+						<?php 
+					}
+					if ( $overview ) {
+						?>
 					<div class="cb-webinars__overview"><?= wp_kses_post( $overview ); ?></div>
-					<?php } ?>
-					<?php if ( ! empty( $file_download['url'] ) ) { ?>
+						<?php
+					} 
+					if ( ! empty( $file_download['url'] ) ) {
+						$button_text = get_field( 'download_button_title', $webinar_id );
+
+						if ( ! $button_text ) {
+							$button_text = $file_download['title'];
+						}
+
+						if ( ! $button_text ) {
+							$button_text = 'file';
+						}
+
+						?>
 					<a class="btn btn-primary cb-webinars__download" href="<?= esc_url( $file_download['url'] ); ?>" target="_blank" rel="noopener">
-						Download <?= esc_html( $file_download['title'] ? $file_download['title'] : 'file' ); ?>
+						Download <?= esc_html( $button_text ); ?>
 					</a>
-					<?php } ?>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 				<?php

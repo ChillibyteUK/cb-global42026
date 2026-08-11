@@ -71,7 +71,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -81,6 +81,27 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6a7ad01145bd3",
+            "label": "Download Button Title",
+            "name": "download_button_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -104,5 +125,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786378127
+    "modified": 1786433568
 }
