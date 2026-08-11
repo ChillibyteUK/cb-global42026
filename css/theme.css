@@ -1877,6 +1877,10 @@ select {
             font-weight: var(--fw-900);
             font-size: calc( var(--fs-h1) * 1.2 );
         }
+.cb-hero .cb-hero__subtitle {
+        font-size: var(--fs-h5);
+        font-weight: var(--fw-700);
+    }
 .cb-hero .cb-hero__content {
         padding-bottom: var(--space-4);
     }

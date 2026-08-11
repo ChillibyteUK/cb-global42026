@@ -109,6 +109,14 @@ $logo_paths = array(
 		<div class="row">
 			<div class="col-12 col-md-8 col-lg-6">
 				<h1><?= wp_kses_post( get_field( 'hero_title' ) ); ?></h1>
+				<?php
+				$hero_subtitle = get_field( 'hero_subtitle' );
+				if ( $hero_subtitle ) {
+					?>
+				<p class="cb-hero__subtitle"><?= esc_html( $hero_subtitle ); ?></p>
+					<?php
+				}
+				?>
 				<div class="cb-hero__content">
 					<?= wp_kses_post( get_field( 'hero_content' ) ); ?>
 				</div>
