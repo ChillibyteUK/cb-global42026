@@ -1933,8 +1933,19 @@ select {
 .cb-icon-card-grid .cb-icon-card-grid__intro-wrap {
 		margin-bottom: var(--space-5);
 	}
-.cb-icon-card-grid .cb-icon-card-grid__heading {
+.cb-icon-card-grid .cb-icon-card-grid__heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: var(--space-3);
 		margin-bottom: var(--space-3);
+	}
+.cb-icon-card-grid .cb-icon-card-grid__heading {
+		margin: 0;
+	}
+.cb-icon-card-grid .cb-icon-card-grid__button {
+		flex-shrink: 0;
 	}
 .cb-icon-card-grid .cb-icon-card-grid__intro:last-child {
 		margin-bottom: 0;

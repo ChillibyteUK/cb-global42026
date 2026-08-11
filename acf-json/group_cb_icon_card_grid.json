@@ -63,6 +63,23 @@
             "new_lines": "br"
         },
         {
+            "key": "field_cb_icon_card_grid_button",
+            "label": "Button",
+            "name": "button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional. Displayed alongside the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_cb_icon_card_grid_8a3762bd2103",
             "label": "Columns",
             "name": "columns",
@@ -320,5 +337,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786449083
+    "modified": 1786449896
 }

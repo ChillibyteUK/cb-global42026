@@ -11,26 +11,39 @@ if ( ! have_rows( 'cards' ) ) {
 	return;
 }
 
-$heading = get_field( 'heading' );
-$intro   = get_field( 'intro' );
-$columns = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
+$heading   = get_field( 'heading' );
+$intro     = get_field( 'intro' );
+$button    = get_field( 'button' );
+$columns   = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
+$has_button = ! empty( $button['url'] );
 
 /** @var array $block ACF block data. */
 list( $bg, $fg ) = cb_bg_fg_classes( $block );
-$classes          = cb_block_classes( array( 'cb-icon-card-grid', $bg ), $block );
+$classes          = cb_block_classes( array( 'cb-icon-card-grid', 'py-5', $bg ), $block );
 
 cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php if ( $heading || $intro ) { ?>
+		<?php if ( $heading || $intro || $has_button ) { ?>
 		<div class="<?= esc_attr( trim( 'cb-icon-card-grid__intro-wrap ' . $fg ) ); ?>">
-			<?php
-			if ( $heading ) {
-				?>
-			<h2 class="cb-icon-card-grid__heading"><?= esc_html( $heading ); ?></h2>
+			<?php if ( $heading || $has_button ) { ?>
+			<div class="cb-icon-card-grid__heading-row">
 				<?php
-			}
+				if ( $heading ) {
+					?>
+				<h2 class="cb-icon-card-grid__heading"><?= esc_html( $heading ); ?></h2>
+					<?php
+				}
+				if ( $has_button ) {
+					?>
+				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary cb-icon-card-grid__button"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
+					<?php
+				}
+				?>
+			</div>
+			<?php } ?>
+			<?php
 			if ( $intro ) {
 				?>
 			<div class="cb-icon-card-grid__intro"><?= wp_kses_post( $intro ); ?></div>
