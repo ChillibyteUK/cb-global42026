@@ -94,6 +94,7 @@
                 "id": ""
             },
             "choices": {
+                "2": "2 Columns",
                 "3": "3 Columns",
                 "4": "4 Columns"
             },
@@ -391,5 +392,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786458167
+    "modified": 1786459698
 }

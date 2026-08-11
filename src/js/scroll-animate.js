@@ -336,9 +336,10 @@ function initHeroParallax() {
 function initHeroContent() {
 	document.querySelectorAll('.cb-hero').forEach((hero) => {
 		const heading = hero.querySelector('h1');
+		const subtitle = hero.querySelector('.cb-hero__subtitle');
 		const content = hero.querySelector('.cb-hero__content');
 		const cta = hero.querySelector('.cb-hero__cta');
-		const targets = [heading, content, cta].filter(Boolean);
+		const targets = [heading, subtitle, content, cta].filter(Boolean);
 
 		if (!targets.length) return;
 
