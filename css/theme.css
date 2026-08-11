@@ -2837,7 +2837,12 @@ select {
 		margin-bottom: var(--space-2);
 		color: var(--col-blue-300);
 	}
-.cb-text-usps .cb-text-usps__heading {
+/* :where() zeroes this rule's specificity so a `has-*-color` block
+	   utility class (specificity 0,1,0) always wins over it, whichever
+	   order the two end up in the compiled stylesheet — without this, the
+	   heading's own hardcoded default color would always beat the editor's
+	   foreground colour choice. */
+.cb-text-usps :where(.cb-text-usps__heading) {
 		color: var(--col-navy-900);
 	}
 .cb-text-usps .cb-text-usps__buttons {
@@ -2859,6 +2864,13 @@ select {
 		border-radius: var(--radius-lg);
 		background-color: var(--col-navy-900);
 		color: var(--col-white);
+	}
+/* If the block's own background is already one of the navy shades, a
+	   navy usp card would disappear into it — flip to a white card with
+	   navy text instead. */
+.cb-text-usps.has-navy-900-background-color .cb-text-usps__usp,.cb-text-usps.has-navy-800-background-color .cb-text-usps__usp,.cb-text-usps.has-navy-700-background-color .cb-text-usps__usp,.cb-text-usps.has-navy-600-background-color .cb-text-usps__usp {
+		background-color: var(--col-white);
+		color: var(--col-navy-900);
 	}
 .cb-text-usps .cb-text-usps__usp-title {
 		margin-bottom: var(--space-2);

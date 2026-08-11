@@ -123,7 +123,7 @@
             "name": "usps",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "Up to 3.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -134,7 +134,7 @@
             "layout": "block",
             "pagination": 0,
             "min": 0,
-            "max": 3,
+            "max": 0,
             "collapsed": "field_cb_text_usps_item_title",
             "button_label": "Add USP",
             "rows_per_page": 20,
@@ -207,5 +207,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786443803
+    "modified": 1786456394
 }
