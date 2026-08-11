@@ -2,9 +2,10 @@
 /**
  * Block usage shortcode for debugging/QA — [block_usage_table].
  *
- * Lists every block file in /blocks against the published pages/posts that
- * actually use it, so you can tell at a glance whether a block is safe to
- * remove with rm_block.sh.
+ * Lists every block file in /blocks against the published content (across
+ * all public post types, not just pages/posts) that actually uses it, so
+ * you can tell at a glance whether a block is safe to remove with
+ * rm_block.sh.
  *
  * @package cb-global42026
  */
@@ -12,7 +13,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Renders a table of all blocks and the pages/posts that use them.
+ * Renders a table of all blocks and the content that uses them.
  *
  * @return string HTML table of block usage.
  */
@@ -35,7 +36,7 @@ function cb_global42026_block_usage_table_shortcode() {
 
 	$posts = get_posts(
 		array(
-			'post_type'      => array( 'page', 'post' ),
+			'post_type'      => get_post_types( array( 'public' => true ), 'names' ),
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
 		)
