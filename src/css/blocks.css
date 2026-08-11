@@ -1751,12 +1751,13 @@
 		color: var(--col-blue-300);
 	}
 
-	/* :where() zeroes this rule's specificity so a `has-*-color` block
-	   utility class (specificity 0,1,0) always wins over it, whichever
-	   order the two end up in the compiled stylesheet — without this, the
-	   heading's own hardcoded default color would always beat the editor's
-	   foreground colour choice. */
-	:where(.cb-text-usps__heading) {
+	/* An explicit color on the heading itself always beats a color merely
+	   inherited from .has-*-color on the section, regardless of
+	   specificity — so this default must not apply at all once a
+	   foreground colour is set, rather than just losing a specificity
+	   fight. :not(.has-text-color) (the generic marker cb_bg_fg_classes()
+	   adds whenever textColor is set) does that. */
+	&:not(.has-text-color) .cb-text-usps__heading {
 		color: var(--col-navy-900);
 	}
 

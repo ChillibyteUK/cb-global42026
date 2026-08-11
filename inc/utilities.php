@@ -198,16 +198,22 @@ function cb_block_classes( array $base_classes, array $block ) {
 }
 
 /**
- * The two "has-*-background-color"/"has-*-color" classes for a block with
- * ACF's color support enabled — empty strings if unset, safe to pass
- * straight into cb_block_classes(), which filters empties out.
+ * The two "has-*-background-color"/"has-text-color has-*-color" classes for
+ * a block with ACF's color support enabled — empty strings if unset, safe
+ * to pass straight into cb_block_classes(), which filters empties out.
+ *
+ * The text class also carries a generic "has-text-color" marker (matching
+ * core Gutenberg's own convention) so component CSS can detect "some
+ * foreground colour is set" without knowing which slug, and back off a
+ * hardcoded default text colour accordingly — see .cb-text-usps__heading in
+ * src/blocks/cb-text-usps.css for the pattern.
  *
  * @param array $block ACF block data.
  * @return string[] array( $background_class, $text_class ).
  */
 function cb_bg_fg_classes( $block ) {
 	$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-	$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+	$fg = ! empty( $block['textColor'] ) ? 'has-text-color has-' . $block['textColor'] . '-color' : '';
 
 	return array( $bg, $fg );
 }
