@@ -33,6 +33,10 @@
 	--col-grey-200: #eeeeee; /* light section background */
 	--col-grey-100: #f1f2f2; /* off-white section background */
 
+	/* Status */
+	--col-success: #228b22; /* forest green */
+	--col-danger: #b22222; /* firebrick */
+
 	/* Semantic aliases */
 	--col-primary: var(--col-blue-500);
 	--col-primary-light: var(--col-blue-300);

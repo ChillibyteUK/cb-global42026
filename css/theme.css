@@ -33,6 +33,10 @@
 	--col-grey-200: #eeeeee; /* light section background */
 	--col-grey-100: #f1f2f2; /* off-white section background */
 
+	/* Status */
+	--col-success: #228b22; /* forest green */
+	--col-danger: #b22222; /* firebrick */
+
 	/* Semantic aliases */
 	--col-primary: var(--col-blue-500);
 	--col-primary-light: var(--col-blue-300);
@@ -2508,6 +2512,57 @@ select {
 	}
 .cb-split-feature-list .cb-split-feature-list__point-content {
 		margin: 0;
+	}
+
+/* --- src/blocks/cb-support-table.css --- */
+.cb-support-table {
+	padding-block: var(--space-5);
+}
+.cb-support-table .cb-support-table__heading {
+		margin-bottom: var(--space-3);
+	}
+.cb-support-table .cb-support-table__button {
+		margin-top: var(--space-3);
+	}
+.cb-support-table .cb-support-table__table {
+		width: 100%;
+		border-collapse: collapse;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+	}
+.cb-support-table .cb-support-table__table th,.cb-support-table .cb-support-table__table td {
+		padding: var(--space-3);
+		text-align: center;
+	}
+.cb-support-table .cb-support-table__table th:first-child,.cb-support-table .cb-support-table__table td:first-child {
+		text-align: left;
+		font-size: var(--fs-small);
+	}
+.cb-support-table .cb-support-table__table thead th {
+		background-color: var(--col-navy-800);
+		color: var(--col-white);
+		font-weight: var(--fw-700);
+	}
+.cb-support-table .cb-support-table__table tbody tr {
+		background-color: var(--col-white);
+	}
+.cb-support-table .cb-support-table__table tbody tr:nth-child(even) {
+		background-color: var(--col-grey-100);
+	}
+.cb-support-table .cb-support-table__icon--yes {
+		color: var(--col-success);
+		margin-inline: auto;
+	}
+.cb-support-table .cb-support-table__icon--no {
+		color: var(--col-danger);
+		margin-inline: auto;
+	}
+/* Below "sm" (576px, src/build/tokens.config.js) */
+@media (max-width: 575px) {
+		.cb-support-table .cb-support-table__table {
+			font-size: var(--fs-small);
+		}
 	}
 
 /* --- src/blocks/cb-tabbed-content.css --- */

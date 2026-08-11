@@ -1,0 +1,216 @@
+{
+  "key": "group_cb_support_table",
+  "title": "CB Support Table",
+  "fields": [
+    {
+      "key": "field_cb_support_table_title",
+      "label": "CB Support Table",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_support_table_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_support_table_content",
+      "label": "Content",
+      "name": "content",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0,
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_support_table_button",
+      "label": "Button",
+      "name": "button",
+      "aria-label": "",
+      "type": "link",
+      "instructions": "Optional. Displayed after the content.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_support_table_service_name",
+      "label": "Service Column Heading",
+      "name": "service_name",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "The header label for the table's first column.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Service",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_support_table_rows",
+      "label": "Rows",
+      "name": "rows",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "table",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "field_cb_support_table_row_text",
+      "button_label": "Add Row",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_support_table_row_text",
+          "label": "Text",
+          "name": "text",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_support_table_rows"
+        },
+        {
+          "key": "field_cb_support_table_row_core",
+          "label": "Core",
+          "name": "core",
+          "aria-label": "",
+          "type": "true_false",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 1,
+          "ui_on_text": "",
+          "ui_off_text": "",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_support_table_rows"
+        },
+        {
+          "key": "field_cb_support_table_row_advanced",
+          "label": "Advanced",
+          "name": "advanced",
+          "aria-label": "",
+          "type": "true_false",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 1,
+          "ui_on_text": "",
+          "ui_off_text": "",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_support_table_rows"
+        },
+        {
+          "key": "field_cb_support_table_row_complete",
+          "label": "Complete",
+          "name": "complete",
+          "aria-label": "",
+          "type": "true_false",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 1,
+          "ui_on_text": "",
+          "ui_off_text": "",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_support_table_rows"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-support-table"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1786452452
+}
