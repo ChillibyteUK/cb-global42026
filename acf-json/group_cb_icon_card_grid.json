@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "75",
                 "class": "",
                 "id": ""
             },
@@ -40,6 +40,23 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_cb_icon_card_grid_button",
+            "label": "Button",
+            "name": "button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional. Displayed alongside the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
         },
         {
             "key": "field_cb_icon_card_grid_intro",
@@ -61,23 +78,6 @@
             "rows": 4,
             "placeholder": "",
             "new_lines": "br"
-        },
-        {
-            "key": "field_cb_icon_card_grid_button",
-            "label": "Button",
-            "name": "button",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "Optional. Displayed alongside the heading.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "allow_in_bindings": 0
         },
         {
             "key": "field_cb_icon_card_grid_8a3762bd2103",
@@ -143,8 +143,26 @@
                     },
                     "choices": {
                         "award": "Award",
+                        "cheers": "Cheers",
+                        "handshake": "Handshake",
+                        "heart-circuit": "Heart Circuit",
+                        "heart-handshake": "Heart Handshake",
+                        "laptop": "Laptop",
+                        "lightning": "Lightning",
                         "lock": "Lock",
-                        "star": "Star"
+                        "magnifier": "Magnifier",
+                        "microsoft": "Microsoft",
+                        "mobile-phone": "Mobile Phone",
+                        "phone-alt": "Phone Alt",
+                        "phone": "Phone",
+                        "question": "Question",
+                        "shield-keyhole": "Shield Keyhole",
+                        "sprout": "Sprout",
+                        "star": "Star",
+                        "trophy": "Trophy",
+                        "user": "User",
+                        "wifi": "Wifi",
+                        "wrench": "Wrench"
                     },
                     "default_value": false,
                     "return_format": "value",
@@ -337,5 +355,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786449896
+    "modified": 1786450083
 }
