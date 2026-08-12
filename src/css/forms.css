@@ -23,6 +23,12 @@ label {
 	grid-template-columns: repeat(var(--grid-columns), 1fr);
 }
 
+/* CF7 runs its own autop pass, wrapping each field's line in a <p> — kills
+   just the trailing margin that adds, not the wrapping itself. */
+.wpcf7-form p {
+	margin-block-end: 0;
+}
+
 /* Excludes button/checkbox/radio/range/color/file/image input types —
    they're still <input> elements but this block/border/padding treatment
    is meant for text-like fields only. Excluding them from the selector
