@@ -207,3 +207,48 @@ npm run generate-theme-json
   that comment.
 - ACF is the assumed block-building method (`acf_register_block_type`), not
   native block.json/render.php blocks.
+
+## PHP style in block templates
+
+The person building this is particular about this, so follow it exactly —
+don't drift toward "conventional-looking" PHP-in-HTML at the expense of it:
+
+- **Braces only, no colon control-structure syntax.** `if ( $x ) { ... }`,
+  never `if ( $x ): ... endif;`.
+- **No short ternaries.** Write `$x ? $x : $fallback` in full, even though
+  it evaluates `$x` twice — never `$x ?: $fallback`.
+- **Don't shadow WP core globals with local variable names** — `$link`,
+  `$post`, etc. ACF block `render_template` files are `include`d in global
+  scope, so `$link = get_field(...)` at a template's top level silently
+  overwrites WP's legacy Links Manager global rather than just shadowing
+  it locally. Prefer specific/prefixed names (`$cta_link`, `$slink`) for
+  anything that maps to a known WP global.
+- **No redundant `?><?php` between sibling `if` blocks.** Given a sequence
+  of conditions that each conditionally emit a chunk of markup, wrap the
+  whole sequence in ONE continuous `<?php ... ?>`, dropping into HTML only
+  where markup is actually emitted — don't close and immediately reopen
+  PHP tags with nothing but whitespace between them. So:
+  ```php
+  <?php
+  if ( $heading ) {
+      ?>
+  <h2>...</h2>
+      <?php
+  }
+  if ( $subtitle ) {
+      ?>
+  <p>...</p>
+      <?php
+  }
+  ?>
+  ```
+  not:
+  ```php
+  <?php if ( $heading ) { ?>
+  <h2>...</h2>
+  <?php } ?>
+  <?php if ( $subtitle ) { ?>
+  <p>...</p>
+  <?php } ?>
+  ```
+  Reason given: cleaner diffs, less visual noise from tag-switching.

@@ -266,28 +266,28 @@ p.has-text-align-center.wp-block-paragraph {
 }
 
 /* Overrides base.css's generic `a` (blue-500, always-underlined) for links
-   inside the main content area specifically. Excludes .btn/
-   .wp-block-button__link — button-styled anchors are not what this is
-   for, and main a:hover's underline would otherwise win on hover anyway
-   (those components never redeclare text-decoration in their own :hover
-   state, so on hover they fall back to competing against their own base
-   rule, which this beats on specificity). */
-main a:not(.btn):not(.wp-block-button__link) {
+   inside actual written content. Every component/card/button anchor in
+   this theme carries its own class (.card-link, .btn,
+   .wp-block-button__link, .cb-breadcrumbs__link, .cb-contact-cards__link,
+   etc.) — a genuinely classless <a> only shows up from a link inserted
+   directly in body copy, so :not([class]) excludes all of those in one
+   go without needing to name each one or fight a specificity battle. */
+main a:not([class]) {
   font-weight: var(--fw-700);
   color: var(--col-navy-800);
   text-decoration: none;
 }
 
-main a:not(.btn):not(.wp-block-button__link):hover {
+main a:not([class]):hover {
   text-decoration: underline;
 }
 
 /* On a navy-* block background, navy-800 text would be nearly invisible —
    switch to the lighter accent blue instead. */
-main .has-navy-900-background-color a:not(.btn):not(.wp-block-button__link),
-main .has-navy-800-background-color a:not(.btn):not(.wp-block-button__link),
-main .has-navy-700-background-color a:not(.btn):not(.wp-block-button__link),
-main .has-navy-600-background-color a:not(.btn):not(.wp-block-button__link) {
+main .has-navy-900-background-color a:not([class]),
+main .has-navy-800-background-color a:not([class]),
+main .has-navy-700-background-color a:not([class]),
+main .has-navy-600-background-color a:not([class]) {
   color: var(--col-blue-300);
 }
 /*

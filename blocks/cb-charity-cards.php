@@ -21,12 +21,18 @@ cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php if ( $heading ) { ?>
+		<?php
+		if ( $heading ) {
+			?>
 		<h2 class="cb-charity-cards__heading"><?= esc_html( $heading ); ?></h2>
-		<?php } ?>
-		<?php if ( $intro ) { ?>
+			<?php
+		}
+		if ( $intro ) {
+			?>
 		<div class="cb-charity-cards__intro"><?= wp_kses_post( $intro ); ?></div>
-		<?php } ?>
+			<?php
+		}
+		?>
 		<div class="cb-charity-cards__cards">
 			<?php
 			while ( have_rows( 'cards' ) ) {
@@ -54,20 +60,28 @@ cb_render_anchor( $block );
 				</div>
 				<?php } ?>
 				<div class="cb-charity-cards__body">
-					<?php if ( $card_title ) { ?>
+					<?php
+					if ( $card_title ) {
+						?>
 					<h3 class="cb-charity-cards__title"><?= esc_html( $card_title ); ?></h3>
-					<?php } ?>
-					<?php if ( $card_description ) { ?>
+						<?php
+					}
+					if ( $card_description ) {
+						?>
 					<p class="cb-charity-cards__description"><?= esc_html( $card_description ); ?></p>
-					<?php } ?>
-					<?php if ( $has_link ) { ?>
+						<?php
+					}
+					if ( $has_link ) {
+						?>
 					<span class="link-arrow">
 						<?= esc_html( $card_link['title'] ? $card_link['title'] : 'Learn more' ); ?>
 						<svg class="link-arrow__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 							<path d="M2 7h10M8 3l4 4-4 4" />
 						</svg>
 					</span>
-					<?php } ?>
+						<?php
+					}
+					?>
 				</div>
 			</<?= esc_attr( $card_tag ); ?>>
 				<?php

@@ -27,15 +27,23 @@ cb_render_anchor( $block );
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-5">
-				<?php if ( $heading ) { ?>
+				<?php
+				if ( $heading ) {
+					?>
 				<h2 class="cb-support-table__heading"><?= esc_html( $heading ); ?></h2>
-				<?php } ?>
-				<?php if ( $content ) { ?>
+					<?php
+				}
+				if ( $content ) {
+					?>
 				<div class="cb-support-table__content"><?= wp_kses_post( $content ); ?></div>
-				<?php } ?>
-				<?php if ( $has_button ) { ?>
+					<?php
+				}
+				if ( $has_button ) {
+					?>
 				<a href="<?= esc_url( $button['url'] ); ?>" class="btn btn-primary cb-support-table__button"<?= cb_link_target_attrs( $button ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?= esc_html( $button['title'] ); ?></a>
-				<?php } ?>
+					<?php
+				}
+				?>
 			</div>
 			<div class="col-12 col-lg-7">
 				<table class="cb-support-table__table">

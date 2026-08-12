@@ -38,9 +38,9 @@ cb_render_anchor( $block );
 				<h3 class="cb-contact-cards__title"><?= esc_html( get_sub_field( 'title' ) ); ?></h3>
 				<p class="cb-contact-cards__content"><?= esc_html( get_sub_field( 'content' ) ); ?></p>
 				<div class="cb-contact-cards__contact">
-					<p class="cb-contact-cards__email"><a href="mailto:<?= $email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?= $email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></p>
+					<p class="cb-contact-cards__email"><a class="cb-contact-cards__link" href="mailto:<?= $email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?= $email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></p>
 					<p class="cb-contact-cards__phone">
-						<a href="tel:<?= esc_attr( parse_phone( get_sub_field( 'phone' ) ) ); ?>">
+						<a class="cb-contact-cards__link" href="tel:<?= esc_attr( parse_phone( get_sub_field( 'phone' ) ) ); ?>">
 							<?= esc_html( get_sub_field( 'phone' ) ); ?>
 							<?php
 							if ( $ext ) {

@@ -194,7 +194,7 @@ function cb_render_breadcrumbs() {
 		}
 		if ( $item['url'] ) {
 			?>
-	<a href="<?= esc_url( $item['url'] ); ?>"><?= esc_html( $item['title'] ); ?></a>
+	<a class="cb-breadcrumbs__link" href="<?= esc_url( $item['url'] ); ?>"><?= esc_html( $item['title'] ); ?></a>
 			<?php
 		} else {
 			?>
