@@ -15,26 +15,20 @@ while ( have_posts() ) {
 	$primary_category  = $categories ? $categories[0] : null;
 	$prev_post         = get_previous_post();
 	$next_post         = get_next_post();
-	$news_page         = get_page_by_path( 'news' );
 	?>
 
 <div class="cb-single__intro">
 	<div class="container">
-		<nav class="cb-single__breadcrumbs" aria-label="<?= esc_attr__( 'Breadcrumb', 'cb-global42026' ); ?>">
-			<a href="<?= esc_url( home_url( '/' ) ); ?>">Home</a>
-			<span aria-hidden="true">/</span>
-			<?php if ( $news_page ) { ?>
-			<a href="<?= esc_url( get_permalink( $news_page ) ); ?>"><?= esc_html( get_the_title( $news_page ) ); ?></a>
-			<span aria-hidden="true">/</span>
-			<?php } ?>
-			<span aria-current="page"><?php the_title(); ?></span>
-		</nav>
 		<h1 class="cb-single__title"><?php the_title(); ?></h1>
 		<div class="cb-single__meta">
 			<span><?= esc_html( get_the_date() ); ?></span>
 			<span><?= esc_html( $reading_minutes ); ?> min read</span>
 		</div>
 	</div>
+</div>
+
+<div class="container">
+	<?php cb_render_breadcrumbs(); ?>
 </div>
 
 <div class="container">
