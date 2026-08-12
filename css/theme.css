@@ -264,6 +264,27 @@ h2.wp-block-heading.has-text-align-center,
 p.has-text-align-center.wp-block-paragraph {
   margin-inline: auto;
 }
+
+/* Overrides base.css's generic `a` (blue-500, always-underlined) for links
+   inside the main content area specifically. */
+main a {
+  font-weight: var(--fw-700);
+  color: var(--col-navy-800);
+  text-decoration: none;
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+/* On a navy-* block background, navy-800 text would be nearly invisible —
+   switch to the lighter accent blue instead. */
+main .has-navy-900-background-color a,
+main .has-navy-800-background-color a,
+main .has-navy-700-background-color a,
+main .has-navy-600-background-color a {
+  color: var(--col-blue-300);
+}
 /*
  * Structural grid container rules. The actual `.col-*` / `.col-md-*` span
  * classes are generated (see src/build/generate-utilities.js) since they're
