@@ -138,7 +138,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
@@ -173,7 +173,7 @@
                     "allow_in_bindings": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "placeholder": "None",
+                    "placeholder": "",
                     "create_options": 0,
                     "save_options": 0,
                     "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
@@ -393,5 +393,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786524401
+    "modified": 1786524473
 }
