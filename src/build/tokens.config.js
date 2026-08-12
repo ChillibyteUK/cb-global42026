@@ -58,6 +58,15 @@ const utilities = {
 		tokenPrefix: 'fw-',
 		responsive: false,
 	},
+	// values read from tokens.css's --radius-* custom properties — add a
+	// --radius-xl there and .rounded-xl appears here with no edit needed in
+	// this file. Base only, no per-breakpoint variants.
+	'border-radius': {
+		className: 'rounded',
+		prop: 'border-radius',
+		tokenPrefix: 'radius-',
+		responsive: false,
+	},
 };
 
 // Spacing utilities (gap, margin, padding) driven off the tokens.css spacing scale.
