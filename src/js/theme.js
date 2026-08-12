@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	initScrollAnimate();
 	initTabbedContent();
 	initCrossfadeSlider('.cb-quote-slider__track', '.cb-quote-slider__slide');
-	initCrossfadeSlider('.cb-text-stat-slider__track', '.cb-text-stat-slider__slide', 3000);
+	initCrossfadeSlider('.cb-text-stat-slider__track', '.cb-text-stat-slider__slide', 4000);
 	initPostIndex();
 	initWebinars();
 	initCounters();
