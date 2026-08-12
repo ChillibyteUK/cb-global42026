@@ -67,6 +67,12 @@ const utilities = {
 		tokenPrefix: 'radius-',
 		responsive: false,
 	},
+	width: {
+		className: 'w',
+		prop: 'width',
+		values: { 100: '100%' },
+		responsive: false,
+	},
 };
 
 // Spacing utilities (gap, margin, padding) driven off the tokens.css spacing scale.
