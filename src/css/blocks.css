@@ -1697,6 +1697,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		/* Grid items default to min-width: auto, not 0 — for a flex
+		   container wrapping an <img>, that resolves to the image's own
+		   intrinsic width, which grid track-sizing then treats as a hard
+		   floor the column can't shrink below, regardless of max-width:100%
+		   on the img itself (that only caps the *rendered* size once space
+		   is allocated, not how much space track-sizing allocates in the
+		   first place). A long-text sibling column pushes the row wider
+		   still needing that floor satisfied, and the whole grid overflows
+		   its container. min-width: 0 removes the floor. */
+		min-width: 0;
 	}
 
 	.cb-text-image__image img {
