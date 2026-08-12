@@ -459,6 +459,9 @@
 		gap: var(--space-2);
 		padding: var(--space-4);
 		background-color: var(--col-white);
+		/* Own background, so own text colour — inheriting would let the
+		   block's has-*-color paint this white on white. */
+		color: var(--col-body);
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		text-align: center;
@@ -880,17 +883,22 @@
 
 	.cb-icon-card-grid__card--white {
 		background-color: var(--col-white);
-		color: var(--col-navy-900);
+		color: var(--col-body);
 	}
 
 	.cb-icon-card-grid__card--grey {
 		background-color: var(--col-grey-100);
-		color: var(--col-navy-900);
+		color: var(--col-body);
 	}
 
+	/* Sets a colour as well as a background for the same reason --white and
+	   --grey above do: a card with its own background must own its text
+	   colour, or the block's has-*-color leaks in and can paint it white on
+	   white. Only --plain (no background) should inherit. */
 	.cb-icon-card-grid__card--bordered {
 		border: 1px solid var(--col-navy-700);
 		background-color: var(--col-white);
+		color: var(--col-body);
 	}
 
 	.cb-icon-card-grid__card--plain {
@@ -1326,8 +1334,25 @@
 .cb-related-posts {
 	padding-block: var(--space-5);
 
-	.cb-related-posts__heading {
+	.cb-related-posts__heading-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: var(--space-3);
 		margin-bottom: var(--space-5);
+	}
+
+	.cb-related-posts__heading {
+		margin: 0;
+	}
+
+	/* Heading is optional — margin-inline-start: auto (rather than relying
+	   on space-between alone) keeps the button hard right even when it's the
+	   only child in the row. */
+	.cb-related-posts__heading-row .btn {
+		flex-shrink: 0;
+		margin-inline-start: auto;
 	}
 
 	.cb-related-posts__cards {
@@ -1343,7 +1368,13 @@
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		overflow: hidden;
-		color: inherit;
+		/* Explicit, NOT inherit — the card sets its own white background, so
+		   it has to own its text colour too. Inheriting would pull in the
+		   block's has-*-color (this block has colour support), painting the
+		   text white on a white card whenever the section is set to navy +
+		   white text. That block-level foreground is meant for the heading
+		   and any card that has no background of its own. */
+		color: var(--col-body);
 		text-decoration: none;
 		transition: box-shadow var(--transition);
 	}
@@ -1503,8 +1534,13 @@
 		font-weight: var(--fw-700);
 	}
 
+	/* Same rule as the cards elsewhere: these rows set their own light
+	   background, so they set their own text colour too — otherwise the
+	   block's has-*-color (navy bg + white text) leaks in and the rows go
+	   white-on-white. */
 	.cb-support-table__table tbody tr {
 		background-color: var(--col-white);
+		color: var(--col-body);
 	}
 
 	.cb-support-table__table tbody tr:nth-child(even) {

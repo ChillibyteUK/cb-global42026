@@ -35,8 +35,13 @@
 		font-weight: var(--fw-700);
 	}
 
+	/* Same rule as the cards elsewhere: these rows set their own light
+	   background, so they set their own text colour too — otherwise the
+	   block's has-*-color (navy bg + white text) leaks in and the rows go
+	   white-on-white. */
 	.cb-support-table__table tbody tr {
 		background-color: var(--col-white);
+		color: var(--col-body);
 	}
 
 	.cb-support-table__table tbody tr:nth-child(even) {

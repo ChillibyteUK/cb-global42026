@@ -100,17 +100,22 @@
 
 	.cb-icon-card-grid__card--white {
 		background-color: var(--col-white);
-		color: var(--col-navy-900);
+		color: var(--col-body);
 	}
 
 	.cb-icon-card-grid__card--grey {
 		background-color: var(--col-grey-100);
-		color: var(--col-navy-900);
+		color: var(--col-body);
 	}
 
+	/* Sets a colour as well as a background for the same reason --white and
+	   --grey above do: a card with its own background must own its text
+	   colour, or the block's has-*-color leaks in and can paint it white on
+	   white. Only --plain (no background) should inherit. */
 	.cb-icon-card-grid__card--bordered {
 		border: 1px solid var(--col-navy-700);
 		background-color: var(--col-white);
+		color: var(--col-body);
 	}
 
 	.cb-icon-card-grid__card--plain {

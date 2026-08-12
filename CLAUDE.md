@@ -68,6 +68,18 @@ doesn't exist, no matter how standard it looks.
   buttons and cards per-project rather than using a framework's look, so
   don't build out an opinionated button/card system here without being
   asked.
+- **Anything with its own background must set its own text colour.** Blocks
+  registered with `'color' => array( 'text' => ... )` put a `has-*-color`
+  class on their outer `<section>` (see `cb_bg_fg_classes()` in
+  `inc/utilities.php`), and that colour *inherits down the whole block*.
+  That's deliberate — it's what lets a "plain"-style card, with no
+  background of its own, pick up the block's foreground colour. But it means
+  any element that paints a light background of its own (white/grey cards,
+  striped table rows, panels) **must** declare a `color` alongside it, or a
+  navy-background + white-text block renders it white-on-white. This has
+  leaked four separate times; don't rely on `color: inherit` on a card that
+  has a background. Cards without a background are the *only* thing that
+  should inherit.
 - **Tables are real but opt-in.** `src/css/tables.css` exists and is
   genuinely styled, but is not imported by default in `src/css/theme.css` —
   uncomment the `@import` if a project needs one.

@@ -43,13 +43,16 @@ cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php
-		if ( $heading ) {
-			?>
-		<h2 class="cb-related-posts__heading"><?= esc_html( $heading ); ?></h2>
+		<div class="cb-related-posts__heading-row">
 			<?php
-		}
-		?>
+			if ( $heading ) {
+				?>
+			<h2 class="cb-related-posts__heading"><?= esc_html( $heading ); ?></h2>
+				<?php
+			}
+			?>
+			<a class="btn btn-primary" href="<?= esc_url( home_url( '/news/' ) ); ?>">View all news</a>
+		</div>
 		<div class="cb-related-posts__cards">
 			<?php
 			while ( $related_query->have_posts() ) {
