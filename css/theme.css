@@ -2070,10 +2070,11 @@ select {
 		width: 3rem;
 		height: 3rem;
 	}
-.cb-icon-card-grid .cb-icon-card-grid__icon svg {
+.cb-icon-card-grid .cb-icon-card-grid__icon svg,.cb-icon-card-grid .cb-icon-card-grid__icon img {
 		display: block;
 		width: 100%;
 		height: 100%;
+		object-fit: contain;
 	}
 .cb-icon-card-grid .cb-icon-card-grid__title {
 		margin: 0;
