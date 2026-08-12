@@ -23,8 +23,13 @@
 		box-shadow: var(--shadow-lg);
 	}
 
+	/* overflow:hidden is load-bearing, not just for the crop — the card is a
+	   column flex container, so without it this flex item gets sized to the
+	   <img>'s intrinsic ratio and the aspect-ratio above is ignored. Same
+	   fix as .cb-post-index__image / .cb-related-posts__image. */
 	.cb-all-customers__image {
 		aspect-ratio: 16 / 9;
+		overflow: hidden;
 	}
 
 	.cb-all-customers__image img {

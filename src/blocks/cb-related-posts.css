@@ -50,8 +50,14 @@
 		box-shadow: var(--shadow-lg);
 	}
 
+	/* .cb-related-posts__card is a column flex container, and without
+	   overflow:hidden here, .cb-related-posts__image (a flex item) ends up
+	   sized to the <img>'s own intrinsic ratio instead of the aspect-ratio
+	   set below — overflow:hidden is what makes aspect-ratio actually win.
+	   Same fix as .cb-post-index__image. */
 	.cb-related-posts__image {
 		aspect-ratio: 16 / 9;
+		overflow: hidden;
 	}
 
 	.cb-related-posts__image img {

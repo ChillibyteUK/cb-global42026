@@ -80,6 +80,23 @@ doesn't exist, no matter how standard it looks.
   leaked four separate times; don't rely on `color: inherit` on a card that
   has a background. Cards without a background are the *only* thing that
   should inherit.
+- **An `aspect-ratio` image wrapper inside a flex container needs
+  `overflow: hidden`.** The standard card pattern is a flex-column card
+  wrapping `<div class="…__image"><img></div>`, with `aspect-ratio` on the
+  wrapper and `width/height: 100%; object-fit: cover` on the `<img>`. As a
+  *flex item*, that wrapper gets sized from the `<img>`'s own intrinsic
+  ratio and silently ignores its `aspect-ratio` — images then render at
+  assorted heights and bleed past the card. `overflow: hidden` on the
+  wrapper is what makes `aspect-ratio` win; it's load-bearing, not just
+  cosmetic cropping, so don't "tidy it away". The card's own
+  `overflow: hidden` does **not** substitute — that only clips, it doesn't
+  change how the wrapper is sized. Has bitten `cb-webinars`,
+  `cb-charity-cards`, `cb-post-index`, `cb-related-posts` and
+  `cb-all-customers`. (A wrapper with a pinned flex basis, e.g.
+  `flex: 0 0 3rem` on `.cb-usp-cards__icon`, is exempt — its main size is
+  already fixed, so there's no intrinsic-ratio fight.) `cb-text-image`'s
+  16:9 variant needs `width: 100%` on top of this for a related reason —
+  see the comment there.
 - **Tables are real but opt-in.** `src/css/tables.css` exists and is
   genuinely styled, but is not imported by default in `src/css/theme.css` —
   uncomment the `@import` if a project needs one.
