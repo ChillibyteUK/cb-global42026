@@ -39,6 +39,20 @@ h2 {
   max-width: min(90vw, 85ch);
 }
 
+/* Editor's per-paragraph escape hatch from the cap above — core/paragraph
+   has no width/size control of its own in the toolbar, so this is a plain
+   class added via the block's Advanced > "Additional CSS Class(es)" field
+   rather than a block support. Still inside .container, not a
+   viewport-bleed.
+
+   Also works put on a wrapping block (e.g. Group) instead of on every
+   paragraph inside it individually — the descendant selector below covers
+   that case. */
+.page .wp-block-paragraph.full-width,
+.page .full-width .wp-block-paragraph {
+  max-width: none;
+}
+
 /* h2 and .wp-block-paragraph above are left-anchored block boxes capped by
    max-width, not centered — .text-center (generated utility, see
    src/css/utilities.css) only centers the text *within* that box, which
