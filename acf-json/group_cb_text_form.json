@@ -1,0 +1,121 @@
+{
+  "key": "group_cb_text_form",
+  "title": "CB Text Form",
+  "fields": [
+    {
+      "key": "field_cb_text_form_title",
+      "label": "CB Text Form",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_text_form_layout",
+      "label": "Layout",
+      "name": "layout",
+      "aria-label": "",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "two_column": "Two Column",
+        "full_width": "Full Width"
+      },
+      "default_value": "two_column",
+      "return_format": "value",
+      "allow_null": 0,
+      "other_choice": 0,
+      "allow_in_bindings": 0,
+      "layout": "horizontal",
+      "save_other_choice": 0
+    },
+    {
+      "key": "field_cb_text_form_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_text_form_content",
+      "label": "Content",
+      "name": "content",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_text_form_layout",
+            "operator": "==",
+            "value": "two_column"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "allow_in_bindings": 0,
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 1,
+      "delay": 0
+    },
+    {
+      "key": "field_cb_text_form_form_id",
+      "label": "Form ID",
+      "name": "form_id",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-text-form"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1786528350
+}
