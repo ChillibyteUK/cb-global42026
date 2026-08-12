@@ -351,26 +351,6 @@ function cb_global42026_acf_blocks() {
 			)
 		);
 
-		acf_register_block_type(
-			array(
-				'name'            => 'cb_form_full_width',
-				'title'           => __( 'CB Form (Full-Width)' ),
-				'category'        => 'layout',
-				'icon'            => 'cover-image',
-				'render_template' => 'blocks/cb-form-full-width.php',
-				'mode'            => 'edit',
-				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
-					'color'     => array(
-						'background' => true,
-						'text'       => true,
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
