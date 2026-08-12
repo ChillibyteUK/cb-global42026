@@ -222,6 +222,7 @@
                     "choices": {
                         "filled": "Filled",
                         "white": "White",
+                        "grey": "Grey",
                         "bordered": "Bordered",
                         "plain": "Plain"
                     },
@@ -420,5 +421,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786525844
+    "modified": 1786544773
 }

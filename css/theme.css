@@ -2120,9 +2120,15 @@ select {
 .cb-icon-card-grid a.cb-icon-card-grid__card--filled:hover {
 		background-color: var(--col-navy-600);
 	}
+/* The generic :hover above goes to grey-100, which IS this style's own
+	   base colour — so a linked grey card needs its own darker hover or
+	   nothing appears to happen. */
+.cb-icon-card-grid a.cb-icon-card-grid__card--grey:hover {
+		background-color: var(--col-grey-200);
+	}
 .cb-icon-card-grid .cb-icon-card-grid__icon {
 		display: block;
-		width: 3rem;
+		/* width: 3rem; */
 		height: 3rem;
 	}
 .cb-icon-card-grid .cb-icon-card-grid__icon svg,.cb-icon-card-grid .cb-icon-card-grid__icon img {
@@ -2151,6 +2157,10 @@ select {
 	}
 .cb-icon-card-grid .cb-icon-card-grid__card--white {
 		background-color: var(--col-white);
+		color: var(--col-navy-900);
+	}
+.cb-icon-card-grid .cb-icon-card-grid__card--grey {
+		background-color: var(--col-grey-100);
 		color: var(--col-navy-900);
 	}
 .cb-icon-card-grid .cb-icon-card-grid__card--bordered {
