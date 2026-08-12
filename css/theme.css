@@ -266,23 +266,28 @@ p.has-text-align-center.wp-block-paragraph {
 }
 
 /* Overrides base.css's generic `a` (blue-500, always-underlined) for links
-   inside the main content area specifically. */
-main a {
+   inside the main content area specifically. Excludes .btn/
+   .wp-block-button__link — button-styled anchors are not what this is
+   for, and main a:hover's underline would otherwise win on hover anyway
+   (those components never redeclare text-decoration in their own :hover
+   state, so on hover they fall back to competing against their own base
+   rule, which this beats on specificity). */
+main a:not(.btn):not(.wp-block-button__link) {
   font-weight: var(--fw-700);
   color: var(--col-navy-800);
   text-decoration: none;
 }
 
-main a:hover {
+main a:not(.btn):not(.wp-block-button__link):hover {
   text-decoration: underline;
 }
 
 /* On a navy-* block background, navy-800 text would be nearly invisible —
    switch to the lighter accent blue instead. */
-main .has-navy-900-background-color a,
-main .has-navy-800-background-color a,
-main .has-navy-700-background-color a,
-main .has-navy-600-background-color a {
+main .has-navy-900-background-color a:not(.btn):not(.wp-block-button__link),
+main .has-navy-800-background-color a:not(.btn):not(.wp-block-button__link),
+main .has-navy-700-background-color a:not(.btn):not(.wp-block-button__link),
+main .has-navy-600-background-color a:not(.btn):not(.wp-block-button__link) {
   color: var(--col-blue-300);
 }
 /*
