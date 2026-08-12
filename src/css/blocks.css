@@ -1256,7 +1256,7 @@
     .cb-quote-slider__track {
         /* All slides stacked in the same grid cell — the track is sized to
            the tallest slide automatically, no fixed/aspect-ratio height
-           needed. See src/js/quote-slider.js for the .is-active cycling. */
+           needed. See src/js/crossfade-slider.js for the .is-active cycling. */
         display: grid;
         justify-items: center;
     }
@@ -1785,6 +1785,60 @@
 		.cb-text-image__grid {
 			grid-template-columns: 1fr;
 		}
+	}
+}
+
+/* --- src/blocks/cb-text-stat-slider.css --- */
+.cb-text-stat-slider {
+	.cb-text-stat-slider__track {
+		/* All slides stacked in the same grid cell — the track sizes itself
+		   to the tallest slide automatically, so the surrounding layout
+		   doesn't jump as they cycle. Same approach as CB Quote Slider; see
+		   src/js/crossfade-slider.js for the .is-active cycling. */
+		display: grid;
+	}
+
+	.cb-text-stat-slider__slide {
+		grid-area: 1 / 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-3);
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-white);
+		color: var(--col-navy-800);
+		box-shadow: var(--shadow-md);
+		opacity: 0;
+		transition: opacity var(--transition);
+	}
+
+	.cb-text-stat-slider__slide.is-active {
+		opacity: 1;
+	}
+
+	.cb-text-stat-slider__icon {
+		display: block;
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.cb-text-stat-slider__icon svg,
+	.cb-text-stat-slider__icon img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	.cb-text-stat-slider__title {
+		margin: 0;
+		font-size: var(--fs-h4);
+	}
+
+	.cb-text-stat-slider__content {
+		margin: 0;
+		font-size: var(--fs-small);
 	}
 }
 

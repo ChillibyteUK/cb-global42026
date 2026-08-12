@@ -5,7 +5,7 @@ import { initDialogs } from './dialog';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollAnimate } from './scroll-animate';
 import { initTabbedContent } from './tabbed-content';
-import { initQuoteSliders } from './quote-slider';
+import { initCrossfadeSlider } from './crossfade-slider';
 import { initPostIndex } from './post-index';
 import { initWebinars } from './webinars';
 import { initCounters } from './counter';
@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	initSmoothScroll();
 	initScrollAnimate();
 	initTabbedContent();
-	initQuoteSliders();
+	initCrossfadeSlider('.cb-quote-slider__track', '.cb-quote-slider__slide');
+	initCrossfadeSlider('.cb-text-stat-slider__track', '.cb-text-stat-slider__slide', 3000);
 	initPostIndex();
 	initWebinars();
 	initCounters();

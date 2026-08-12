@@ -1,0 +1,211 @@
+{
+  "key": "group_cb_text_stat_slider",
+  "title": "CB Text Stat Slider",
+  "fields": [
+    {
+      "key": "field_cb_text_stat_slider_title",
+      "label": "CB Text Stat Slider",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_text_stat_slider_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_text_stat_slider_content",
+      "label": "Content",
+      "name": "content",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "allow_in_bindings": 0,
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 1,
+      "delay": 0
+    },
+    {
+      "key": "field_cb_text_stat_slider_stats",
+      "label": "Stats",
+      "name": "stats",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "Each row is one slide. They crossfade automatically — no nav or pagination.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "field_cb_text_stat_slider_stat_title",
+      "button_label": "Add Stat",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_text_stat_slider_stat_icon",
+          "label": "Icon",
+          "name": "icon",
+          "aria-label": "",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "50",
+            "class": "",
+            "id": ""
+          },
+          "choices": {
+            "award": "Award",
+            "cheers": "Cheers",
+            "globe-lock": "Globe Lock",
+            "handshake": "Handshake",
+            "heart-circuit": "Heart Circuit",
+            "heart-handshake": "Heart Handshake",
+            "laptop": "Laptop",
+            "lightning": "Lightning",
+            "lock": "Lock",
+            "magnifier": "Magnifier",
+            "microsoft": "Microsoft",
+            "mobile-phone": "Mobile Phone",
+            "phone-alt": "Phone Alt",
+            "phone": "Phone",
+            "question": "Question",
+            "shield-keyhole": "Shield Keyhole",
+            "sprout": "Sprout",
+            "star": "Star",
+            "trophy": "Trophy",
+            "user": "User",
+            "wifi": "Wifi",
+            "wrench": "Wrench"
+          },
+          "default_value": false,
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 1,
+          "allow_in_bindings": 0,
+          "ui": 0,
+          "ajax": 0,
+          "placeholder": "",
+          "create_options": 0,
+          "save_options": 0,
+          "parent_repeater": "field_cb_text_stat_slider_stats"
+        },
+        {
+          "key": "field_cb_text_stat_slider_stat_image",
+          "label": "Image",
+          "name": "image",
+          "aria-label": "",
+          "type": "image",
+          "instructions": "Optional. Overrides the icon above.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "50",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "id",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "allow_in_bindings": 0,
+          "preview_size": "thumbnail",
+          "parent_repeater": "field_cb_text_stat_slider_stats"
+        },
+        {
+          "key": "field_cb_text_stat_slider_stat_title",
+          "label": "Title",
+          "name": "title",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_text_stat_slider_stats"
+        },
+        {
+          "key": "field_cb_text_stat_slider_stat_content",
+          "label": "Content",
+          "name": "content",
+          "aria-label": "",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "rows": 4,
+          "placeholder": "",
+          "new_lines": "br",
+          "parent_repeater": "field_cb_text_stat_slider_stats"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-text-stat-slider"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1786546780
+}

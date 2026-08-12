@@ -573,19 +573,26 @@
 	}
 
 	/**
-	 * CB Quote Slider — autoplay-only crossfade between repeater rows. No nav,
-	 * no pagination, no drag/swipe, so a full carousel library (Swiper etc.)
-	 * isn't justified here — this is the entire behaviour needed. Non-active
-	 * slides are already hidden via CSS (opacity: 0 on .cb-quote-slider__slide,
-	 * see src/blocks/cb-quote-slider.css) — this just cycles which one carries
-	 * .is-active, on a timer.
+	 * Autoplay-only crossfade slider. No nav, no pagination, no drag/swipe, so a
+	 * full carousel library (Swiper etc.) isn't justified — this is the entire
+	 * behaviour needed. Non-active slides are already hidden via CSS (opacity: 0
+	 * on the slide class), so this just cycles which one carries .is-active, on a
+	 * timer.
+	 *
+	 * Shared by CB Quote Slider and CB Text Stat Slider, which need identical
+	 * behaviour against different class names — same shape as
+	 * staggerFadeUpGrid() in src/js/scroll-animate.js.
+	 *
+	 * @param {string} trackSelector Selector for the track wrapping the slides.
+	 * @param {string} slideSelector Selector for the individual slides within it.
+	 * @param {number} [interval=6000] Milliseconds each slide stays visible.
 	 */
-	function initQuoteSliders() {
+	function initCrossfadeSlider(trackSelector, slideSelector, interval = 6000) {
 	  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 	    return;
 	  }
-	  document.querySelectorAll('.cb-quote-slider__track').forEach(track => {
-	    const slides = track.querySelectorAll('.cb-quote-slider__slide');
+	  document.querySelectorAll(trackSelector).forEach(track => {
+	    const slides = track.querySelectorAll(slideSelector);
 	    if (slides.length < 2) {
 	      return;
 	    }
@@ -596,7 +603,7 @@
 	      index = (index + 1) % slides.length;
 	      slides[index].classList.add('is-active');
 	      slides[index].removeAttribute('aria-hidden');
-	    }, 6000);
+	    }, interval);
 	  });
 	}
 
@@ -796,7 +803,8 @@
 	  initSmoothScroll();
 	  initScrollAnimate();
 	  initTabbedContent();
-	  initQuoteSliders();
+	  initCrossfadeSlider('.cb-quote-slider__track', '.cb-quote-slider__slide');
+	  initCrossfadeSlider('.cb-text-stat-slider__track', '.cb-text-stat-slider__slide', 3000);
 	  initPostIndex();
 	  initWebinars();
 	  initCounters();

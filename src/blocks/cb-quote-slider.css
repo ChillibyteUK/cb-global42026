@@ -4,7 +4,7 @@
     .cb-quote-slider__track {
         /* All slides stacked in the same grid cell — the track is sized to
            the tallest slide automatically, no fixed/aspect-ratio height
-           needed. See src/js/quote-slider.js for the .is-active cycling. */
+           needed. See src/js/crossfade-slider.js for the .is-active cycling. */
         display: grid;
         justify-items: center;
     }
