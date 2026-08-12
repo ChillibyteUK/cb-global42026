@@ -142,27 +142,6 @@
             "append": ""
         },
         {
-            "key": "field_cb_text_image_d3d8a03e5e6d",
-            "label": "Subtitle",
-            "name": "subtitle",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_cb_text_image_221e86c91cd8",
             "label": "Content",
             "name": "content",
@@ -300,5 +279,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786374607
+    "modified": 1786550899
 }

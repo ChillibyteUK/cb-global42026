@@ -19,7 +19,6 @@ $grid_columns = isset( $split_columns[ $split ] ) ? $split_columns[ $split ] : '
 $logo         = get_field( 'logo' );
 $eyebrow      = get_field( 'eyebrow' );
 $heading      = get_field( 'heading' );
-$subtitle     = get_field( 'subtitle' );
 $content      = get_field( 'content' );
 $slink        = get_field( 'link' );
 $image        = get_field( 'image' );
@@ -52,11 +51,6 @@ cb_render_anchor( $block );
 				if ( $heading ) {
 					?>
 				<h2 class="cb-text-image__heading"><?= esc_html( $heading ); ?></h2>
-					<?php
-				}
-				if ( $subtitle ) {
-					?>
-				<p class="cb-text-image__subtitle"><?= esc_html( $subtitle ); ?></p>
 					<?php
 				}
 				if ( $content ) {

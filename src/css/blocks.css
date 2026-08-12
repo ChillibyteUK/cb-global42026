@@ -1731,12 +1731,6 @@
 		color: var(--col-blue-300);
 	}
 
-	.cb-text-image__subtitle {
-		margin-top: 0;
-		color: var(--col-grey-500);
-		font-size: var(--fs-h5);
-	}
-
 	.cb-text-image__content {
 		margin-top: var(--space-4);
 	}
