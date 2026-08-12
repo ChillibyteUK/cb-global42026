@@ -40,10 +40,6 @@
 	background-color: currentColor;
 }
 
-.cb-single__image {
-	margin-top: var(--space-5);
-}
-
 .cb-single__image img {
 	display: block;
 	width: 100%;
@@ -97,10 +93,6 @@
 	font-weight: var(--fw-700);
 }
 
-.cb-single__sidebar {
-	padding-block: var(--space-5);
-}
-
 .cb-single__sidebar-heading {
 	font-size: var(--fs-h5);
 	margin-bottom: var(--space-3);
@@ -150,6 +142,20 @@
 	margin-top: var(--space-1);
 	font-size: var(--fs-xsmall);
 	color: var(--col-grey-500);
+}
+
+/* From "lg" (992px, src/build/tokens.config.js) up — below that the
+   sidebar stacks full-width under the content (see the other breakpoint
+   below), where sticking it wouldn't make sense. align-self: start keeps
+   the sidebar's own box at its natural (shorter) content height instead
+   of .row's default stretch — sticky has no room to move within a box
+   that's already been stretched to match the taller content column. */
+@media (min-width: 992px) {
+	.cb-single__sidebar {
+		align-self: start;
+		position: sticky;
+		top: calc(var(--nav-height) + var(--space-4));
+	}
 }
 
 /* Below "lg" (992px, src/build/tokens.config.js) */
