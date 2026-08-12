@@ -93,7 +93,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
@@ -110,7 +110,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
@@ -127,7 +127,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
@@ -149,11 +149,11 @@
             "name": "badge",
             "aria-label": "",
             "type": "image",
-            "instructions": "Displayed on the right side of the hero, above the background image/overlay. Max 300×170px.",
+            "instructions": "Displayed on the right side of the hero, above the background image\/overlay. Max 300×170px.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
@@ -191,5 +191,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786464040
+    "modified": 1786531345
 }

@@ -153,3 +153,8 @@ $logo_paths = array(
 		</div>
 	</div>
 </section>
+<?php if ( ! $is_front_page ) { ?>
+<div class="container">
+	<?php cb_render_breadcrumbs(); ?>
+</div>
+<?php } ?>

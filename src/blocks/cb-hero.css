@@ -112,3 +112,29 @@
         }
     }
 }
+
+/* Rendered as a sibling below .cb-hero (see blocks/cb-hero.php and
+   cb_render_breadcrumbs() in inc/helpers.php), not nested inside it — a
+   plain top-level rule rather than living under .cb-hero {}. */
+.cb-breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding-block: var(--space-3);
+    font-size: var(--fs-xsmall);
+    color: var(--col-grey-500);
+}
+
+.cb-breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cb-breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.cb-breadcrumbs span[aria-current] {
+    font-weight: var(--fw-700);
+}

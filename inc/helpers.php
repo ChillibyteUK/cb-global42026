@@ -123,3 +123,86 @@ function cb_render_case_study_card( $post_id ) {
 </a>
 	<?php
 }
+
+/**
+ * Render clickable breadcrumbs: Home / ancestors (hierarchical pages) or
+ * Home / News (posts, matching single.php's own hardcoded News-page
+ * convention) / current title. Used below CB Hero on any non-front-page —
+ * see blocks/cb-hero.php. single.php builds its own separate inline
+ * breadcrumb instead of calling this, since its markup/colour context
+ * (white-on-navy intro panel) differs from the hero's.
+ *
+ * @return void
+ */
+function cb_render_breadcrumbs() {
+	$items = array(
+		array(
+			'title' => __( 'Home', 'cb-global42026' ),
+			'url'   => home_url( '/' ),
+		),
+	);
+
+	if ( is_singular( 'post' ) ) {
+		$news_page = get_page_by_path( 'news' );
+
+		if ( $news_page ) {
+			$items[] = array(
+				'title' => get_the_title( $news_page ),
+				'url'   => get_permalink( $news_page ),
+			);
+		}
+	} elseif ( is_singular( 'case_study' ) ) {
+		// Derived from the CPT's own registered rewrite slug (see
+		// inc/posttypes.php) rather than hardcoded, so this keeps working
+		// if that slug ever changes — same reasoning as the News page
+		// above being looked up rather than assumed, just one step
+		// further back since case_study's own registration is the real
+		// source of truth for "customers".
+		$case_study_type = get_post_type_object( 'case_study' );
+		$customers_slug  = $case_study_type && ! empty( $case_study_type->rewrite['slug'] ) ? $case_study_type->rewrite['slug'] : 'customers';
+		$customers_page  = get_page_by_path( $customers_slug );
+
+		if ( $customers_page ) {
+			$items[] = array(
+				'title' => get_the_title( $customers_page ),
+				'url'   => get_permalink( $customers_page ),
+			);
+		}
+	} elseif ( is_page() ) {
+		$ancestors = array_reverse( get_post_ancestors( get_the_ID() ) );
+
+		foreach ( $ancestors as $ancestor_id ) {
+			$items[] = array(
+				'title' => get_the_title( $ancestor_id ),
+				'url'   => get_permalink( $ancestor_id ),
+			);
+		}
+	}
+
+	$items[] = array(
+		'title' => get_the_title(),
+		'url'   => '',
+	);
+	?>
+<nav class="cb-breadcrumbs" aria-label="<?= esc_attr__( 'Breadcrumb', 'cb-global42026' ); ?>">
+	<?php
+	foreach ( $items as $index => $item ) {
+		if ( $index > 0 ) {
+			?>
+	<span aria-hidden="true">/</span>
+			<?php
+		}
+		if ( $item['url'] ) {
+			?>
+	<a href="<?= esc_url( $item['url'] ); ?>"><?= esc_html( $item['title'] ); ?></a>
+			<?php
+		} else {
+			?>
+	<span aria-current="page"><?= esc_html( $item['title'] ); ?></span>
+			<?php
+		}
+	}
+	?>
+</nav>
+	<?php
+}
