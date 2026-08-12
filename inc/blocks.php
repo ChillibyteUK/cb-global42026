@@ -548,7 +548,7 @@ add_action( 'acf/init', 'cb_global42026_acf_blocks' );
  * @return array
  */
 function cb_global42026_core_block_type_args( $args, $name ) {
-	$wrapped_blocks = array( 'core/paragraph', 'core/heading', 'core/list', 'core/separator' );
+	$wrapped_blocks = array( 'core/paragraph', 'core/heading', 'core/list', 'core/separator', 'core/buttons' );
 
 	if ( in_array( $name, $wrapped_blocks, true ) ) {
 		$args['render_callback'] = 'cb_global42026_wrap_block_in_container';
