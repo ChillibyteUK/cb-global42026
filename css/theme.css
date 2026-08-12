@@ -854,6 +854,16 @@ label {
 	margin-bottom: var(--space-1);
 }
 
+/* CF7 wraps its fields in <form class="wpcf7-form"><div class="wpcf7 js">
+   before any .row markup you add — those extra boxes break the direct
+   grid-item adjacency .row .row's subgrid rule (src/css/layout.css) needs,
+   so a .row inside a CF7 form can't inherit tracks from it and collapses
+   to no explicit columns at all. Give it back an independent grid so
+   col-* spans mean what they're supposed to. */
+.wpcf7-form .row {
+	grid-template-columns: repeat(var(--grid-columns), 1fr);
+}
+
 /* Excludes button/checkbox/radio/range/color/file/image input types —
    they're still <input> elements but this block/border/padding treatment
    is meant for text-like fields only. Excluding them from the selector
