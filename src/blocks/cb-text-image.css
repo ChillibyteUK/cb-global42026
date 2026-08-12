@@ -65,13 +65,10 @@
 		justify-content: center;
 		/* Grid items default to min-width: auto, not 0 — for a flex
 		   container wrapping an <img>, that resolves to the image's own
-		   intrinsic width, which grid track-sizing then treats as a hard
-		   floor the column can't shrink below, regardless of max-width:100%
-		   on the img itself (that only caps the *rendered* size once space
-		   is allocated, not how much space track-sizing allocates in the
-		   first place). A long-text sibling column pushes the row wider
-		   still needing that floor satisfied, and the whole grid overflows
-		   its container. min-width: 0 removes the floor. */
+		   intrinsic width, which could otherwise act as a floor grid
+		   track-sizing won't shrink below. Harmless/defensive here; the
+		   16:9 variant's own overflow (a different bug entirely, see its
+		   comment below) needed a separate fix. */
 		min-width: 0;
 	}
 
@@ -88,10 +85,22 @@
 	   here, not just for the crop: without it, aspect-ratio loses to the
 	   img's own intrinsic ratio (.cb-text-image__image is a flex container
 	   for centering, and a percentage-sized img left in normal flow inside
-	   one fights its aspect-ratio-derived auto height otherwise). */
+	   one fights its aspect-ratio-derived auto height otherwise).
+
+	   width: 100% matters too, for a less obvious reason: .cb-text-image__grid
+	   has align-items: stretch, so this grid item's height stretches to
+	   match the row (i.e. however tall the text column's content makes it).
+	   With aspect-ratio set and height already resolved via that stretch,
+	   the browser derives width FROM that height instead of stretching
+	   width to the track and deriving height from that — so a long-text
+	   sibling (tall row) inflates this box's width far past its actual
+	   grid column, overflowing the container. Pinning width: 100% forces
+	   the track width to take priority, leaving aspect-ratio to derive
+	   height from that instead, regardless of row height. */
 	.cb-text-image__image--16-9 {
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
+		width: 100%;
 	}
 
 	.cb-text-image__image--16-9 img {
