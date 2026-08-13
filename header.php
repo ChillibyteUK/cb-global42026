@@ -23,6 +23,13 @@
 			<?php cb_render_logo_svg( 'nav' ); ?>
 		</a>
 
+		<?php
+		// Landing pages (PPC campaigns — see inc/landing-pages.php) get the
+		// logo only: no nav, no toggle, nothing else to click away with. The
+		// .navbar-brand above already links home, which is the one route out
+		// they should have.
+		if ( ! is_singular( 'landing_page' ) ) {
+			?>
 		<button class="navbar-toggler" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle navigation">
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 				<path d="M2 5h16M2 10h16M2 15h16" />
@@ -42,5 +49,8 @@
 			);
 			?>
 		</div>
+			<?php
+		}
+		?>
 	</nav>
 </header>

@@ -77,6 +77,45 @@ function cb_global42026_register_theme_post_types() {
 			),
 		)
 	);
+
+	// Landing pages for PPC campaigns and the like. Everything else specific
+	// to this post type — noindex, sitemap/search exclusion, the /lp/ root
+	// redirect, the stripped header — lives in inc/landing-pages.php.
+	//
+	// exclude_from_search keeps them out of on-site /?s= results; it has to be
+	// set explicitly because 'public' => true would otherwise default it to
+	// false. publicly_queryable stays true, so the URLs themselves still work.
+	register_post_type(
+		'landing_page',
+		array(
+			'labels'              => array(
+				'name'               => 'Landing Pages',
+				'singular_name'      => 'Landing Page',
+				'add_new_item'       => 'Add New Landing Page',
+				'edit_item'          => 'Edit Landing Page',
+				'new_item'           => 'New Landing Page',
+				'view_item'          => 'View Landing Page',
+				'search_items'       => 'Search Landing Pages',
+				'not_found'          => 'No landing pages found',
+				'not_found_in_trash' => 'No landing pages in trash',
+			),
+			'has_archive'         => false,
+			'public'              => true,
+			'exclude_from_search' => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_rest'        => true,
+			'menu_position'       => 27,
+			'menu_icon'           => 'dashicons-megaphone',
+			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'rewrite'             => array(
+				'slug'       => 'lp',
+				'with_front' => false,
+			),
+		)
+	);
 }
 add_action( 'init', 'cb_global42026_register_theme_post_types' );
 

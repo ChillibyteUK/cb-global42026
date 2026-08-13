@@ -24,6 +24,7 @@ require_once CB_GLOBAL42026_DIR . '/inc/block-usage.php';
 require_once CB_GLOBAL42026_DIR . '/inc/utilities.php';
 require_once CB_GLOBAL42026_DIR . '/inc/helpers.php';
 require_once CB_GLOBAL42026_DIR . '/inc/posttypes.php';
+require_once CB_GLOBAL42026_DIR . '/inc/landing-pages.php';
 require_once CB_GLOBAL42026_DIR . '/inc/taxonomies.php';
 require_once CB_GLOBAL42026_DIR . '/inc/post-index.php';
 require_once CB_GLOBAL42026_DIR . '/inc/cf7.php';

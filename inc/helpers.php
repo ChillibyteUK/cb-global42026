@@ -135,6 +135,15 @@ function cb_render_case_study_card( $post_id ) {
  * @return void
  */
 function cb_render_breadcrumbs() {
+	// Landing pages (PPC campaigns — see inc/landing-pages.php) have no parent
+	// index, so this would only ever render "Home / <title>" — no real
+	// wayfinding value, and another route off a page that's meant to convert.
+	// Guarded here rather than at the CB Hero call site so it holds for any
+	// future caller too.
+	if ( is_singular( 'landing_page' ) ) {
+		return;
+	}
+
 	$items = array(
 		array(
 			'title' => __( 'Home', 'cb-global42026' ),
