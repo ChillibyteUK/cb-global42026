@@ -34,7 +34,7 @@ $first_panel_content  = '';
 		}
 		if ( $intro ) {
 			?>
-		<div class="cb-tabbed-content__intro"><?= wp_kses_post( $intro ); ?></div>
+		<div class="cb-tabbed-content__intro mb-4"><?= wp_kses_post( $intro ); ?></div>
 			<?php
 		}
 		?>

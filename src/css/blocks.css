@@ -1656,8 +1656,13 @@
 		margin-bottom: var(--space-4);
 	}
 
+	/* No margin-bottom here on purpose — spacing comes from the .mb-4
+	   utility on the element itself (see blocks/cb-tabbed-content.php).
+	   A margin-bottom in this rule would be 0,2,0 (nested under
+	   .cb-tabbed-content) and silently outrank .mb-4's 0,1,0.
+	   max-width matches typography.css's prose cap for .wp-block-paragraph. */
 	.cb-tabbed-content__intro {
-		margin-bottom: var(--space-4);
+		max-width: min(90vw, 85ch);
 	}
 
 	/* Heading immediately followed by an intro would otherwise double up on
