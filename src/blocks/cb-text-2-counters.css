@@ -1,0 +1,52 @@
+.cb-text-2-counters {
+	padding-block: var(--space-5);
+	background-color: var(--col-blue-500);
+	color: var(--col-white);
+
+	.cb-text-2-counters__content {
+		max-width: min(90vw, 85ch);
+	}
+
+	/* "Direction" field, Stats / Text option. Text markup stays first in the
+	   DOM regardless (reading order, SEO) — only the visual position swaps,
+	   via `order`, which grid items respect the same as flex items. Same
+	   approach as .cb-text-image__grid--image-first. The two cards keep
+	   their relative order because they share an `order` value and fall back
+	   to source order. */
+	&.cb-text-2-counters--stats-first {
+		.cb-text-2-counters__text {
+			order: 2;
+		}
+
+		.cb-text-2-counters__card {
+			order: 1;
+		}
+	}
+
+	/* The column IS the card, so it stretches to the row's height (grid's
+	   default align-items: stretch) and both cards match. Own background, so
+	   own text colour — see the colour-inheritance note in CLAUDE.md. */
+	.cb-text-2-counters__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-2);
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-white);
+		color: var(--col-blue-500);
+		text-align: center;
+	}
+
+	.cb-text-2-counters__number {
+		font-size: var(--fs-h1);
+		font-weight: var(--fw-700);
+		line-height: 1;
+	}
+
+	.cb-text-2-counters__description {
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+	}
+}
