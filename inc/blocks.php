@@ -20,6 +20,23 @@ function cb_global42026_acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_brochures',
+				'title'           => __( 'CB Brochures' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-brochures.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_text_2_counters',
 				'title'           => __( 'CB Text 2 Counters' ),
 				'category'        => 'layout',
