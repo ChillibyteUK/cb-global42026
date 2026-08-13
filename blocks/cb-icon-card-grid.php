@@ -19,7 +19,7 @@ $has_button = ! empty( $button['url'] );
 
 /** @var array $block ACF block data. */
 list( $bg, $fg ) = cb_bg_fg_classes( $block );
-$classes          = cb_block_classes( array( 'cb-icon-card-grid', 'py-5', $bg, $fg ), $block );
+$classes         = cb_block_classes( array( 'cb-icon-card-grid', 'py-5', $bg, $fg ), $block );
 
 cb_render_anchor( $block );
 ?>

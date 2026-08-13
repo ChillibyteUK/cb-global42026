@@ -63,6 +63,32 @@
             "new_lines": "br"
         },
         {
+            "key": "field_cb_logo_grid_alignment",
+            "label": "Alignment",
+            "name": "alignment",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "Left also makes the intro full-width.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "center": "Centre",
+                "left": "Left"
+            },
+            "default_value": "center",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
+        },
+        {
             "key": "field_cb_logo_grid_columns",
             "label": "Columns",
             "name": "columns",
@@ -124,7 +150,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-logo-grid"
+                "value": "acf/cb-logo-grid"
             }
         ]
     ],
@@ -140,5 +166,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786617404
+    "modified": 1786617720
 }
