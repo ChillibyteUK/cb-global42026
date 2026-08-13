@@ -141,12 +141,17 @@ select {
 	outline-offset: 2px;
 }
 
+/* Outline block style, matched to .btn-secondary-dark above rather than the
+   primary-blue outline it used to be: transparent with a navy border and
+   label, tinting to 20% navy on hover. border-color needs restating because
+   the base .wp-block-button__link rule sets it to --col-primary. */
 .wp-block-button.is-style-outline .wp-block-button__link {
+	border-color: var(--col-navy-900);
 	background-color: transparent;
-	color: var(--col-primary);
+	color: var(--col-navy-900);
 }
 
 .wp-block-button.is-style-outline .wp-block-button__link:hover {
-	background-color: var(--col-primary);
-	color: var(--col-white);
+	background-color: color-mix(in srgb, var(--col-navy-900) 20%, transparent);
+	color: var(--col-navy-900);
 }
