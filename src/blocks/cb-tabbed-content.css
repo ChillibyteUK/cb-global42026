@@ -19,6 +19,16 @@
 		margin-bottom: var(--space-4);
 	}
 
+	.cb-tabbed-content__intro {
+		margin-bottom: var(--space-4);
+	}
+
+	/* Heading immediately followed by an intro would otherwise double up on
+	   bottom margin before the tabs. */
+	.cb-tabbed-content__heading:has(+ .cb-tabbed-content__intro) {
+		margin-bottom: var(--space-3);
+	}
+
 	.cb-tabbed-content__item {
 		border-bottom: 1px solid var(--col-grey-300);
 	}

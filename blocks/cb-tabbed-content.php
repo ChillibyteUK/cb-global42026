@@ -12,6 +12,7 @@ if ( ! have_rows( 'items' ) ) {
 }
 
 $heading = get_field( 'heading' );
+$intro   = get_field( 'intro' );
 
 /** @var array $block ACF block data. */
 list( $bg, $fg ) = cb_bg_fg_classes( $block );
@@ -29,6 +30,11 @@ $first_panel_content  = '';
 		if ( $heading ) {
 			?>
 		<h2 class="cb-tabbed-content__heading"><?= esc_html( $heading ); ?></h2>
+			<?php
+		}
+		if ( $intro ) {
+			?>
+		<div class="cb-tabbed-content__intro"><?= wp_kses_post( $intro ); ?></div>
 			<?php
 		}
 		?>
