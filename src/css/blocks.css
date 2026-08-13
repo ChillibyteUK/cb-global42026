@@ -1087,6 +1087,73 @@
 	}
 }
 
+/* --- src/blocks/cb-landing-page-form.css --- */
+.cb-landing-page-form {
+	/* Tune per instance with an inline style="--cb-landing-page-form-overlap: 200px"
+	   rather than adding a field for it. */
+	--cb-landing-page-form-overlap: 150px;
+
+	/* The form panel. Own background, so own text colour — see the
+	   colour-inheritance note in CLAUDE.md, since this block has colour
+	   support and a navy section would otherwise bleed white text in here. */
+	.cb-landing-page-form__form {
+		padding: var(--space-5);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-white);
+		color: var(--col-body);
+		box-shadow: var(--shadow-md);
+	}
+
+	/* Filled card, no shadow — deliberately flatter than the form panel beside
+	   it so it reads as secondary. */
+	.cb-landing-page-form__cta {
+		margin-top: var(--space-5);
+		padding: var(--space-4);
+		border-radius: var(--radius-lg);
+		background-color: var(--col-navy-700);
+		color: var(--col-white);
+	}
+
+	.cb-landing-page-form__cta-title {
+		margin-bottom: var(--space-2);
+		font-size: var(--fs-h5);
+	}
+
+	.cb-landing-page-form__cta-text {
+		font-size: var(--fs-small);
+	}
+
+	.cb-landing-page-form__cta-buttons {
+		display: flex;
+		gap: var(--space-3);
+		margin-top: var(--space-4);
+	}
+
+	/* From "lg" (992px, src/build/tokens.config.js) up — the overlap only
+	   applies here because that's the only breakpoint where this block's
+	   col-lg-6 lines up with CB Hero's own col-lg-6. On md the hero is
+	   col-md-8, so pulling up would straddle it awkwardly.
+
+	   z-index is load-bearing: .cb-hero .container carries
+	   position: relative; z-index: 1 (see cb-hero.css), so without a higher
+	   z-index here the hero's content would paint over the form despite the
+	   form coming later in the DOM. */
+	@media (min-width: 992px) {
+		&.cb-landing-page-form--overlap .cb-landing-page-form__form {
+			position: relative;
+			z-index: 2;
+			margin-top: calc(-1 * var(--cb-landing-page-form-overlap));
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-landing-page-form__cta-buttons {
+			flex-direction: column;
+		}
+	}
+}
+
 /* --- src/blocks/cb-logo-grid.css --- */
 .cb-logo-grid {
 	padding-block: var(--space-5);
