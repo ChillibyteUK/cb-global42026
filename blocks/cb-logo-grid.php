@@ -44,7 +44,7 @@ cb_render_anchor( $block );
 		}
 		if ( $intro ) {
 			?>
-		<p class="cb-logo-grid__intro"><?= esc_html( $intro ); ?></p>
+		<p class="cb-logo-grid__intro"><?= wp_kses_post( $intro ); ?></p>
 			<?php
 		}
 		?>

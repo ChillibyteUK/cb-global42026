@@ -11,10 +11,10 @@ if ( ! have_rows( 'cards' ) ) {
 	return;
 }
 
-$heading   = get_field( 'heading' );
-$intro     = get_field( 'intro' );
-$button    = get_field( 'button' );
-$columns   = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
+$heading    = get_field( 'heading' );
+$intro      = get_field( 'intro' );
+$button     = get_field( 'button' );
+$columns    = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
 $has_button = ! empty( $button['url'] );
 
 /** @var array $block ACF block data. */
