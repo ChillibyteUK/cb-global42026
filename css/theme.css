@@ -2975,7 +2975,7 @@ select {
 /* --- src/blocks/cb-text-2-counters.css --- */
 .cb-text-2-counters {
 	padding-block: var(--space-5);
-	background-color: var(--col-blue-500);
+	background-color: var(--col-navy-600);
 	color: var(--col-white);
 }
 .cb-text-2-counters .cb-text-2-counters__content {
@@ -3005,7 +3005,7 @@ select {
 		padding: var(--space-4);
 		border-radius: var(--radius-lg);
 		background-color: var(--col-white);
-		color: var(--col-blue-500);
+		color: var(--col-navy-600);
 		text-align: center;
 	}
 .cb-text-2-counters .cb-text-2-counters__number {
@@ -3014,8 +3014,9 @@ select {
 		line-height: 1;
 	}
 .cb-text-2-counters .cb-text-2-counters__description {
-		font-size: var(--fs-small);
+		font-size: var(--fs-base);
 		font-weight: var(--fw-700);
+		text-wrap: pretty;
 	}
 
 /* --- src/blocks/cb-text-image.css --- */
