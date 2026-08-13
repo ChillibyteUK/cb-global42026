@@ -82,6 +82,13 @@ cb_render_anchor( $block );
 					'cb-icon-card-grid__card--align-' . $content_align,
 				);
 
+				// Left-aligned with nothing but an icon and a title: lay the two
+				// out side by side rather than stacked. Only makes sense
+				// left-aligned, and only with no content to sit beneath them.
+				if ( ! $card_content && 'left' === $content_align ) {
+					$card_classes[] = 'cb-icon-card-grid__card--inline';
+				}
+
 				if ( $has_link ) {
 					$card_classes[] = 'card-link';
 				}

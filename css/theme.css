@@ -2230,6 +2230,29 @@ select {
 		align-items: center;
 		text-align: center;
 	}
+/* Icon + title only, left-aligned (see blocks/cb-icon-card-grid.php):
+	   side by side instead of stacked. Must come after --align-left above,
+	   whose align-items: flex-start it overrides — equal specificity, so
+	   source order is what decides it. The card's own `gap` becomes the
+	   horizontal gap once the direction flips. */
+.cb-icon-card-grid .cb-icon-card-grid__card--inline {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+/* Fixed 3rem box, so stop it being squeezed by a long title. */
+.cb-icon-card-grid .cb-icon-card-grid__card--inline .cb-icon-card-grid__icon {
+		flex-shrink: 0;
+	}
+/* Link drops to its own row beneath the icon/title pair, hard right:
+	   flex-basis: 100% is what forces the wrap, and justify-content aligns
+	   the label+arrow within it (.link-arrow is itself an inline-flex — see
+	   src/css/link-arrow.css). The shared `margin-top: auto` above is inert
+	   in row direction, so there's nothing to unset. */
+.cb-icon-card-grid .cb-icon-card-grid__card--inline .link-arrow {
+		flex-basis: 100%;
+		justify-content: flex-end;
+	}
 /* Below "md" (768px, src/build/tokens.config.js) */
 @media (max-width: 991px) {
 		.cb-icon-card-grid .cb-icon-card-grid__cards {
