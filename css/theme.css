@@ -966,8 +966,26 @@ select {
    which still work fine since those apply as inline styles and win over
    this regardless of source order. Only the Fill (default) and Outline
    block styles are covered; add a rule here too if a project's editors
-   start using a custom block style variation. */
-.wp-block-button__link {
+   start using a custom block style variation.
+
+   Two separate core sources have to be beaten here, both on specificity —
+   NOT load order (theme.min.css is enqueued after both, so it already wins
+   ties):
+
+   1. global-styles-inline-css emits
+      `:root :where(.wp-element-button, .wp-block-button__link)` with
+      calc()-based padding and `border-width: 0`. `:where()` contributes
+      nothing, so that's only 0,1,0 — but a bare `.wp-block-button__link`
+      here would merely tie it. The child combinator below makes this 0,2,0
+      so it wins outright.
+   2. wp-block-library's outline variant,
+      `.wp-block-button.is-style-outline > .wp-block-button__link`, is
+      0,3,0 and sets `border: 2px solid` plus its own padding — outranking
+      this base rule. That's why the outline rule further down has to
+      restate padding and border-width, not just colours; without it the
+      outline button renders with a chunky 2px border and oversized
+      padding while the filled one looks correct. */
+.wp-block-button > .wp-block-button__link {
 	display: inline-block;
 	padding: var(--space-2) var(--space-3);
 	border: 1px solid var(--col-primary);
@@ -981,27 +999,32 @@ select {
 	transition: background-color var(--transition), color var(--transition);
 }
 
-.wp-block-button__link:hover {
+.wp-block-button > .wp-block-button__link:hover {
 	background-color: var(--col-primary-light);
 	color: var(--col-white);
 }
 
-.wp-block-button__link:focus-visible {
+.wp-block-button > .wp-block-button__link:focus-visible {
 	outline: 2px solid var(--col-primary);
 	outline-offset: 2px;
 }
 
-/* Outline block style, matched to .btn-secondary-dark above rather than the
-   primary-blue outline it used to be: transparent with a navy border and
-   label, tinting to 20% navy on hover. border-color needs restating because
-   the base .wp-block-button__link rule sets it to --col-primary. */
-.wp-block-button.is-style-outline .wp-block-button__link {
-	border-color: var(--col-navy-900);
+/* Outline block style, matched to .btn-secondary-dark above: transparent
+   with a navy border and label, tinting to 20% navy on hover.
+   `border: 1px solid` and `padding` are restated (not inherited from the
+   base rule above) specifically to override core's own 0,3,0 outline rule —
+   see point 2 in the comment above. Both selector forms are covered because
+   core accepts the style class on either the wrapper or the link. */
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-block-button .wp-block-button__link.is-style-outline {
+	padding: var(--space-2) var(--space-3);
+	border: 1px solid var(--col-navy-900);
 	background-color: transparent;
 	color: var(--col-navy-900);
 }
 
-.wp-block-button.is-style-outline .wp-block-button__link:hover {
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button .wp-block-button__link.is-style-outline:hover {
 	background-color: color-mix(in srgb, var(--col-navy-900) 20%, transparent);
 	color: var(--col-navy-900);
 }
