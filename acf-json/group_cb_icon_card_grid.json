@@ -346,7 +346,7 @@
                     "allow_in_bindings": 0,
                     "rows": 4,
                     "placeholder": "",
-                    "new_lines": "",
+                    "new_lines": "br",
                     "parent_repeater": "field_cb_icon_card_grid_1fd1f9ab9192"
                 },
                 {
@@ -405,7 +405,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-icon-card-grid"
+                "value": "acf/cb-icon-card-grid"
             }
         ]
     ],
@@ -421,5 +421,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786544773
+    "modified": 1786620789
 }
