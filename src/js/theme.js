@@ -9,6 +9,7 @@ import { initCrossfadeSlider } from './crossfade-slider';
 import { initPostIndex } from './post-index';
 import { initWebinars } from './webinars';
 import { initCounters } from './counter';
+import { initJourney } from './journey';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initPostIndex();
 	initWebinars();
 	initCounters();
+	initJourney();
 });
