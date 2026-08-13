@@ -1004,6 +1004,25 @@
 		text-align: center;
 	}
 
+	/* "Alignment" field, Left option — Centre is the default styled above.
+	   text-align goes back to left and the auto inline margins are dropped
+	   so both boxes anchor left; the intro also loses its 40rem cap to run
+	   the full container width. The heading keeps typography.css's own
+	   h2 max-width (35ch), which is the theme's normal left-anchored
+	   heading behaviour. */
+	&.cb-logo-grid--align-left {
+		.cb-logo-grid__heading {
+			margin-inline: 0;
+			text-align: left;
+		}
+
+		.cb-logo-grid__intro {
+			max-width: none;
+			margin-inline: 0;
+			text-align: left;
+		}
+	}
+
 	.cb-logo-grid__logos {
 		display: grid;
 		grid-template-columns: repeat(var(--cb-logo-grid-columns), 1fr);

@@ -7,10 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$heading = get_field( 'heading' );
-$intro   = get_field( 'intro' );
-$columns = get_field( 'columns' ) ? get_field( 'columns' ) : '6';
-$logos   = get_field( 'logos' );
+$heading   = get_field( 'heading' );
+$intro     = get_field( 'intro' );
+$columns   = get_field( 'columns' ) ? get_field( 'columns' ) : '6';
+$alignment = get_field( 'alignment' ) ? get_field( 'alignment' ) : 'center';
+$logos     = get_field( 'logos' );
 
 if ( empty( $logos ) ) {
 	return;
@@ -18,7 +19,18 @@ if ( empty( $logos ) ) {
 
 /** @var array $block ACF block data. */
 list( $bg, $fg ) = cb_bg_fg_classes( $block );
-$classes          = cb_block_classes( array( 'cb-logo-grid', $bg, $fg ), $block );
+
+// Centre is the unmodified default (see src/blocks/cb-logo-grid.css), so
+// only the left variant needs a class.
+$classes = cb_block_classes(
+	array(
+		'cb-logo-grid',
+		'left' === $alignment ? 'cb-logo-grid--align-left' : '',
+		$bg,
+		$fg,
+	),
+	$block
+);
 
 cb_render_anchor( $block );
 ?>
