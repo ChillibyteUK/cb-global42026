@@ -162,6 +162,18 @@
 		flex-shrink: 0;
 	}
 
+	/* A long title must wrap its own text beside the icon, not bump itself
+	   onto the next flex line. Left alone, the title's flex-basis is auto
+	   and its automatic minimum size is min-content, so once icon + title
+	   exceed the card width it wraps as a whole item instead. `flex: 1`
+	   (basis 0, free to grow/shrink) plus min-width: 0 to defeat that
+	   automatic minimum lets it take the leftover width and break lines
+	   internally. */
+	.cb-icon-card-grid__card--inline .cb-icon-card-grid__title {
+		flex: 1;
+		min-width: 0;
+	}
+
 	/* Link drops to its own row beneath the icon/title pair, hard right:
 	   flex-basis: 100% is what forces the wrap, and justify-content aligns
 	   the label+arrow within it (.link-arrow is itself an inline-flex — see
