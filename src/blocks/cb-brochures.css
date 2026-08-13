@@ -1,6 +1,12 @@
 .cb-brochures {
 	padding-block: var(--space-5);
 
+	/* Block-level heading, distinct from .cb-brochures__title (the per-card
+	   one). Named __heading to keep those two apart. */
+	.cb-brochures__heading {
+		margin-bottom: var(--space-4);
+	}
+
 	.cb-brochures__cards {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);

@@ -9,6 +9,27 @@
             "type": "message"
         },
         {
+            "key": "field_cb_brochures_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_cb_brochures_brochures",
             "label": "Brochures",
             "name": "brochures",
@@ -36,7 +57,7 @@
                     "name": "image",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "Cover image, 5:4 landscape. Cropped to fit.",
+                    "instructions": "Cover image, 5:3 landscape. Cropped to fit.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -115,5 +136,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1786635567
+    "modified": 1786636883
 }

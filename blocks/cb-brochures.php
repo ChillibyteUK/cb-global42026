@@ -11,6 +11,8 @@ if ( ! have_rows( 'brochures' ) ) {
 	return;
 }
 
+$heading = get_field( 'heading' );
+
 /** @var array $block ACF block data. */
 $classes = cb_block_classes( array( 'cb-brochures' ), $block );
 
@@ -18,6 +20,13 @@ cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
+		<?php
+		if ( $heading ) {
+			?>
+		<h2 class="cb-brochures__heading"><?= esc_html( $heading ); ?></h2>
+			<?php
+		}
+		?>
 		<div class="cb-brochures__cards">
 			<?php
 			while ( have_rows( 'brochures' ) ) {
