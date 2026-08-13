@@ -1640,13 +1640,22 @@ select {
 		gap: var(--grid-gutter);
 	}
 /* The whole card is the link. Own background, so own text colour — see
-	   the colour-inheritance note in CLAUDE.md. */
+	   the colour-inheritance note in CLAUDE.md.
+
+	   No inset padding: the image is full-bleed to the card's edges, so the
+	   padding lives on the text children instead (below), with only
+	   padding-bottom here. overflow: hidden then clips the image to the
+	   card's own top corners, which is why the image needs no border-radius
+	   of its own — and gets square bottom corners for free, sitting
+	   invisibly against the white card. Same pattern as
+	   .cb-related-posts__card. */
 .cb-brochures .cb-brochures__card {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-3);
-		padding: var(--space-4);
+		padding-bottom: var(--space-4);
 		border-radius: var(--radius-lg);
+		overflow: hidden;
 		background-color: var(--col-white);
 		color: var(--col-body);
 		box-shadow: var(--shadow-sm);
@@ -1662,18 +1671,22 @@ select {
 	   intrinsic ratio and the aspect-ratio is ignored. See CLAUDE.md. */
 .cb-brochures .cb-brochures__image {
 		display: block;
-		aspect-ratio: 5 / 4;
+		aspect-ratio: 5 / 3;
 		overflow: hidden;
-		border-radius: var(--radius-sm);
 	}
 .cb-brochures .cb-brochures__image img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
+/* The card itself has no side padding (full-bleed image), so the text
+	   children carry their own. */
+.cb-brochures .cb-brochures__title,.cb-brochures .cb-brochures__download {
+		padding-inline: var(--space-4);
+	}
 .cb-brochures .cb-brochures__title {
 		margin: 0;
-		font-size: var(--fs-h5);
+		font-size: var(--fs-h4);
 	}
 /* Pinned to the bottom so the download line sits on a common baseline
 	   across cards, whatever the title length. */

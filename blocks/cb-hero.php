@@ -9,9 +9,9 @@ defined( 'ABSPATH' ) || exit;
 
 $is_front_page    = is_front_page();
 $background_image = get_field( 'background_image' );
-$has_bg_image      = ! empty( $background_image['url'] );
-$badge             = get_field( 'badge' );
-$has_badge         = ! empty( $badge['url'] );
+$has_bg_image     = ! empty( $background_image['url'] );
+$badge            = get_field( 'badge' );
+$has_badge        = ! empty( $badge['url'] );
 
 $classes = array( 'cb-hero' );
 
