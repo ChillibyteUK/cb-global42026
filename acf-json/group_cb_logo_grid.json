@@ -5,8 +5,20 @@
         {
             "key": "field_cb_logo_grid_title",
             "label": "CB Logo Grid",
-            "name": "title",
-            "type": "message"
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "esc_html": 0,
+            "new_lines": "wpautop"
         },
         {
             "key": "field_cb_logo_grid_2bf23ac9129b",
@@ -48,33 +60,7 @@
             "allow_in_bindings": 0,
             "rows": 4,
             "placeholder": "",
-            "new_lines": ""
-        },
-        {
-            "key": "field_cb_logo_grid_alignment",
-            "label": "Alignment",
-            "name": "alignment",
-            "aria-label": "",
-            "type": "radio",
-            "instructions": "Left also makes the intro full-width.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "center": "Centre",
-                "left": "Left"
-            },
-            "default_value": "center",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "allow_in_bindings": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
+            "new_lines": "br"
         },
         {
             "key": "field_cb_logo_grid_columns",
@@ -95,7 +81,7 @@
                 "5": "5 Columns",
                 "6": "6 Columns"
             },
-            "default_value": "6",
+            "default_value": 6,
             "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
@@ -138,7 +124,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb-logo-grid"
+                "value": "acf\/cb-logo-grid"
             }
         ]
     ],
@@ -154,5 +140,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786616587
+    "modified": 1786617404
 }
