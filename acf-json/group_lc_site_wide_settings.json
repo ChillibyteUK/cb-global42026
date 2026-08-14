@@ -139,6 +139,107 @@
             "append": ""
         },
         {
+            "key": "field_lc_ss_policies_tab",
+            "label": "Policies",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lc_ss_privacy_policy",
+            "label": "Privacy Policy",
+            "name": "privacy_policy",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "PDF upload.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_lc_ss_anti_bribery_policy",
+            "label": "Anti-Bribery Policy",
+            "name": "anti_bribery_policy",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "PDF upload.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_lc_ss_modern_slavery_policy",
+            "label": "Modern Slavery Policy",
+            "name": "modern_slavery_policy",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "PDF upload.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_lc_ss_acceptable_use_policy",
+            "label": "Acceptable Use Policy",
+            "name": "acceptable_use_policy",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "PDF upload.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_lc_ss_icons_tab",
             "label": "Icons",
             "name": "",
@@ -212,5 +313,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785754438
+    "modified": 1786718941
 }
