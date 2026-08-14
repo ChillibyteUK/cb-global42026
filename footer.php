@@ -68,7 +68,7 @@
 				Registered in England No: 03526932
 			</div>
 			<div>
-				<a href="/terms-conditions/">Terms and Conditions</a> |
+				<a href="/terms/">Terms and Conditions</a> |
 				<a href="/cookie-policy/">Cookie Policy</a> |
 				<?php
 				$policy  = get_field( 'privacy_policy', 'option' );
