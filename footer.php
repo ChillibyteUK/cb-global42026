@@ -68,12 +68,34 @@
 				Registered in England No: 03526932
 			</div>
 			<div>
-				<a href="/privacy-policy/">Privacy Policy</a> |
-				<a href="/cookie-policy/">Cookie Policy</a> |
 				<a href="/terms-conditions/">Terms and Conditions</a> |
-				<a href="/anti-bribery-policy/">Anti-Bribery Policy</a> |
-				<a href="/modern-slavery-policy/">Modern Slavery Policy</a> |
-				<a href="/acceptable-use/">Acceptable Use</a>
+				<a href="/cookie-policy/">Cookie Policy</a> |
+				<?php
+				$policy  = get_field( 'privacy_policy', 'option' );
+				$bribery = get_field( 'anti_bribery_policy', 'option' );
+				$slavery = get_field( 'modern_slavery_policy', 'option' );
+				$usage   = get_field( 'acceptable_use_policy', 'option' );
+				if ( ! empty( $policy['url'] ) ) {
+					?>
+					<a href="<?= esc_url( $policy['url'] ); ?>" target="_blank">Privacy Policy</a> |
+					<?php
+				}
+				if ( ! empty( $bribery['url'] ) ) {
+					?>
+					<a href="<?= esc_url( $bribery['url'] ); ?>" target="_blank">Anti-Bribery Policy</a> |
+					<?php
+				}
+				if ( ! empty( $slavery['url'] ) ) {
+					?>
+					<a href="<?= esc_url( $slavery['url'] ); ?>" target="_blank">Modern Slavery Policy</a> |
+					<?php
+				}
+				if ( ! empty( $usage['url'] ) ) {
+					?>
+					<a href="<?= esc_url( $usage['url'] ); ?>" target="_blank">Acceptable Use Policy</a>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>
