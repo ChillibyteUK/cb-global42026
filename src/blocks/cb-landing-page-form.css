@@ -14,6 +14,11 @@
 		box-shadow: var(--shadow-md);
 	}
 
+	.cb-landing-page-form__form-title {
+		margin-bottom: var(--space-4);
+		font-size: var(--fs-h3);
+	}
+
 	/* Filled card, no shadow — deliberately flatter than the form panel beside
 	   it so it reads as secondary. */
 	.cb-landing-page-form__cta {

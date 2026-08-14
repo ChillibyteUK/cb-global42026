@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 $heading      = get_field( 'heading' );
 $content      = get_field( 'content' );
+$form_title   = get_field( 'form_title' );
 $form_id      = get_field( 'form_id' );
 $overlap_hero = get_field( 'overlap_hero' );
 $show_cta     = get_field( 'show_contact_cta' );
@@ -82,6 +83,11 @@ cb_render_anchor( $block );
 			</div>
 			<div class="col-12 col-lg-6 cb-landing-page-form__form">
 				<?php
+				if ( $form_title ) {
+					?>
+				<h2 class="cb-landing-page-form__form-title"><?= esc_html( $form_title ); ?></h2>
+					<?php
+				}
 				if ( $form_id ) {
 					echo do_shortcode( '[contact-form-7 id="' . esc_attr( $form_id ) . '"]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}

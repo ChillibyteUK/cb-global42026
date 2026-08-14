@@ -51,6 +51,27 @@
             "delay": 0
         },
         {
+            "key": "field_cb_landing_page_form_form_title",
+            "label": "Form Title",
+            "name": "form_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Shown inside the form panel, above the form.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_cb_landing_page_form_form_id",
             "label": "Form ID",
             "name": "form_id",
@@ -183,5 +204,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1786638343
+    "modified": 1786711250
 }
