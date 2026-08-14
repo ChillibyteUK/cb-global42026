@@ -152,15 +152,36 @@ falling back to their own independent 12-column grid otherwise.
 ```
 style.css              Theme header — no `Template:` line, this is standalone
 functions.php           Requires inc/*.php, nothing else
-inc/
+inc/                    Loaded in order by functions.php — nothing autoloads
   setup.php             add_theme_support, register_nav_menus
   enqueue.php           Enqueues css/theme.min.css + js/theme.min.js, filemtime-versioned
-  class-nav-walker.php  Lightweight Walker_Nav_Menu — nav-link/dropdown-menu classes, no JS
-  blocks.php            ACF block registration — has the marker comment add_block.sh writes to
+  class-cb-global-4-nav-walker.php
+                        Lightweight Walker_Nav_Menu — nav-link/dropdown-menu classes, no JS
+  blocks.php            ACF block registration — has the marker comment add_block.sh writes to.
+                        Also registers render_callbacks that wrap plain core blocks
+                        (paragraph/heading/list/separator/buttons) in .container
+  editor.php            add_editor_style() — loads theme.min.css + editor.min.css into the block editor
   options.php           Registers the Site-Wide Settings ACF options page (theme-general-settings slug), hooked to acf/init
   head-tags.php          Font preload (fonts/*.woff2 glob) + GA/GTM (logged-out only) + Google/Bing verification, reading from the options page
-  block-usage.php        [block_usage_table] shortcode — QA utility, lists every block file against the published pages/posts using it
-  utilities.php          Reusable, project-agnostic functions (parse_phone, pluralise, estimate_reading_time_in_minutes) — safe to lift verbatim into any project on this skeleton. Project-specific helpers go in inc/helpers.php instead, created only when needed, not scaffolded here.
+  posttypes.php         CPT registration (case_study /customers, webinar, landing_page /lp) +
+                        cb_global42026_use_page_template_for_cpts(), which serves page.php for
+                        CPT singulars so block-built layouts don't inherit single.php's blog markup
+  taxonomies.php        Custom taxonomy registration
+  landing-pages.php     Everything landing_page-specific bar its registration — noindex (Yoast
+                        + core robots), sitemap exclusion, and the /lp/ -> / redirect
+  post-index.php        Server side of the CB Post Index block (filtering/paging)
+  icon-upload.php       Handles the Site-Wide Settings icon_upload slot — sanitises an SVG into
+                        img/icons/ and clears the field
+  cf7.php               Contact Form 7 referrer + campaign (UTM/click ID) capture. Injects hidden
+                        fields into every form and exposes them as special mail tags, including
+                        the bundled [_cb_tracking] table. Pairs with src/js/journey.js
+  block-usage.php        [block_usage_table] shortcode — QA utility, lists every block file against the published content using it
+  utilities.php          Reusable, project-agnostic functions (parse_phone, pluralise, estimate_reading_time_in_minutes, cb_bg_fg_classes, cb_block_classes) — safe to lift verbatim into any project on this skeleton
+  helpers.php           Project-specific helpers — the inline logo SVG, case study cards,
+                        cb_render_breadcrumbs()
+  run-once-dedup-media.php
+                        TEMPORARY — one-off media dedup after a WP All Import run. Delete this
+                        and its require in functions.php once it's been run.
 header.php / footer.php / index.php / page.php / single.php / 404.php
                         Deliberately minimal — most real page layouts are built from ACF blocks, not these
 blocks/                 ACF block PHP render templates (add_block.sh scaffolds here)
@@ -180,6 +201,15 @@ src/
     nav.css             .navbar, mobile toggle, dropdown submenus
     forms.css           Minimal form base + .btn
     tables.css          Opt-in, not imported by default
+    typography.css      @font-face, h2/paragraph measure caps, prose link styling
+    animate.css         Pre-hides everything scroll-animate.js reveals, so nothing flashes
+                        before GSAP runs. Selectors must stay in sync with that file
+    single.css          Single post template (not a block, so not in src/blocks/)
+    footer.css          Footer
+    accordion.css       .accordion component
+    link-arrow.css      .link-arrow / .card-link — the "Learn more →" pattern shared by
+                        several card blocks; the arrow only nudges when an ancestor has .card-link
+    editor.css          Block-editor-only styles, loaded via inc/editor.php
     utilities.css        GENERATED — do not hand-edit, see generate-utilities.js
     blocks.css           GENERATED — concatenation of src/blocks/*.css
   blocks/               Block-specific CSS, separate from theme-wide src/css/.
@@ -187,9 +217,29 @@ src/
                         drop one in here and it's picked up automatically on next
                         build (glob, alphabetical order, no registration step).
   js/
-    theme.js            Entry point, imports the two below
+    theme.js            Entry point — imports every module below and calls each on DOMContentLoaded
     nav-toggle.js        Mobile nav collapse — vanilla JS replacement for Bootstrap Collapse
+    nav-dropdown.js      Submenu open/close
+    nav-scroll.js        Adds .scrolled to the header past a scroll threshold
     dialog.js            Native <dialog> wiring — vanilla JS replacement for Bootstrap Modal
+    smooth-scroll.js     Lenis smooth scrolling
+    scroll-animate.js    All GSAP ScrollTrigger entrance animations, one function per block.
+                         staggerFadeUpGrid(gridSelector, cardSelector) is the shared
+                         "grid of cards" entrance — reuse it rather than adding a near-copy.
+                         Selectors here MUST stay in sync with src/css/animate.css, which
+                         pre-hides the same elements (see the comment in that file)
+    crossfade-slider.js  initCrossfadeSlider(track, slide, interval = 6000) — autoplay-only
+                         crossfade, no nav/pagination. Shared by CB Quote Slider and
+                         CB Text Stat Slider; per-slider timing is set at the call site in theme.js
+    counter.js           Counts any [data-counter] element up from zero when scrolled into view.
+                         Matches the decimal places of the target value. Generic — a block only
+                         needs to emit the attribute, no JS change
+    tabbed-content.js    CB Tabbed Content panels
+    post-index.js        CB Post Index filtering/search
+    webinars.js          Lazily builds/tears down the YouTube iframe on dialog open/close
+    journey.js           Records the page trail + campaign params (UTM, gclid et al) in
+                         sessionStorage and fills the hidden CF7 fields from inc/cf7.php.
+                         Field names are a deliberate coupling with that file
   build/
     tokens.config.js     Breakpoints + utility/grid definitions — source of truth for generate-utilities.js
     generate-utilities.js  Generates src/css/utilities.css and src/css/blocks.css
