@@ -3,10 +3,22 @@
     "title": "CB Numbered Steps",
     "fields": [
         {
-            "key": "field_cb_numbered_steps_title",
+            "key": "field_6a7f3da78faac",
             "label": "CB Numbered Steps",
-            "name": "title",
-            "type": "message"
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
             "key": "field_cb_numbered_steps_title",
@@ -103,11 +115,21 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb-numbered-steps"
+                "value": "acf\/cb-numbered-steps"
             }
         ]
     ],
-    "active": 1,
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
     "description": "",
-    "modified": 1786723386
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1786723770
 }
