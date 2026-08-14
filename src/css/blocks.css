@@ -1325,6 +1325,100 @@
 	}
 }
 
+/* --- src/blocks/cb-numbered-steps.css --- */
+.cb-numbered-steps {
+	/* Both are referenced by the connector rule below — the marker size to
+	   centre the line on the circle, the gap to bridge the gutter between
+	   columns so the line reads as continuous. */
+	--cb-numbered-steps-marker-size: 2.25rem;
+	--cb-numbered-steps-gap: var(--space-4);
+
+	padding-block: var(--space-5);
+
+	.cb-numbered-steps__title {
+		margin-bottom: var(--space-5);
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	/* Column count comes from the step count as an inline custom property (see
+	   blocks/cb-numbered-steps.php), so any number of steps fills the width
+	   evenly with no per-count classes. */
+	.cb-numbered-steps__steps {
+		display: grid;
+		grid-template-columns: repeat(var(--cb-numbered-steps-columns, 4), 1fr);
+		gap: var(--cb-numbered-steps-gap);
+	}
+
+	.cb-numbered-steps__step {
+		position: relative;
+	}
+
+	/* Sits above the connector line, and its own background is what makes the
+	   line appear to start at the circle's right edge rather than running
+	   underneath it. */
+	.cb-numbered-steps__marker {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--cb-numbered-steps-marker-size);
+		height: var(--cb-numbered-steps-marker-size);
+		margin-bottom: var(--space-3);
+		border-radius: 50%;
+		background-color: var(--col-navy-900);
+		/* Own background, so own text colour — see CLAUDE.md. */
+		color: var(--col-white);
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+	}
+
+	.cb-numbered-steps__step-title {
+		margin-bottom: var(--space-2);
+		font-size: var(--fs-h5);
+	}
+
+	.cb-numbered-steps__step-content {
+		font-size: var(--fs-small);
+	}
+
+	/* From "lg" (992px, src/build/tokens.config.js) up — the connector only
+	   makes sense while every step sits on one row. Below that they stack and
+	   a horizontal rule would read as a divider, not a flow, so it's dropped.
+	   Spans the full cell and overhangs by the gap to bridge the gutter; the
+	   last step stops at its own edge so nothing overhangs the container. */
+	@media (min-width: 992px) {
+		.cb-numbered-steps__step::before {
+			content: '';
+			position: absolute;
+			top: calc(var(--cb-numbered-steps-marker-size) / 2);
+			left: 0;
+			right: calc(-1 * var(--cb-numbered-steps-gap));
+			height: 1px;
+			background-color: var(--col-blue-300);
+		}
+
+		.cb-numbered-steps__step:last-child::before {
+			right: 0;
+		}
+	}
+
+	/* Below "lg" — two up, then one up below "sm". */
+	@media (max-width: 991px) {
+		.cb-numbered-steps__steps {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-numbered-steps__steps {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
 /* --- src/blocks/cb-post-index.css --- */
 .cb-post-index {
 	padding-block: var(--space-5);

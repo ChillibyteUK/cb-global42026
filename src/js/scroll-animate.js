@@ -19,6 +19,7 @@ export function initScrollAnimate() {
 	staggerFadeUpGrid('.cb-button-cards__cards', '.cb-button-cards__card');
 	staggerFadeUpGrid('.cb-contact-cards__cards', '.cb-contact-cards__card');
 	staggerFadeUpGrid('.cb-accreditations__cards', '.cb-accreditations__card');
+	staggerFadeUpGrid('.cb-numbered-steps__steps', '.cb-numbered-steps__step');
 	initSplitFeatureList();
 	initTextImage();
 	initTextUsps();
@@ -31,8 +32,9 @@ export function initScrollAnimate() {
 
 /**
  * Shared "grid of cards" entrance — cards stagger fade up when the grid is
- * ~25% into the viewport. Used by CB Icon Card Grid, CB Button Cards, and
- * CB Contact Cards, which all share this exact layout shape.
+ * ~25% into the viewport. Used by CB Icon Card Grid, CB Button Cards,
+ * CB Contact Cards, CB Accreditations and CB Numbered Steps, which all share
+ * this exact layout shape.
  *
  * @param {string} gridSelector Selector for the grid container (the ScrollTrigger).
  * @param {string} cardSelector Selector for the individual cards within it (the stagger targets).
