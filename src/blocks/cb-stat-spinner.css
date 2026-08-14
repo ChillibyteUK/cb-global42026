@@ -1,0 +1,66 @@
+.cb-stat-spinner {
+	/* Held in a custom property so the dividers below can offset themselves by
+	   half of it and sit centred in the gap rather than against an item edge. */
+	--cb-stat-spinner-gap: var(--space-4);
+
+	padding-block: var(--space-5);
+
+	/* Column count comes from the row count as an inline custom property (see
+	   blocks/cb-stat-spinner.php), so one to four stats each fill the width
+	   evenly with no per-count classes. */
+	.cb-stat-spinner__stats {
+		display: grid;
+		grid-template-columns: repeat(var(--cb-stat-spinner-columns, 4), 1fr);
+		gap: var(--cb-stat-spinner-gap);
+	}
+
+	.cb-stat-spinner__stat {
+		position: relative;
+		text-align: center;
+	}
+
+	/* Divider between stats, never before the first or after the last — the
+	   adjacent-sibling selector gives exactly that with no first/last-child
+	   exceptions to maintain. A pseudo-element rather than border-left so it
+	   can be centred within the gap. */
+	.cb-stat-spinner__stat + .cb-stat-spinner__stat::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(-1 * var(--cb-stat-spinner-gap) / 2);
+		width: 1px;
+		background-color: var(--col-grey-400);
+	}
+
+	.cb-stat-spinner__value {
+		font-size: var(--fs-h1);
+		font-weight: var(--fw-900);
+		line-height: 1;
+	}
+
+	.cb-stat-spinner__description {
+		margin-top: var(--space-2);
+		font-size: var(--fs-small);
+		text-transform: uppercase;
+	}
+
+	/* Below "md" (768px, src/build/tokens.config.js) — single column, so the
+	   dividers rotate: same pseudo-element repurposed as a short centred
+	   horizontal rule above each stat but the first. bottom/width are reset
+	   because the vertical rule above sets both. */
+	@media (max-width: 767px) {
+		.cb-stat-spinner__stats {
+			grid-template-columns: 1fr;
+		}
+
+		.cb-stat-spinner__stat + .cb-stat-spinner__stat::before {
+			top: calc(-1 * var(--cb-stat-spinner-gap) / 2);
+			bottom: auto;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 3rem;
+			height: 1px;
+		}
+	}
+}
