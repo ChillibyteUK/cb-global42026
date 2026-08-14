@@ -34,7 +34,7 @@ cb_render_anchor( $block );
 				<?php
 				if ( $heading ) {
 					?>
-				<h2 class="cb-icon-card-grid__heading"><?= esc_html( $heading ); ?></h2>
+				<h2 class="cb-icon-card-grid__heading"><?= wp_kses_post( $heading ); ?></h2>
 					<?php
 				}
 				if ( $has_button ) {
