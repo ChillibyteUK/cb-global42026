@@ -11,11 +11,18 @@ if ( ! have_rows( 'cards' ) ) {
 	return;
 }
 
-$heading    = get_field( 'heading' );
-$intro      = get_field( 'intro' );
-$button     = get_field( 'button' );
-$columns    = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
-$has_button = ! empty( $button['url'] );
+$heading         = get_field( 'heading' );
+$intro           = get_field( 'intro' );
+$constrain_intro = get_field( 'constrain_intro' );
+$button          = get_field( 'button' );
+$columns         = get_field( 'columns' ) ? get_field( 'columns' ) : '4';
+$has_button      = ! empty( $button['url'] );
+
+$intro_classes = array( 'cb-icon-card-grid__intro' );
+
+if ( $constrain_intro ) {
+	$intro_classes[] = 'cb-icon-card-grid__intro--constrained';
+}
 
 /** @var array $block ACF block data. */
 list( $bg, $fg ) = cb_bg_fg_classes( $block );
@@ -48,7 +55,7 @@ cb_render_anchor( $block );
 			}
 			if ( $intro ) {
 				?>
-			<div class="cb-icon-card-grid__intro"><?= wp_kses_post( $intro ); ?></div>
+			<div class="<?= esc_attr( implode( ' ', $intro_classes ) ); ?>"><?= wp_kses_post( $intro ); ?></div>
 				<?php
 			}
 			?>

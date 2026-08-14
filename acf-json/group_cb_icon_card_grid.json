@@ -68,7 +68,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "75",
                 "class": "",
                 "id": ""
             },
@@ -78,6 +78,27 @@
             "rows": 4,
             "placeholder": "",
             "new_lines": "br"
+        },
+        {
+            "key": "field_cb_icon_card_grid_constrain_intro",
+            "label": "Constrain Intro Width",
+            "name": "constrain_intro",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Caps the intro at a comfortable reading width. Unchecked, it runs the full container width.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         },
         {
             "key": "field_cb_icon_card_grid_8a3762bd2103",
@@ -144,20 +165,37 @@
                     },
                     "choices": {
                         "award": "Award",
+                        "bell": "Bell",
+                        "calendar-check": "Calendar Check",
                         "cheers": "Cheers",
+                        "clock": "Clock",
+                        "earth": "Earth",
+                        "face-slightly-smiling": "Face Slightly Smiling",
+                        "file-chart-column": "File Chart Column",
+                        "file-cog": "File Cog",
+                        "file-search-corner": "File Search Corner",
+                        "globe-check": "Globe Check",
                         "globe-lock": "Globe Lock",
                         "handshake": "Handshake",
                         "heart-circuit": "Heart Circuit",
                         "heart-handshake": "Heart Handshake",
                         "laptop": "Laptop",
                         "lightning": "Lightning",
+                        "loader": "Loader",
                         "lock": "Lock",
                         "magnifier": "Magnifier",
+                        "messages-square": "Messages Square",
                         "microsoft": "Microsoft",
                         "mobile-phone": "Mobile Phone",
+                        "monitor-cloud": "Monitor Cloud",
+                        "music-4": "Music 4",
+                        "orbit": "Orbit",
+                        "package": "Package",
                         "phone-alt": "Phone Alt",
                         "phone": "Phone",
                         "question": "Question",
+                        "settings": "Settings",
+                        "shield-check": "Shield Check",
                         "shield-keyhole": "Shield Keyhole",
                         "sprout": "Sprout",
                         "star": "Star",
@@ -405,7 +443,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb-icon-card-grid"
+                "value": "acf\/cb-icon-card-grid"
             }
         ]
     ],
@@ -421,5 +459,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786620789
+    "modified": 1786722978
 }

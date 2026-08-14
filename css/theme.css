@@ -2215,6 +2215,13 @@ select {
 .cb-icon-card-grid .cb-icon-card-grid__intro:last-child {
 		margin-bottom: 0;
 	}
+/* "Constrain Intro Width" field. Unchecked (the default) the intro runs the
+	   full container width; checked, it's capped at the same prose measure
+	   typography.css uses for .wp-block-paragraph. Left-anchored, not centred —
+	   the heading above it is too. */
+.cb-icon-card-grid .cb-icon-card-grid__intro--constrained {
+		max-width: min(90vw, 85ch);
+	}
 .cb-icon-card-grid .cb-icon-card-grid__cards {
 		display: grid;
 		grid-template-columns: repeat(var(--cb-icon-card-grid-columns), 1fr);
