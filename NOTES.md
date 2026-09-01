@@ -30,7 +30,8 @@ So: repo + DB dump + uploads.
    `npm run generate-theme-json` after changing `src/css/tokens.css`.
    `npm run watch` does cover it.
 2. **Flush permalinks** (Settings → Permalinks, just hit Save). Without this
-   `/lp/{slug}/` 404s, because the `landing_page` CPT's rewrite rules aren't
+   `/lp/{slug}/` and `/policies/{slug}/` both 404, because the `landing_page`
+   CPT's rewrite rules and the policy endpoints in `inc/policies.php` aren't
    registered until the rules are rebuilt.
 3. **Sync ACF field groups** — Custom Fields → Field Groups → "Sync available".
    See the warning below.
@@ -50,6 +51,27 @@ that group was saved to add a formatting option to another field.
 
 If a field exists in the JSON but doesn't appear in the editor, it hasn't been
 synced.
+
+## Policy documents
+
+The four policy PDFs are linked from the footer via canonical URLs
+(`/policies/privacy-policy/` and siblings) that 302 to whatever is currently set
+in Site-Wide Settings → Policies. Always link the canonical URL, never the file —
+that's the whole point of the indirection, since replacing a PDF changes its
+uploads URL.
+
+Each policy resolves in this order: uploaded file → the "Fallback URL" field →
+404. The fallback exists for externally hosted documents and for the launch
+transition, where it can point at the old live download URL until the PDF is
+migrated.
+
+`inc/policies.php` also 301s the old Download Monitor URLs
+(`?wpdmdl=1972` etc.) to the canonical endpoints. IDs are mapped in
+`cb_legacy_policy_downloads()`; add to that array rather than to a redirection
+plugin, because the source path is `/` and a path-only plugin rule would
+redirect every homepage hit.
+
+Both need a permalink flush — see per-environment setup above.
 
 ## Temporary code to remove
 

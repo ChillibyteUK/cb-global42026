@@ -175,6 +175,13 @@ inc/                    Loaded in order by functions.php — nothing autoloads
   cf7.php               Contact Form 7 referrer + campaign (UTM/click ID) capture. Injects hidden
                         fields into every form and exposes them as special mail tags, including
                         the bundled [_cb_tracking] table. Pairs with src/js/journey.js
+  policies.php          /policies/{slug}/ endpoints that 302 to the policy PDFs held in
+                        Site-Wide Settings, so the public URL survives a document being
+                        reissued. Falls back to the field's {name}_url sibling when no file is
+                        uploaded (external hosting, or the old live URL during a launch).
+                        cb_policies() is the single source of truth for the slug -> field
+                        mapping; also injects the canonical URL into each upload field's admin
+                        instructions. Needs a permalink flush after deployment
   block-usage.php        [block_usage_table] shortcode — QA utility, lists every block file against the published content using it
   utilities.php          Reusable, project-agnostic functions (parse_phone, pluralise, estimate_reading_time_in_minutes, cb_bg_fg_classes, cb_block_classes) — safe to lift verbatim into any project on this skeleton
   helpers.php           Project-specific helpers — the inline logo SVG, case study cards,

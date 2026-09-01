@@ -177,6 +177,24 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_lc_ss_privacy_policy_url",
+            "label": "Privacy Policy — Fallback URL",
+            "name": "privacy_policy_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Only used when no file is uploaded above. Point this at an externally hosted document, or at the old live download URL during a launch transition.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_lc_ss_anti_bribery_policy",
             "label": "Anti-Bribery Policy",
             "name": "anti_bribery_policy",
@@ -195,6 +213,24 @@
             "min_size": "",
             "max_size": "",
             "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_lc_ss_anti_bribery_policy_url",
+            "label": "Anti-Bribery Policy — Fallback URL",
+            "name": "anti_bribery_policy_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Only used when no file is uploaded above. Point this at an externally hosted document, or at the old live download URL during a launch transition.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
             "allow_in_bindings": 0
         },
         {
@@ -219,6 +255,24 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_lc_ss_modern_slavery_policy_url",
+            "label": "Modern Slavery Policy — Fallback URL",
+            "name": "modern_slavery_policy_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Only used when no file is uploaded above. Point this at an externally hosted document, or at the old live download URL during a launch transition.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_lc_ss_acceptable_use_policy",
             "label": "Acceptable Use Policy",
             "name": "acceptable_use_policy",
@@ -237,6 +291,24 @@
             "min_size": "",
             "max_size": "",
             "mime_types": "pdf",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_lc_ss_acceptable_use_policy_url",
+            "label": "Acceptable Use Policy — Fallback URL",
+            "name": "acceptable_use_policy_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Only used when no file is uploaded above. Point this at an externally hosted document, or at the old live download URL during a launch transition.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
             "allow_in_bindings": 0
         },
         {
@@ -313,5 +385,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1786718941
+    "modified": 1788279150
 }

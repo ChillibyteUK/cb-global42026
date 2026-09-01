@@ -68,33 +68,38 @@
 				Registered in England No: 03526932
 			</div>
 			<div>
-				<a href="/terms/">Terms and Conditions</a> |
-				<a href="/cookie-policy/">Cookie Policy</a> |
 				<?php
-				$policy  = get_field( 'privacy_policy', 'option' );
-				$bribery = get_field( 'anti_bribery_policy', 'option' );
-				$slavery = get_field( 'modern_slavery_policy', 'option' );
-				$usage   = get_field( 'acceptable_use_policy', 'option' );
-				if ( ! empty( $policy['url'] ) ) {
-					?>
-					<a href="<?= esc_url( $policy['url'] ); ?>" target="_blank">Privacy Policy</a> |
-					<?php
+				// Canonical /policies/{slug}/ URLs for the PDFs, not the file
+				// URLs — see inc/policies.php. A policy with nothing uploaded
+				// is skipped rather than linked to an endpoint that would 404.
+				// The two page links lead the same array so the " | " separator
+				// is only ever emitted between items, with no dangling one if
+				// every policy happens to be empty.
+				$policy_links = array(
+					'<a href="/terms/">Terms and Conditions</a>',
+					'<a href="/cookie-policy/">Cookie Policy</a>',
+				);
+
+				$policy_labels = array(
+					'privacy-policy'        => 'Privacy Policy',
+					'anti-bribery-policy'   => 'Anti-Bribery Policy',
+					'modern-slavery-policy' => 'Modern Slavery Policy',
+					'acceptable-use-policy' => 'Acceptable Use Policy',
+				);
+
+				foreach ( $policy_labels as $policy_slug => $policy_label ) {
+					if ( ! cb_policy_has_target( $policy_slug ) ) {
+						continue;
+					}
+
+					$policy_links[] = sprintf(
+						'<a href="%1$s" target="_blank">%2$s</a>',
+						esc_url( cb_policy_url( $policy_slug ) ),
+						esc_html( $policy_label )
+					);
 				}
-				if ( ! empty( $bribery['url'] ) ) {
-					?>
-					<a href="<?= esc_url( $bribery['url'] ); ?>" target="_blank">Anti-Bribery Policy</a> |
-					<?php
-				}
-				if ( ! empty( $slavery['url'] ) ) {
-					?>
-					<a href="<?= esc_url( $slavery['url'] ); ?>" target="_blank">Modern Slavery Policy</a> |
-					<?php
-				}
-				if ( ! empty( $usage['url'] ) ) {
-					?>
-					<a href="<?= esc_url( $usage['url'] ); ?>" target="_blank">Acceptable Use Policy</a>
-					<?php
-				}
+
+				echo implode( ' | ', $policy_links ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from esc_url()/esc_html() above.
 				?>
 			</div>
 		</div>
