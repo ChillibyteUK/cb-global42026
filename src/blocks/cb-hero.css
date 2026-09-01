@@ -1,6 +1,19 @@
 .cb-hero {
     --cb-hero-gradient: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
 
+    /* Purely for automated contrast checkers, with no visual effect — the
+       opaque gradient below paints straight over it. axe/Lighthouse/WAVE only
+       read computed background-color, never background-image, so without this
+       they walk up to body's white background and report the white hero text
+       as 1:1 white-on-white. navy-700 is the gradient's *lightest* stop, so
+       the declared value is the honest worst case (15:1) and can't overstate
+       the real contrast anywhere in the block.
+
+       Note this can't fully satisfy the checkers on .cb-hero--has-bg-image:
+       axe drops to "incomplete" (manual review) whenever a background-image is
+       in the stack, since it can't sample pixels. .cb-hero__scrim is what
+       makes the real contrast over a photo safe. */
+    background-color: var(--col-navy-700);
     background-image: var(--cb-hero-gradient);
 
     color: var(--col-white);

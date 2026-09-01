@@ -29,6 +29,59 @@ function cb_global42026_add_editor_styles() {
 add_action( 'after_setup_theme', 'cb_global42026_add_editor_styles' );
 
 /**
+ * Puts each block's alignment into a class on its editor wrapper.
+ *
+ * A group set to full width stores `align: "full"` in its attributes, but this
+ * WordPress renders no marker for it in the editor DOM - no `data-align` attribute
+ * and no `.alignfull` class - because that only happens when a root layout exists,
+ * which needs `settings.layout` in theme.json (absent here). So the
+ * `[data-align="full"]` selector in `src/css/editor.css` never matched, and the
+ * rule constraining `.wp-block` clamped full-width groups - background colours
+ * included - to the container width.
+ *
+ * This adds `cb-align-full` / `cb-align-wide` to the block wrapper so those rules
+ * have something to key off. Editor only: it changes nothing about the saved
+ * content or the frontend.
+ *
+ * Ported from cb-afiniti2023, where this surfaced. It was latent here only because
+ * no page on this site currently uses a top-level full-width block.
+ *
+ * @return void
+ */
+function cb_global42026_editor_align_classes() {
+	$script = <<<'JS'
+( function ( hooks, compose, element ) {
+	if ( ! hooks || ! compose || ! element ) {
+		return;
+	}
+
+	hooks.addFilter(
+		'editor.BlockListBlock',
+		'cb/editor-align-class',
+		compose.createHigherOrderComponent( function ( BlockListBlock ) {
+			return function ( props ) {
+				var align = props.attributes && props.attributes.align;
+
+				if ( ! align ) {
+					return element.createElement( BlockListBlock, props );
+				}
+
+				var extended = Object.assign( {}, props, {
+					className: ( props.className || '' ) + ' cb-align-' + align,
+				} );
+
+				return element.createElement( BlockListBlock, extended );
+			};
+		}, 'cbEditorAlignClass' )
+	);
+}( window.wp && wp.hooks, window.wp && wp.compose, window.wp && wp.element ) );
+JS;
+
+	wp_add_inline_script( 'wp-block-editor', $script );
+}
+add_action( 'enqueue_block_editor_assets', 'cb_global42026_editor_align_classes' );
+
+/**
  * Disable the block editor's fullscreen mode by default, and work around a
  * known ACF bug where switching Visual/Text tabs forces unwanted focus jumps
  * while typing.

@@ -17,6 +17,7 @@
 	--col-navy-600: #1e3a5f; /*  */
 
 	--col-blue-500: #467cc6; /* site's defined "brand colour 3" — mid blue */
+	--col-blue-400: #80B3E1; /* intermediate blue between brand colour 3 and 2 */
 	--col-blue-300: #99bbe3; /* site's defined "brand colour 2" — most-used link/accent blue */
 	--col-blue-100: #e1ebf7;
 
@@ -25,7 +26,7 @@
 
 	/* Neutrals */
 	--col-white: #ffffff;
-	--col-black: #000000;
+	--col-black: #0c0c0d;
 	--col-grey-900: #32323a; /* charcoal, dark UI panels */
 	--col-grey-800: #333333; /* body copy */
 	--col-grey-500: #808080; /* muted text */
@@ -39,7 +40,7 @@
 	--col-danger: #b22222; /* firebrick */
 
 	/* Semantic aliases */
-	--col-primary: var(--col-blue-500);
+	--col-primary: var(--col-blue-400);
 	--col-primary-light: var(--col-blue-300);
 	--col-accent: var(--col-teal-400);
 	--col-body: var(--col-grey-800);

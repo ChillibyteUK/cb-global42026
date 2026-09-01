@@ -36,6 +36,12 @@
           "origin": "theme"
         },
         {
+          "name": "blue-400",
+          "slug": "blue-400",
+          "color": "#80B3E1",
+          "origin": "theme"
+        },
+        {
           "name": "blue-300",
           "slug": "blue-300",
           "color": "#99bbe3",
@@ -68,7 +74,7 @@
         {
           "name": "black",
           "slug": "black",
-          "color": "#000000",
+          "color": "#0c0c0d",
           "origin": "theme"
         },
         {

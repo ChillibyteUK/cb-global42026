@@ -23,17 +23,40 @@
  * error), so don't reorder that array without keeping this in mind.
  */
 
-.editor-styles-wrapper .wp-block {
+/*
+ * Aligned blocks are excluded via .cb-align-*, not just [data-align].
+ *
+ * A group set to full width stores align: "full" in its attributes, but this
+ * WordPress renders no marker for it in the editor DOM - no data-align attribute,
+ * no .alignfull class - because that only happens when a root layout exists, which
+ * needs settings.layout in theme.json (absent here). So the [data-align] selectors
+ * below never match, and the rule that constrains .wp-block silently clamped
+ * full-width groups, background colours included, to the container width.
+ *
+ * cb_global42026_editor_align_classes() in inc/editor.php adds cb-align-full /
+ * cb-align-wide to the block wrapper in the editor so these selectors work. The
+ * native markers are kept alongside in case WordPress starts emitting them.
+ *
+ * Ported from cb-afiniti2023, where this surfaced. No page on this site currently
+ * uses a top-level full-width block, so the bug was latent rather than visible.
+ */
+
+.editor-styles-wrapper .wp-block:not(.cb-align-full):not(.cb-align-wide):not([data-align="full"]):not([data-align="wide"]) {
 	max-width: var(--container-max-width);
 	margin-inline: auto;
 }
 
+.editor-styles-wrapper .wp-block.cb-align-wide,
 .editor-styles-wrapper .wp-block[data-align="wide"] {
 	max-width: calc(var(--container-max-width) + 4rem);
+	margin-inline: auto;
 }
 
-.editor-styles-wrapper .wp-block[data-align="full"] {
+.editor-styles-wrapper .wp-block.cb-align-full,
+.editor-styles-wrapper .wp-block[data-align="full"],
+.editor-styles-wrapper .wp-block.alignfull {
 	max-width: none;
+	margin-inline: 0;
 }
 
 /*# sourceMappingURL=editor.css.map */

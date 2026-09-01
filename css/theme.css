@@ -17,6 +17,7 @@
 	--col-navy-600: #1e3a5f; /*  */
 
 	--col-blue-500: #467cc6; /* site's defined "brand colour 3" — mid blue */
+	--col-blue-400: #80B3E1; /* intermediate blue between brand colour 3 and 2 */
 	--col-blue-300: #99bbe3; /* site's defined "brand colour 2" — most-used link/accent blue */
 	--col-blue-100: #e1ebf7;
 
@@ -25,7 +26,7 @@
 
 	/* Neutrals */
 	--col-white: #ffffff;
-	--col-black: #000000;
+	--col-black: #0c0c0d;
 	--col-grey-900: #32323a; /* charcoal, dark UI panels */
 	--col-grey-800: #333333; /* body copy */
 	--col-grey-500: #808080; /* muted text */
@@ -39,7 +40,7 @@
 	--col-danger: #b22222; /* firebrick */
 
 	/* Semantic aliases */
-	--col-primary: var(--col-blue-500);
+	--col-primary: var(--col-blue-400);
 	--col-primary-light: var(--col-blue-300);
 	--col-accent: var(--col-teal-400);
 	--col-body: var(--col-grey-800);
@@ -101,6 +102,7 @@
 	   to nudge ACF block anchors down clear of the fixed nav. */
 	--nav-height: 5.5rem;
 }
+
 /* Base element reset — the "reboot" equivalent. Deliberately small. */
 
 *,
@@ -625,6 +627,7 @@ main .has-navy-600-background-color a:not([class]) {
 :is(.scrolled .navbar-brand) .cb-logo__device {
 			fill: url(#cb-logo-gradient-nav);
 		}
+
 footer {
     color: var(--col-white);
     background-color: var(--col-navy-900);
@@ -633,16 +636,20 @@ footer {
 
     padding-block-start: var(--space-5);
 }
+
 footer .container {
         padding-block-end: var(--space-5);
     }
+
 /* Matches the old <img>'s natural PNG dimensions (202x37) — the inline
        svg has no intrinsic size of its own to fall back on. */
+
 footer .footer-logo {
         display: block;
         width: 202px;
         height: 37px;
     }
+
 footer .footer-description {
         font-size: var(--fs-small);
         line-height: var(--line-height-base);
@@ -651,21 +658,25 @@ footer .footer-description {
         text-wrap: pretty;
         max-width: 40ch;
     }
+
 footer .footer-title {
         font-weight: var(--fw-700);
         font-size: var(--fs-h5);
         text-transform: uppercase;
         margin-bottom: var(--space-3);
     }
+
 footer a {
         font-size: var(--fs-small);
         color: var(--col-white);
         text-decoration: none;
         transition: var(--transition);
     }
+
 :is(footer a):hover,:is(footer a):focus {
             color: var(--col-teal-400);
         }
+
 footer #colophon .container {
         border-top: 1px solid var(--col-grey-800);
         color: var(--col-grey-500);
@@ -677,13 +688,16 @@ footer #colophon .container {
         gap: var(--space-2);
         padding: var(--space-2) var(--space-3) var(--space-4) var(--space-3);
     }
+
 :is(footer #colophon .container) a {
             font-size: var(--fs-xsmall);
             color: var(--col-grey-500);
         }
+
 :is(:is(footer #colophon .container) a):hover,:is(:is(footer #colophon .container) a):focus {
                 color: var(--col-teal-400);
             }
+
 /* Single post template (single.php) — not an ACF block, so this lives
    alongside nav.css/footer.css rather than in src/blocks/. */
 
@@ -922,16 +936,33 @@ select {
 		outline-offset: 2px;
 	}
 
-.btn-primary {
+/* Variant colours are written as .btn.btn-X (doubled class) rather than
+   .btn-X on purpose. WordPress emits a link-colour "elements" rule for any
+   block instance with style.elements.link.color set:
+
+     .wp-elements-N a:where(:not(.wp-element-button)) { color: ... }
+
+   That is specificity (0,1,1) — one class plus the `a` type selector, since
+   :where() contributes nothing. A plain .btn-primary is (0,1,0), so it loses
+   on the element-count tiebreak no matter the source order, and theme buttons
+   inside such a block get the block's link colour instead of their own. Core
+   excludes its own buttons via :not(.wp-element-button), but our .btn anchors
+   don't carry that class — and adding it isn't an option, because it would
+   opt them into core's global button styles (background/padding) too.
+
+   Doubling the class makes these (0,2,0), which beats (0,1,1) outright. The
+   :hover rules already clear that bar via the pseudo-class, which is why a
+   button hit by this looked correct on hover but wrong at rest. */
+.btn.btn-primary {
 	background-color: var(--col-primary);
-	color: var(--col-white);
+	color: var(--col-black);
 }
 
 .btn-primary:hover {
 	background-color: var(--col-primary-light);
 }
 
-.btn-secondary {
+.btn.btn-secondary {
 	border: 1px solid var(--col-white);
 	background-color: transparent;
 	color: var(--col-white);
@@ -941,7 +972,7 @@ select {
 	color: var(--col-white);
 }
 
-.btn-primary-dark {
+.btn.btn-primary-dark {
 	border-color: var(--col-navy-900);
 	background-color: var(--col-navy-900);
 	color: var(--col-white);
@@ -951,7 +982,7 @@ select {
 	background-color: var(--col-navy-700);
 }
 
-.btn-secondary-dark {
+.btn.btn-secondary-dark {
 	border-color: var(--col-navy-900);
 	background-color: transparent;
 	color: var(--col-navy-900);
@@ -1029,6 +1060,7 @@ select {
 	background-color: color-mix(in srgb, var(--col-navy-900) 20%, transparent);
 	color: var(--col-navy-900);
 }
+
 /*
  * Accordion — Bootstrap-style class names, zero Bootstrap (same convention
  * as .container/.row/.btn/.navbar elsewhere in this theme). Built on native
@@ -1083,6 +1115,7 @@ select {
 	padding-bottom: var(--space-3);
 	color: var(--col-grey-500);
 }
+
 /*
  * Link-arrow — Bootstrap-style class names, zero Bootstrap (same
  * convention as .container/.row/.btn/.accordion elsewhere in this theme).
@@ -1110,6 +1143,7 @@ select {
 .card-link:hover .link-arrow__icon {
 	transform: translateX(0.25rem);
 }
+
 /* Generated by src/build/generate-utilities.js — do not hand-edit. */
 
 .d-block { display: block; }
@@ -1402,7 +1436,9 @@ select {
 	.col-xxl-10 { grid-column: span 10; }
 	.col-xxl-11 { grid-column: span 11; }
 	.col-xxl-12 { grid-column: span 12; }
-} /* generated — see src/build/generate-utilities.js, run `npm run css-generate` */
+}
+
+/* generated — see src/build/generate-utilities.js, run `npm run css-generate` */
 /* @import "tables.css"; -- uncomment if this project actually needs styled tables */
 /* Generated by src/build/generate-utilities.js — do not hand-edit.
    Concatenation of src/blocks/*.css, alphabetical by filename. */
@@ -2069,6 +2105,19 @@ select {
 .cb-hero {
     --cb-hero-gradient: linear-gradient(to right top, #0c182b, #0f1c2f, #112032, #142436, #172839);
 
+    /* Purely for automated contrast checkers, with no visual effect — the
+       opaque gradient below paints straight over it. axe/Lighthouse/WAVE only
+       read computed background-color, never background-image, so without this
+       they walk up to body's white background and report the white hero text
+       as 1:1 white-on-white. navy-700 is the gradient's *lightest* stop, so
+       the declared value is the honest worst case (15:1) and can't overstate
+       the real contrast anywhere in the block.
+
+       Note this can't fully satisfy the checkers on .cb-hero--has-bg-image:
+       axe drops to "incomplete" (manual review) whenever a background-image is
+       in the stack, since it can't sample pixels. .cb-hero__scrim is what
+       makes the real contrast over a photo safe. */
+    background-color: var(--col-navy-700);
     background-image: var(--cb-hero-gradient);
 
     color: var(--col-white);
@@ -3739,7 +3788,8 @@ select {
 		width: 100%;
 		height: 100%;
 		border: 0;
-	} /* generated — concatenation of src/blocks/*.css, see src/build/generate-utilities.js */
+	}
+/* generated — concatenation of src/blocks/*.css, see src/build/generate-utilities.js */
 /* Pre-hides elements that src/js/scroll-animate.js reveals via GSAP
    .from()/.set() on scroll — without this, they paint fully visible on
    first render, then jump to hidden the instant GSAP runs, then animate
@@ -3779,6 +3829,7 @@ select {
     .cb-hero__cta {
         opacity: 0;
     }
-} /* last, so it wins any specificity ties against the block rules above */
+}
+/* last, so it wins any specificity ties against the block rules above */
 
 /*# sourceMappingURL=theme.css.map */

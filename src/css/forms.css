@@ -71,16 +71,33 @@ select {
 	}
 }
 
-.btn-primary {
+/* Variant colours are written as .btn.btn-X (doubled class) rather than
+   .btn-X on purpose. WordPress emits a link-colour "elements" rule for any
+   block instance with style.elements.link.color set:
+
+     .wp-elements-N a:where(:not(.wp-element-button)) { color: ... }
+
+   That is specificity (0,1,1) — one class plus the `a` type selector, since
+   :where() contributes nothing. A plain .btn-primary is (0,1,0), so it loses
+   on the element-count tiebreak no matter the source order, and theme buttons
+   inside such a block get the block's link colour instead of their own. Core
+   excludes its own buttons via :not(.wp-element-button), but our .btn anchors
+   don't carry that class — and adding it isn't an option, because it would
+   opt them into core's global button styles (background/padding) too.
+
+   Doubling the class makes these (0,2,0), which beats (0,1,1) outright. The
+   :hover rules already clear that bar via the pseudo-class, which is why a
+   button hit by this looked correct on hover but wrong at rest. */
+.btn.btn-primary {
 	background-color: var(--col-primary);
-	color: var(--col-white);
+	color: var(--col-black);
 }
 
 .btn-primary:hover {
 	background-color: var(--col-primary-light);
 }
 
-.btn-secondary {
+.btn.btn-secondary {
 	border: 1px solid var(--col-white);
 	background-color: transparent;
 	color: var(--col-white);
@@ -90,7 +107,7 @@ select {
 	color: var(--col-white);
 }
 
-.btn-primary-dark {
+.btn.btn-primary-dark {
 	border-color: var(--col-navy-900);
 	background-color: var(--col-navy-900);
 	color: var(--col-white);
@@ -100,7 +117,7 @@ select {
 	background-color: var(--col-navy-700);
 }
 
-.btn-secondary-dark {
+.btn.btn-secondary-dark {
 	border-color: var(--col-navy-900);
 	background-color: transparent;
 	color: var(--col-navy-900);
