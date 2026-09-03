@@ -102,20 +102,15 @@ Needs a permalink flush — see per-environment setup above — plus an ACF fiel
 group sync for `group_cb_downloads` (see the ACF warning above).
 
 The 39 files themselves are in `wp-content/uploads`, not the repo — they were
-migrated via `inc/run-once-migrate-downloads.php` (see "Temporary code to
-remove" below); if that script has already been deleted, treat the uploads +
-DB as the only record of which attachment belongs to which `download` post.
+migrated via `inc/run-once-migrate-downloads.php`, since deleted (migration
+confirmed successful). The uploads + DB are now the only record of which
+attachment belongs to which `download` post.
 
 ## Temporary code to remove
 
 `inc/run-once-dedup-media.php` — one-off media dedup after a WP All Import run.
 Delete the file and its `require_once` in `functions.php` once it's been run on
 the target site and the report confirms success.
-
-`inc/run-once-migrate-downloads.php` — one-off migration of the 39 non-policy
-legacy WP Download Manager items into the `download` CPT (see "Download
-documents" above). Delete the file and its `require_once` in `functions.php`
-once the migration report confirms every item was created successfully.
 
 ---
 

@@ -35,9 +35,3 @@ require_once CB_GLOBAL42026_DIR . '/inc/downloads.php';
 // line and delete inc/run-once-dedup-media.php once it's been run on the
 // target site and the report confirms success.
 require_once CB_GLOBAL42026_DIR . '/inc/run-once-dedup-media.php';
-
-// TEMPORARY — one-off migration of the 39 non-policy legacy WP Download
-// Manager items into the `download` CPT. Remove this line and delete
-// inc/run-once-migrate-downloads.php once it's been run on the target site
-// and the report confirms success.
-require_once CB_GLOBAL42026_DIR . '/inc/run-once-migrate-downloads.php';
