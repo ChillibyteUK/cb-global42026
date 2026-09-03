@@ -81,22 +81,26 @@ which used to serve 43 legacy documents (brochures, T&Cs, guides — a couple
 `.docx`). The 4 policy documents among those 43 stayed inside the Policy
 documents system above; the other **39** now live as `download` CPT posts.
 
-Each `download` post has its own canonical landing page at
-`/download/{slug}/` (`single-download.php`), with the `slug` set to match
-the legacy item's own old permalink exactly — external links using the pretty
-URL keep working with zero redirect. The file itself is an ACF `file` field
-(`acf-json/group_cb_downloads.json`, field name `file`); the landing page's
-Download button resolves that field live on every request, so replacing the
-uploaded file updates the button immediately with no code change.
+Each `download` post has its own canonical permalink at `/download/{slug}/`,
+with the `slug` set to match the legacy item's own old permalink exactly —
+external links using the pretty URL keep working with zero redirect. Visiting
+that URL redirects straight to the file (an instant download, not a
+click-through landing page) — `cb_global42026_download_redirect()` in
+`inc/downloads.php` reads the ACF `file` field
+(`acf-json/group_cb_downloads.json`, field name `file`) live on every request
+and 302s to it, so replacing the uploaded file changes where the URL points
+with no code change. `single-download.php` only ever renders for a
+`download` post published with no file yet uploaded — it shows a "not
+available" message instead of redirecting to nothing.
 
 `inc/downloads.php` also 302s the old numeric `?wpdmdl={id}` links straight to
-the file's *current* URL (not to the landing page) — external sites and
-embeds link directly to the file expecting an instant download, matching the
-original plugin's behaviour. IDs are mapped in `cb_legacy_downloads()`; add to
-that array rather than to a redirection plugin, for the same reason already
-noted for policies. This coexists with `inc/policies.php`'s own `?wpdmdl=`
-handler for the 4 policy IDs — both hook `template_redirect` and check the
-same query var, but operate on disjoint ID sets, so they don't collide.
+the file's *current* URL — external sites and embeds link directly to the
+file expecting an instant download, matching the original plugin's
+behaviour. IDs are mapped in `cb_legacy_downloads()`; add to that array
+rather than to a redirection plugin, for the same reason already noted for
+policies. This coexists with `inc/policies.php`'s own `?wpdmdl=` handler for
+the 4 policy IDs — both hook `template_redirect` and check the same query
+var, but operate on disjoint ID sets, so they don't collide.
 
 Needs a permalink flush — see per-environment setup above — plus an ACF field
 group sync for `group_cb_downloads` (see the ACF warning above).

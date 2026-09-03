@@ -1,22 +1,22 @@
 <?php
 /**
- * Legacy WP Download Manager (`wpdmpro`) migration — 39 non-policy
- * documents now live as `download` CPT posts (see inc/posttypes.php for
- * registration, acf-json/group_cb_downloads.json for the file field).
- *
- * Each item's legacy numeric ID still needs to keep working as a direct
- * file-stream link (https://.../?wpdmdl={id}), because external sites and
- * embeds link straight to that URL expecting an instant download, not a
- * click-through landing page — this mirrors the original plugin's own
- * behaviour exactly.
+ * `download` CPT redirects — 39 legacy WP Download Manager documents now
+ * live as `download` CPT posts (see inc/posttypes.php for registration,
+ * acf-json/group_cb_downloads.json for the file field). Both a post's own
+ * permalink (/download/{slug}/) and the old numeric query link
+ * (?wpdmdl={id}) redirect straight to the file — an instant download, not
+ * a click-through landing page, matching the original plugin's behaviour
+ * exactly. single-download.php only renders when there's no file to
+ * redirect to.
  *
  * The 4 policy documents (1972, 2010, 2021, 24566) are NOT handled here —
  * they already have their own ?wpdmdl= redirect in inc/policies.php
  * (cb_global42026_legacy_policy_redirect(), reading its own
- * cb_legacy_policy_downloads() map). Both this handler and that one hook
- * template_redirect and both read $_GET['wpdmdl'], but they act on
- * disjoint ID sets and each is a no-op if the ID isn't in its own map, so
- * they coexist safely regardless of hook order.
+ * cb_legacy_policy_downloads() map). Both that handler and
+ * cb_global42026_legacy_download_redirect() below hook template_redirect
+ * and both read $_GET['wpdmdl'], but they act on disjoint ID sets and each
+ * is a no-op if the ID isn't in its own map, so they coexist safely
+ * regardless of hook order.
  *
  * @package cb-global42026
  */
@@ -124,3 +124,34 @@ function cb_global42026_legacy_download_redirect() {
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_legacy_download_redirect' );
+
+/**
+ * Redirects a `download` post's own permalink (/download/{slug}/) straight
+ * to its current file — an instant download rather than a click-through
+ * landing page, matching the legacy plugin's behaviour for both the pretty
+ * URL and the old numeric ?wpdmdl= links.
+ *
+ * single-download.php only ever renders when there's no file to redirect
+ * to (a `download` post published before its file was uploaded), showing a
+ * "not available" message instead of redirecting to nothing.
+ *
+ * 302 for the same reason as cb_global42026_legacy_download_redirect() —
+ * the destination changes whenever the uploaded file is replaced.
+ *
+ * @return void
+ */
+function cb_global42026_download_redirect() {
+	if ( ! is_singular( 'download' ) ) {
+		return;
+	}
+
+	$download_file = get_field( 'file', get_the_ID() );
+
+	if ( empty( $download_file['url'] ) ) {
+		return;
+	}
+
+	wp_redirect( $download_file['url'], 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_legacy_download_redirect()'s own reasoning; file may not be same-host.
+	exit;
+}
+add_action( 'template_redirect', 'cb_global42026_download_redirect' );
