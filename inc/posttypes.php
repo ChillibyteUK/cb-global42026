@@ -116,6 +116,41 @@ function cb_global42026_register_theme_post_types() {
 			),
 		)
 	);
+
+	// Legacy WP Download Manager migration — each document gets a stable
+	// permalink (/download/{slug}/) via single-download.php, with the file
+	// itself in the `file` ACF field (acf-json/group_cb_downloads.json).
+	// Legacy numeric ?wpdmdl={id} links are handled in inc/downloads.php.
+	register_post_type(
+		'download',
+		array(
+			'labels'          => array(
+				'name'               => 'Downloads',
+				'singular_name'      => 'Download',
+				'add_new_item'       => 'Add New Download',
+				'edit_item'          => 'Edit Download',
+				'new_item'           => 'New Download',
+				'view_item'          => 'View Download',
+				'search_items'       => 'Search Downloads',
+				'not_found'          => 'No downloads found',
+				'not_found_in_trash' => 'No downloads in trash',
+			),
+			'has_archive'     => false,
+			'public'          => true,
+			'show_ui'         => true,
+			'show_in_menu'    => true,
+			'show_in_rest'    => true,
+			'menu_position'   => 26,
+			'menu_icon'       => 'dashicons-media-document',
+			'supports'        => array( 'title', 'revisions' ),
+			'capability_type' => 'post',
+			'map_meta_cap'    => true,
+			'rewrite'         => array(
+				'slug'       => 'download',
+				'with_front' => false,
+			),
+		)
+	);
 }
 add_action( 'init', 'cb_global42026_register_theme_post_types' );
 

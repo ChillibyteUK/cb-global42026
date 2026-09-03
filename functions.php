@@ -29,8 +29,15 @@ require_once CB_GLOBAL42026_DIR . '/inc/taxonomies.php';
 require_once CB_GLOBAL42026_DIR . '/inc/post-index.php';
 require_once CB_GLOBAL42026_DIR . '/inc/cf7.php';
 require_once CB_GLOBAL42026_DIR . '/inc/policies.php';
+require_once CB_GLOBAL42026_DIR . '/inc/downloads.php';
 
 // TEMPORARY — one-off media dedup after a WP All Import run. Remove this
 // line and delete inc/run-once-dedup-media.php once it's been run on the
 // target site and the report confirms success.
 require_once CB_GLOBAL42026_DIR . '/inc/run-once-dedup-media.php';
+
+// TEMPORARY — one-off migration of the 39 non-policy legacy WP Download
+// Manager items into the `download` CPT. Remove this line and delete
+// inc/run-once-migrate-downloads.php once it's been run on the target site
+// and the report confirms success.
+require_once CB_GLOBAL42026_DIR . '/inc/run-once-migrate-downloads.php';

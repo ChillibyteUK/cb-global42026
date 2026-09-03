@@ -19,7 +19,8 @@ A checkout of this repo gives you all the code. It does **not** give you:
   The theme also enforces landing-page noindex in `inc/landing-pages.php`, so
   this is belt-and-braces rather than the only guard.
 - **Content** — pages, the blocks placed on them, landing pages, posts.
-- **Uploads** — `wp-content/uploads` (brochure PDFs, images, policy PDFs).
+- **Uploads** — `wp-content/uploads` (brochure PDFs, images, policy PDFs, and
+  the 39 `download` CPT files — see "Download documents" below).
 
 So: repo + DB dump + uploads.
 
@@ -30,9 +31,9 @@ So: repo + DB dump + uploads.
    `npm run generate-theme-json` after changing `src/css/tokens.css`.
    `npm run watch` does cover it.
 2. **Flush permalinks** (Settings → Permalinks, just hit Save). Without this
-   `/lp/{slug}/` and `/policies/{slug}/` both 404, because the `landing_page`
-   CPT's rewrite rules and the policy endpoints in `inc/policies.php` aren't
-   registered until the rules are rebuilt.
+   `/lp/{slug}/`, `/policies/{slug}/` and `/download/{slug}/` all 404, because
+   the `landing_page`/`download` CPTs' rewrite rules and the policy endpoints
+   in `inc/policies.php` aren't registered until the rules are rebuilt.
 3. **Sync ACF field groups** — Custom Fields → Field Groups → "Sync available".
    See the warning below.
 4. Set the Yoast landing-page noindex option (see above).
@@ -73,11 +74,48 @@ redirect every homepage hit.
 
 Both need a permalink flush — see per-environment setup above.
 
+## Download documents
+
+Replaces the third-party "WordPress Download Manager" plugin (`wpdmpro`),
+which used to serve 43 legacy documents (brochures, T&Cs, guides — a couple
+`.docx`). The 4 policy documents among those 43 stayed inside the Policy
+documents system above; the other **39** now live as `download` CPT posts.
+
+Each `download` post has its own canonical landing page at
+`/download/{slug}/` (`single-download.php`), with the `slug` set to match
+the legacy item's own old permalink exactly — external links using the pretty
+URL keep working with zero redirect. The file itself is an ACF `file` field
+(`acf-json/group_cb_downloads.json`, field name `file`); the landing page's
+Download button resolves that field live on every request, so replacing the
+uploaded file updates the button immediately with no code change.
+
+`inc/downloads.php` also 302s the old numeric `?wpdmdl={id}` links straight to
+the file's *current* URL (not to the landing page) — external sites and
+embeds link directly to the file expecting an instant download, matching the
+original plugin's behaviour. IDs are mapped in `cb_legacy_downloads()`; add to
+that array rather than to a redirection plugin, for the same reason already
+noted for policies. This coexists with `inc/policies.php`'s own `?wpdmdl=`
+handler for the 4 policy IDs — both hook `template_redirect` and check the
+same query var, but operate on disjoint ID sets, so they don't collide.
+
+Needs a permalink flush — see per-environment setup above — plus an ACF field
+group sync for `group_cb_downloads` (see the ACF warning above).
+
+The 39 files themselves are in `wp-content/uploads`, not the repo — they were
+migrated via `inc/run-once-migrate-downloads.php` (see "Temporary code to
+remove" below); if that script has already been deleted, treat the uploads +
+DB as the only record of which attachment belongs to which `download` post.
+
 ## Temporary code to remove
 
 `inc/run-once-dedup-media.php` — one-off media dedup after a WP All Import run.
 Delete the file and its `require_once` in `functions.php` once it's been run on
 the target site and the report confirms success.
+
+`inc/run-once-migrate-downloads.php` — one-off migration of the 39 non-policy
+legacy WP Download Manager items into the `download` CPT (see "Download
+documents" above). Delete the file and its `require_once` in `functions.php`
+once the migration report confirms every item was created successfully.
 
 ---
 
