@@ -34,7 +34,7 @@ while ( have_posts() ) {
 	<?php cb_render_breadcrumbs(); ?>
 </div>
 
-<div class="container">
+<div class="container pb-5">
 	<div class="row">
 		<div class="col-12">
 			<?php
