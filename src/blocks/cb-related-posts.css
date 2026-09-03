@@ -24,7 +24,7 @@
 
 	.cb-related-posts__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -35,6 +35,9 @@
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		overflow: hidden;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		/* Explicit, NOT inherit — the card sets its own white background, so
 		   it has to own its text colour too. Inheriting would pull in the
 		   block's has-*-color (this block has colour support), painting the
@@ -89,7 +92,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-related-posts__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 

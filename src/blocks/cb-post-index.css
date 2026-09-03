@@ -59,7 +59,7 @@
 
 	.cb-post-index__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -76,6 +76,9 @@
 		overflow: hidden;
 		color: inherit;
 		text-decoration: none;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		transition: box-shadow var(--transition);
 	}
 
@@ -155,7 +158,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-post-index__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.cb-post-index__search-input {

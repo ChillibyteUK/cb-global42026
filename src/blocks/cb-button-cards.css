@@ -4,7 +4,7 @@
 
 	.cb-button-cards__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -15,6 +15,9 @@
 		gap: var(--space-2);
 		padding-top: var(--space-3);
 		border-top: 2px solid var(--col-grey-300);
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	/* Row-subgrid — title/content/button each align to a shared row height

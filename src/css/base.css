@@ -8,6 +8,26 @@
 
 html {
 	-webkit-text-size-adjust: 100%;
+	/* Backstop only, not the real fix — see #main section below for that.
+	   Kept as defense in depth: catches anything a future block's own
+	   overflow doesn't. */
+	overflow-x: hidden;
+}
+
+/* GSAP entrance animations (src/js/scroll-animate.js) start content
+   translated a few rem off its final position (see src/css/animate.css)
+   before scrolling it into place. That translate is applied by JS after
+   first paint — not present in the server-rendered HTML — which is exactly
+   why this showed up as "the page loads fine, then blows out": any
+   animated element sitting flush against a block's right edge (e.g.
+   .cb-split-feature-list__point, .cb-text-image__image, both slide in from
+   translateX(2rem)) briefly paints past the viewport the instant JS runs.
+   Every ACF block renders its own <section> (see cb_block_classes() in
+   inc/utilities.php) — clipping there contains each block's own animation
+   overflow at its natural boundary, at the source, rather than relying on
+   the html-level backstop above to hide it after the fact. */
+#main section {
+	overflow-x: clip;
 }
 
 body {

@@ -9,6 +9,15 @@
 		margin-top: var(--space-3);
 	}
 
+	/* A 4-column comparison table doesn't fit a narrow viewport no matter
+	   what the CSS does — tables size to their content's natural width
+	   regardless of any parent's min-width:0 (that only helps grid/flex
+	   items). Scrolling the table itself, not the page, is the standard
+	   pattern for this. */
+	.cb-support-table__scroll {
+		overflow-x: auto;
+	}
+
 	.cb-support-table__table {
 		width: 100%;
 		border-collapse: collapse;

@@ -20,7 +20,7 @@ label {
    to no explicit columns at all. Give it back an independent grid so
    col-* spans mean what they're supposed to. */
 .wpcf7-form .row {
-	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
 }
 
 /* CF7 runs its own autop pass, wrapping each field's line in a <p> — kills

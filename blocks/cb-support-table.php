@@ -46,41 +46,43 @@ cb_render_anchor( $block );
 				?>
 			</div>
 			<div class="col-12 col-lg-7">
-				<table class="cb-support-table__table">
-					<thead>
-						<tr>
-							<th><?= esc_html( $service_name ); ?></th>
-							<th>Core</th>
-							<th>Advanced</th>
-							<th>Complete</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
-						while ( have_rows( 'rows' ) ) {
-							the_row();
-							$row_text     = get_sub_field( 'text' );
-							$row_core     = get_sub_field( 'core' );
-							$row_advanced = get_sub_field( 'advanced' );
-							$row_complete = get_sub_field( 'complete' );
-							?>
-						<tr>
-							<td><?= esc_html( $row_text ); ?></td>
-							<?php foreach ( array( $row_core, $row_advanced, $row_complete ) as $is_included ) { ?>
-							<td class="cb-support-table__check">
-								<?php if ( $is_included ) { ?>
-								<svg class="cb-support-table__icon cb-support-table__icon--yes" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" /></svg>
-								<?php } else { ?>
-								<svg class="cb-support-table__icon cb-support-table__icon--no" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" /></svg>
-								<?php } ?>
-							</td>
-							<?php } ?>
-						</tr>
+				<div class="cb-support-table__scroll">
+					<table class="cb-support-table__table">
+						<thead>
+							<tr>
+								<th><?= esc_html( $service_name ); ?></th>
+								<th>Core</th>
+								<th>Advanced</th>
+								<th>Complete</th>
+							</tr>
+						</thead>
+						<tbody>
 							<?php
-						}
-						?>
-					</tbody>
-				</table>
+							while ( have_rows( 'rows' ) ) {
+								the_row();
+								$row_text     = get_sub_field( 'text' );
+								$row_core     = get_sub_field( 'core' );
+								$row_advanced = get_sub_field( 'advanced' );
+								$row_complete = get_sub_field( 'complete' );
+								?>
+							<tr>
+								<td><?= esc_html( $row_text ); ?></td>
+								<?php foreach ( array( $row_core, $row_advanced, $row_complete ) as $is_included ) { ?>
+								<td class="cb-support-table__check">
+									<?php if ( $is_included ) { ?>
+									<svg class="cb-support-table__icon cb-support-table__icon--yes" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" /></svg>
+									<?php } else { ?>
+									<svg class="cb-support-table__icon cb-support-table__icon--no" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" /></svg>
+									<?php } ?>
+								</td>
+								<?php } ?>
+							</tr>
+								<?php
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

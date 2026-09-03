@@ -2,8 +2,24 @@
 	padding-block: var(--space-5);
 
 	.row {
-		column-gap: var(--space-5);
 		row-gap: var(--space-4);
+	}
+
+	/* column-gap only wants to widen the single visual gap between the two
+	   col-lg-6 halves at desktop — but .row is a 12-column grid, and
+	   column-gap applies between every adjacent track, not between spanned
+	   items. Below "lg" both children are col-12 (stacked, one per grid
+	   row) so there's no meaningful column-gap to widen, but the grid still
+	   has 11 internal column gaps between its 12 tracks: at var(--space-5)
+	   each that's 11 * 3rem = 33rem of gap alone, forcing the row (and the
+	   page) wider than the viewport regardless of content. Scoping this to
+	   "lg" (992px, matching nav.css's hardcoded breakpoint) is required, not
+	   just tidy — caused real horizontal scroll on mobile before this was
+	   added. */
+	@media (min-width: 992px) {
+		.row {
+			column-gap: var(--space-5);
+		}
 	}
 
 	.cb-split-feature-list__intro {

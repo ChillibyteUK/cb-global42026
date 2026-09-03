@@ -18,12 +18,15 @@
 	   evenly with no per-count classes. */
 	.cb-numbered-steps__steps {
 		display: grid;
-		grid-template-columns: repeat(var(--cb-numbered-steps-columns, 4), 1fr);
+		grid-template-columns: repeat(var(--cb-numbered-steps-columns, 4), minmax(0, 1fr));
 		gap: var(--cb-numbered-steps-gap);
 	}
 
 	.cb-numbered-steps__step {
 		position: relative;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	/* Sits above the connector line, and its own background is what makes the
@@ -79,7 +82,7 @@
 	/* Below "lg" — two up, then one up below "sm". */
 	@media (max-width: 991px) {
 		.cb-numbered-steps__steps {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 

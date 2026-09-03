@@ -17,11 +17,23 @@
     background-image: var(--cb-hero-gradient);
 
     color: var(--col-white);
-    padding-top: var(--space-5);
+    /* align-items: center only has slack to distribute above min-height —
+       on a page with a long hero_title/hero_content (this is CMS-editable
+       per page), wrapped text at mobile widths regularly pushes the actual
+       content past 500px, at which point centering has nothing left to
+       give and padding-top becomes the *only* headroom above the heading.
+       It has to clear the fixed header (--nav-height, 5.5rem) on its own
+       merit, not rely on min-height slack that isn't guaranteed — hence
+       explicitly sized off --nav-height rather than a flat --space-5.
+       padding-bottom is smaller (no fixed element to clear at the bottom)
+       but still explicit, for the same reason: nothing below .cb-hero__cta
+       provided any bottom breathing room once content exceeded min-height. */
+    padding-top: calc(var(--nav-height) + var(--space-4));
+    padding-bottom: var(--space-5);
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     min-height: 500px;
 
     &.cb-hero--home {

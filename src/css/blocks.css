@@ -95,7 +95,7 @@
 
 	.cb-all-customers__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -109,6 +109,9 @@
 		color: inherit;
 		text-decoration: none;
 		transition: box-shadow var(--transition);
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	.cb-all-customers__card:hover {
@@ -168,7 +171,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-all-customers__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -193,7 +196,7 @@
 
 	.cb-awards__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -204,6 +207,12 @@
 		text-align: center;
 		background-color: var(--col-white);
 		padding: 1rem;
+		/* Grid/flex items default to min-width: auto (their content's own
+		   min-content size) regardless of how small their track is —
+		   without this, a long uppercase/letter-spaced award name can hold
+		   the whole grid open wider than the viewport. See the .row fix in
+		   src/css/layout.css for the general version of this. */
+		min-width: 0;
 	}
 
 	.cb-awards__image {
@@ -232,7 +241,7 @@
 	/* Below "lg" (992px, src/build/tokens.config.js) — tablet: 2 cols */
 	@media (max-width: 991px) {
 		.cb-awards__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -256,7 +265,7 @@
 
 	.cb-brochures__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -280,6 +289,9 @@
 		background-color: var(--col-white);
 		color: var(--col-body);
 		box-shadow: var(--shadow-sm);
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		text-decoration: none;
 		transition: box-shadow var(--transition);
 	}
@@ -332,7 +344,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-brochures__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -351,7 +363,7 @@
 
 	.cb-button-cards__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -362,6 +374,9 @@
 		gap: var(--space-2);
 		padding-top: var(--space-3);
 		border-top: 2px solid var(--col-grey-300);
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	/* Row-subgrid — title/content/button each align to a shared row height
@@ -420,7 +435,7 @@
 
 	.cb-charity-cards__cards {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -431,6 +446,9 @@
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		overflow: hidden;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		color: inherit;
 		text-decoration: none;
 		transition: box-shadow var(--transition);
@@ -553,7 +571,7 @@
 
 	.cb-contact-cards__cards {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -567,6 +585,9 @@
 		/* Own background, so own text colour — inheriting would let the
 		   block's has-*-color paint this white on white. */
 		color: var(--col-body);
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		text-align: center;
@@ -662,7 +683,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-contact-cards__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -763,11 +784,23 @@
     background-image: var(--cb-hero-gradient);
 
     color: var(--col-white);
-    padding-top: var(--space-5);
+    /* align-items: center only has slack to distribute above min-height —
+       on a page with a long hero_title/hero_content (this is CMS-editable
+       per page), wrapped text at mobile widths regularly pushes the actual
+       content past 500px, at which point centering has nothing left to
+       give and padding-top becomes the *only* headroom above the heading.
+       It has to clear the fixed header (--nav-height, 5.5rem) on its own
+       merit, not rely on min-height slack that isn't guaranteed — hence
+       explicitly sized off --nav-height rather than a flat --space-5.
+       padding-bottom is smaller (no fixed element to clear at the bottom)
+       but still explicit, for the same reason: nothing below .cb-hero__cta
+       provided any bottom breathing room once content exceeded min-height. */
+    padding-top: calc(var(--nav-height) + var(--space-4));
+    padding-bottom: var(--space-5);
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     min-height: 500px;
 
     &.cb-hero--home {
@@ -1218,7 +1251,7 @@
 
 	.cb-logo-grid__logos {
 		display: grid;
-		grid-template-columns: repeat(var(--cb-logo-grid-columns), 1fr);
+		grid-template-columns: repeat(var(--cb-logo-grid-columns), minmax(0, 1fr));
 		gap: var(--grid-gutter);
 		align-items: center;
 	}
@@ -1227,6 +1260,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	.cb-logo-grid__logo img {
@@ -1240,14 +1276,14 @@
 	/* Below "md" (768px, src/build/tokens.config.js) — "tablet" */
 	@media (max-width: 767px) {
 		.cb-logo-grid__logos {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 	}
 
 	/* Below "sm" (576px, src/build/tokens.config.js) — "mobile" */
 	@media (max-width: 575px) {
 		.cb-logo-grid__logos {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 }
@@ -1359,12 +1395,15 @@
 	   evenly with no per-count classes. */
 	.cb-numbered-steps__steps {
 		display: grid;
-		grid-template-columns: repeat(var(--cb-numbered-steps-columns, 4), 1fr);
+		grid-template-columns: repeat(var(--cb-numbered-steps-columns, 4), minmax(0, 1fr));
 		gap: var(--cb-numbered-steps-gap);
 	}
 
 	.cb-numbered-steps__step {
 		position: relative;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	/* Sits above the connector line, and its own background is what makes the
@@ -1420,7 +1459,7 @@
 	/* Below "lg" — two up, then one up below "sm". */
 	@media (max-width: 991px) {
 		.cb-numbered-steps__steps {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -1494,7 +1533,7 @@
 
 	.cb-post-index__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -1511,6 +1550,9 @@
 		overflow: hidden;
 		color: inherit;
 		text-decoration: none;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		transition: box-shadow var(--transition);
 	}
 
@@ -1590,7 +1632,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-post-index__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.cb-post-index__search-input {
@@ -1706,7 +1748,7 @@
 
 	.cb-related-posts__cards {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--grid-gutter);
 	}
 
@@ -1717,6 +1759,9 @@
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-sm);
 		overflow: hidden;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 		/* Explicit, NOT inherit — the card sets its own white background, so
 		   it has to own its text colour too. Inheriting would pull in the
 		   block's has-*-color (this block has colour support), painting the
@@ -1771,7 +1816,7 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-related-posts__cards {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
@@ -1807,8 +1852,24 @@
 	padding-block: var(--space-5);
 
 	.row {
-		column-gap: var(--space-5);
 		row-gap: var(--space-4);
+	}
+
+	/* column-gap only wants to widen the single visual gap between the two
+	   col-lg-6 halves at desktop — but .row is a 12-column grid, and
+	   column-gap applies between every adjacent track, not between spanned
+	   items. Below "lg" both children are col-12 (stacked, one per grid
+	   row) so there's no meaningful column-gap to widen, but the grid still
+	   has 11 internal column gaps between its 12 tracks: at var(--space-5)
+	   each that's 11 * 3rem = 33rem of gap alone, forcing the row (and the
+	   page) wider than the viewport regardless of content. Scoping this to
+	   "lg" (992px, matching nav.css's hardcoded breakpoint) is required, not
+	   just tidy — caused real horizontal scroll on mobile before this was
+	   added. */
+	@media (min-width: 992px) {
+		.row {
+			column-gap: var(--space-5);
+		}
 	}
 
 	.cb-split-feature-list__intro {
@@ -1929,6 +1990,15 @@
 
 	.cb-support-table__button {
 		margin-top: var(--space-3);
+	}
+
+	/* A 4-column comparison table doesn't fit a narrow viewport no matter
+	   what the CSS does — tables size to their content's natural width
+	   regardless of any parent's min-width:0 (that only helps grid/flex
+	   items). Scrolling the table itself, not the page, is the standard
+	   pattern for this. */
+	.cb-support-table__scroll {
+		overflow-x: auto;
 	}
 
 	.cb-support-table__table {

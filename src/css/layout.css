@@ -26,8 +26,20 @@
 
 .row {
 	display: grid;
-	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
 	gap: var(--grid-gutter);
+}
+
+/* A bare `1fr` track's automatic minimum size is its content's min-content
+   width, not 0 — a single long word, an un-wrapping flex row, etc. inside
+   any .col-* can quietly force every track (and the whole page) wider than
+   the viewport, causing horizontal scroll that only shows up with real
+   content, never in an empty layout test. minmax(0, 1fr) above fixes the
+   *track*; min-width: 0 here is still needed on the *item* placed in it —
+   grid items default to min-width: auto (their own content size) regardless
+   of how small their track is. Both are required together. */
+.row > * {
+	min-width: 0;
 }
 
 /* Nested rows use subgrid where supported so tracks line up with the parent

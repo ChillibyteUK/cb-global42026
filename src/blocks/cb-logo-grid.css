@@ -35,7 +35,7 @@
 
 	.cb-logo-grid__logos {
 		display: grid;
-		grid-template-columns: repeat(var(--cb-logo-grid-columns), 1fr);
+		grid-template-columns: repeat(var(--cb-logo-grid-columns), minmax(0, 1fr));
 		gap: var(--grid-gutter);
 		align-items: center;
 	}
@@ -44,6 +44,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		/* Grid/flex items default to min-width: auto — see the fuller note in
+		   src/blocks/cb-awards.css. */
+		min-width: 0;
 	}
 
 	.cb-logo-grid__logo img {
@@ -57,14 +60,14 @@
 	/* Below "md" (768px, src/build/tokens.config.js) — "tablet" */
 	@media (max-width: 767px) {
 		.cb-logo-grid__logos {
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 	}
 
 	/* Below "sm" (576px, src/build/tokens.config.js) — "mobile" */
 	@media (max-width: 575px) {
 		.cb-logo-grid__logos {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 }
