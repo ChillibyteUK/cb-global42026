@@ -72,7 +72,8 @@
 	if ( get_field( 'bing_site_verification', 'options' ) ) {
 		echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'options' ) ) . '" />';
 	}
-	< ? php wp_head();
+
+	wp_head();
 	?>
 </head>
 
