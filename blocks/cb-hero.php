@@ -7,11 +7,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$is_front_page    = is_front_page();
-$background_image = get_field( 'background_image' );
-$has_bg_image     = ! empty( $background_image['url'] );
-$badge            = get_field( 'badge' );
-$has_badge        = ! empty( $badge['url'] );
+$is_front_page       = is_front_page();
+$background_image    = get_field( 'background_image' );
+$has_bg_image        = ! empty( $background_image['url'] );
+$badge               = get_field( 'badge' );
+$has_badge           = ! empty( $badge['url'] );
+$badge_unconstrained = (bool) get_field( 'badge_size' );
 
 $classes = array( 'cb-hero' );
 
@@ -145,11 +146,19 @@ $logo_paths = array(
 				}
 				?>
 			</div>
-			<?php if ( $has_badge ) { ?>
-			<div class="col-12 col-md-4 col-lg-6 cb-hero__badge">
+			<?php
+			if ( $has_badge ) {
+				$badge_classes = array( 'col-12', 'col-md-4', 'col-lg-6', 'cb-hero__badge' );
+				if ( $badge_unconstrained ) {
+					$badge_classes[] = 'cb-hero__badge--unconstrained';
+				}
+				?>
+			<div class="<?= esc_attr( implode( ' ', $badge_classes ) ); ?>">
 				<img src="<?= esc_url( $badge['url'] ); ?>" alt="<?= esc_attr( $badge['alt'] ); ?>" />
 			</div>
-			<?php } ?>
+				<?php
+			}
+			?>
 		</div>
 	</div>
 </section>

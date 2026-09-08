@@ -149,7 +149,7 @@
             "name": "badge",
             "aria-label": "",
             "type": "image",
-            "instructions": "Displayed on the right side of the hero, above the background image\/overlay. Max 300×170px.",
+            "instructions": "Displayed on the right side of the hero, above the background image\/overlay.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -168,6 +168,34 @@
             "mime_types": "",
             "allow_in_bindings": 0,
             "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_cb_hero_badge_size",
+            "label": "Badge Size",
+            "name": "badge_size",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Off = constrained to a max of 300×170px (default, fits most logos/badges). On = native size, only capped from overflowing the column.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_hero_badge",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Unconstrained",
+            "ui_off_text": "Constrained",
+            "ui": 1
         }
     ],
     "location": [
@@ -191,5 +219,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786531345
+    "modified": 1788867882
 }

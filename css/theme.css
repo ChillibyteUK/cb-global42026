@@ -2238,6 +2238,15 @@ select {
         height: auto;
         object-fit: contain;
     }
+/* "Unconstrained" toggle (badge_size ACF field) — drops the 300x170 cap
+       for the odd badge that genuinely needs to render bigger. max-width
+       still comes from base.css's global img rule (100% of the column),
+       so this can't cause horizontal overflow — it just stops artificially
+       shrinking a badge that's meant to be read at a larger size. */
+.cb-hero .cb-hero__badge--unconstrained img {
+        max-width: 100%;
+        max-height: none;
+    }
 @media (min-width: 992px) {
         .cb-hero .cb-hero__badge {
             margin-top: 0;
