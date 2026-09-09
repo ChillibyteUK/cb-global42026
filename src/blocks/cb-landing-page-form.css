@@ -5,13 +5,30 @@
 
 	/* The form panel. Own background, so own text colour — see the
 	   colour-inheritance note in CLAUDE.md, since this block has colour
-	   support and a navy section would otherwise bleed white text in here. */
+	   support and a navy section would otherwise bleed white text in here.
+
+	   position: relative is the positioning context for the .anchor rendered
+	   inside it (see cb-landing-page-form.php) — not just for the lg+ overlap
+	   below, so #form's scroll target tracks this panel's own top at every
+	   breakpoint: the stacked mobile layout (where this is the second block,
+	   not the first) as much as the overlapping desktop one. */
 	.cb-landing-page-form__form {
+		position: relative;
 		padding: var(--space-5);
 		border-radius: var(--radius-lg);
 		background-color: var(--col-white);
 		color: var(--col-body);
 		box-shadow: var(--shadow-md);
+
+		/* Overrides .anchor's own position: relative (src/css/layout.css) —
+		   absolute takes it out of flow entirely, so it can't add a phantom
+		   row/gap of its own above the form title; its "top" offset (still
+		   nav-height + breathing room, same formula as the base rule) then
+		   simply follows wherever this panel itself ends up, overlap or not. */
+		.anchor {
+			position: absolute;
+			left: 0;
+		}
 	}
 
 	.cb-landing-page-form__form-title {
@@ -55,7 +72,6 @@
 	   form coming later in the DOM. */
 	@media (min-width: 992px) {
 		&.cb-landing-page-form--overlap .cb-landing-page-form__form {
-			position: relative;
 			z-index: 2;
 			margin-top: calc(-1 * var(--cb-landing-page-form-overlap));
 		}
@@ -66,20 +82,5 @@
 		.cb-landing-page-form__cta-buttons {
 			flex-direction: column;
 		}
-	}
-}
-
-/* The HTML anchor (.anchor, src/css/layout.css) is rendered by
-   cb_render_anchor() as a preceding SIBLING of this block's <section> — not a
-   descendant of it — so this can't live nested under .cb-landing-page-form
-   above; it has to target .anchor directly via a sibling-aware :has().
-   Without it, the anchor sits at the section's own top while the overlap
-   above pulls the form panel up above that point, so jumping to the anchor
-   lands past the top of the (now higher) form. Nudge the anchor up by the
-   same overlap amount so it still lines up with the form's actual top. Same
-   breakpoint as the overlap itself, above. */
-@media (min-width: 992px) {
-	.anchor:has( + .cb-landing-page-form.cb-landing-page-form--overlap ) {
-		top: calc(-1 * var(--nav-height) - 1rem - var(--cb-landing-page-form-overlap));
 	}
 }

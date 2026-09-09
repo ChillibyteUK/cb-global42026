@@ -41,7 +41,6 @@ $classes = cb_block_classes(
 );
 
 $block['anchor'] = $block['anchor'] ? $block['anchor'] : 'form';
-cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
@@ -84,6 +83,16 @@ cb_render_anchor( $block );
 			</div>
 			<div class="col-12 col-lg-6 cb-landing-page-form__form">
 				<?php
+				// Rendered here, inside the form panel, rather than before the
+				// section like every other block — this panel is what the
+				// anchor should actually scroll to: it's the second stacked
+				// block on mobile (not the first, which cb_render_anchor's
+				// usual position-before-section placement would target), and
+				// it moves independently of the section on desktop when
+				// overlap_hero pulls it up over CB Hero. See
+				// src/blocks/cb-landing-page-form.css for the positioning
+				// half of this.
+				cb_render_anchor( $block );
 				if ( $form_title ) {
 					?>
 				<h2 class="cb-landing-page-form__form-title"><?= esc_html( $form_title ); ?></h2>
