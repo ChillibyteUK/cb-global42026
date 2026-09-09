@@ -40,6 +40,7 @@ $classes = cb_block_classes(
 	$block
 );
 
+$block['anchor'] = $block['anchor'] ? $block['anchor'] : 'form';
 cb_render_anchor( $block );
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
