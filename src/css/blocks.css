@@ -1213,6 +1213,15 @@
 			z-index: 2;
 			margin-top: calc(-1 * var(--cb-landing-page-form-overlap));
 		}
+
+		/* The HTML anchor (.anchor, src/css/layout.css) sits at this section's
+		   own top, but the overlap above pulls the form panel up above that
+		   point — left alone, jumping to the anchor lands past the top of the
+		   (now higher) form. Nudge the anchor up by the same overlap amount so
+		   it still lines up with the form's actual top. */
+		&.cb-landing-page-form--overlap .anchor {
+			top: calc(-1 * var(--nav-height) - 1rem - var(--cb-landing-page-form-overlap));
+		}
 	}
 
 	/* Below "sm" (576px, src/build/tokens.config.js) */
