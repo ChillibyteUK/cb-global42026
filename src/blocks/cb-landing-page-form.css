@@ -59,15 +59,6 @@
 			z-index: 2;
 			margin-top: calc(-1 * var(--cb-landing-page-form-overlap));
 		}
-
-		/* The HTML anchor (.anchor, src/css/layout.css) sits at this section's
-		   own top, but the overlap above pulls the form panel up above that
-		   point — left alone, jumping to the anchor lands past the top of the
-		   (now higher) form. Nudge the anchor up by the same overlap amount so
-		   it still lines up with the form's actual top. */
-		&.cb-landing-page-form--overlap .anchor {
-			top: calc(-1 * var(--nav-height) - 1rem - var(--cb-landing-page-form-overlap));
-		}
 	}
 
 	/* Below "sm" (576px, src/build/tokens.config.js) */
@@ -75,5 +66,20 @@
 		.cb-landing-page-form__cta-buttons {
 			flex-direction: column;
 		}
+	}
+}
+
+/* The HTML anchor (.anchor, src/css/layout.css) is rendered by
+   cb_render_anchor() as a preceding SIBLING of this block's <section> — not a
+   descendant of it — so this can't live nested under .cb-landing-page-form
+   above; it has to target .anchor directly via a sibling-aware :has().
+   Without it, the anchor sits at the section's own top while the overlap
+   above pulls the form panel up above that point, so jumping to the anchor
+   lands past the top of the (now higher) form. Nudge the anchor up by the
+   same overlap amount so it still lines up with the form's actual top. Same
+   breakpoint as the overlap itself, above. */
+@media (min-width: 992px) {
+	.anchor:has( + .cb-landing-page-form.cb-landing-page-form--overlap ) {
+		top: calc(-1 * var(--nav-height) - 1rem - var(--cb-landing-page-form-overlap));
 	}
 }
