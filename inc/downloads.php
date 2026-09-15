@@ -18,10 +18,83 @@
  * is a no-op if the ID isn't in its own map, so they coexist safely
  * regardless of hook order.
  *
+ * The `download` post type itself is kept out of search results entirely:
+ * both redirect handlers below now send a permanent 301 (SEO requirement —
+ * see the comment on each function for the caching trade-off this accepts),
+ * and cb_global42026_download_noindex_robots() below noindexes/excludes
+ * from the sitemap the rare case where single-download.php actually
+ * renders (a `download` post published before its file was uploaded).
+ *
  * @package cb-global42026
  */
 
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * noindex via Yoast — see cb_global42026_landing_page_yoast_robots() in
+ * inc/landing-pages.php for why this (rather than relying on the redirect
+ * alone) is needed: it's belt-and-braces for the one case where a
+ * `download` post actually renders instead of redirecting —
+ * single-download.php's "no file uploaded yet" fallback.
+ *
+ * @param array $robots Robots directives Yoast is about to output.
+ * @return array
+ */
+function cb_global42026_download_yoast_robots( $robots ) {
+	if ( is_singular( 'download' ) ) {
+		$robots['index'] = 'noindex';
+	}
+
+	return $robots;
+}
+add_filter( 'wpseo_robots_array', 'cb_global42026_download_yoast_robots' );
+
+/**
+ * Same as above through core's own robots API, so the noindex survives
+ * Yoast being deactivated or swapped out.
+ *
+ * @param array $robots Robots directives core is about to output.
+ * @return array
+ */
+function cb_global42026_download_core_robots( $robots ) {
+	if ( is_singular( 'download' ) ) {
+		$robots['noindex'] = true;
+	}
+
+	return $robots;
+}
+add_filter( 'wp_robots', 'cb_global42026_download_core_robots' );
+
+/**
+ * Keeps `download` posts out of Yoast's XML sitemap — a noindexed post type
+ * has no business being listed there (same reasoning as the landing_page
+ * exclusion in inc/landing-pages.php).
+ *
+ * @param bool   $excluded  Whether the post type is already excluded.
+ * @param string $post_type Post type being considered.
+ * @return bool
+ */
+function cb_global42026_download_exclude_yoast_sitemap( $excluded, $post_type ) {
+	if ( 'download' === $post_type ) {
+		return true;
+	}
+
+	return $excluded;
+}
+add_filter( 'wpseo_sitemap_exclude_post_type', 'cb_global42026_download_exclude_yoast_sitemap', 10, 2 );
+
+/**
+ * Same exclusion for core's built-in sitemaps.
+ *
+ * @param array $post_types Post type objects keyed by name.
+ * @return array
+ */
+function cb_global42026_download_exclude_core_sitemap( $post_types ) {
+	unset( $post_types['download'] );
+
+	return $post_types;
+}
+add_filter( 'wp_sitemaps_post_types', 'cb_global42026_download_exclude_core_sitemap' );
 
 /**
  * Legacy WP Download Manager ID => `download` CPT post slug.
@@ -78,15 +151,15 @@ function cb_legacy_downloads() {
 }
 
 /**
- * 302s the old ?wpdmdl={id} download URLs straight to the file currently
+ * 301s the old ?wpdmdl={id} download URLs straight to the file currently
  * attached to the matching `download` post — a direct file stream, not the
  * landing page, matching the original plugin's instant-download behaviour.
  *
- * 302, not 301: the destination changes whenever someone replaces the
- * uploaded file, and a 301 would get a stale target cached indefinitely by
- * browsers/proxies. (Contrast with cb_global42026_legacy_policy_redirect()'s
- * 301 — that one points at a URL, /policies/{slug}/, that itself never
- * changes; this one points straight at the file, which does.)
+ * 301, per an explicit SEO requirement for this post type. Note this is a
+ * deliberate reversal of the previous 302: if a file is ever replaced,
+ * browsers/proxies that cached the old 301 will keep hitting the stale
+ * target until their cache expires. Revisit as a 302 if that turns out to
+ * bite in practice.
  *
  * @return void
  */
@@ -120,7 +193,9 @@ function cb_global42026_legacy_download_redirect() {
 		return;
 	}
 
-	wp_redirect( $download_file['url'], 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_policy_redirect()'s own reasoning; a future item could point at an externally hosted file.
+	header( 'X-Robots-Tag: noindex' );
+	header( 'Cache-Control: no-store' ); // Blunts the 301-caching risk noted above — the redirect itself must not be cached, even though its status code says "permanent".
+	wp_redirect( $download_file['url'], 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_policy_redirect()'s own reasoning; a future item could point at an externally hosted file.
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_legacy_download_redirect' );
@@ -135,8 +210,8 @@ add_action( 'template_redirect', 'cb_global42026_legacy_download_redirect' );
  * to (a `download` post published before its file was uploaded), showing a
  * "not available" message instead of redirecting to nothing.
  *
- * 302 for the same reason as cb_global42026_legacy_download_redirect() —
- * the destination changes whenever the uploaded file is replaced.
+ * 301 for the same reason (and the same file-replacement caching caveat) as
+ * cb_global42026_legacy_download_redirect() above.
  *
  * @return void
  */
@@ -151,7 +226,9 @@ function cb_global42026_download_redirect() {
 		return;
 	}
 
-	wp_redirect( $download_file['url'], 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_legacy_download_redirect()'s own reasoning; file may not be same-host.
+	header( 'X-Robots-Tag: noindex' );
+	header( 'Cache-Control: no-store' ); // Blunts the 301-caching risk noted above — the redirect itself must not be cached, even though its status code says "permanent".
+	wp_redirect( $download_file['url'], 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_legacy_download_redirect()'s own reasoning; file may not be same-host.
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_download_redirect' );
