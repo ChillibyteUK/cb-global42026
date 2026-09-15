@@ -19,11 +19,12 @@
  * regardless of hook order.
  *
  * The `download` post type itself is kept out of search results entirely:
- * both redirect handlers below now send a permanent 301 (SEO requirement —
- * see the comment on each function for the caching trade-off this accepts),
- * and cb_global42026_download_noindex_robots() below noindexes/excludes
- * from the sitemap the rare case where single-download.php actually
- * renders (a `download` post published before its file was uploaded).
+ * both redirect handlers below send X-Robots-Tag: noindex ahead of their
+ * 302 (see the comment on each function for why it stays 302, not 301),
+ * and cb_global42026_download_yoast_robots() / _core_robots() below
+ * noindex, and exclude from the sitemap, the rare case where
+ * single-download.php actually renders (a `download` post published
+ * before its file was uploaded).
  *
  * @package cb-global42026
  */
@@ -151,15 +152,18 @@ function cb_legacy_downloads() {
 }
 
 /**
- * 301s the old ?wpdmdl={id} download URLs straight to the file currently
+ * 302s the old ?wpdmdl={id} download URLs straight to the file currently
  * attached to the matching `download` post — a direct file stream, not the
  * landing page, matching the original plugin's instant-download behaviour.
  *
- * 301, per an explicit SEO requirement for this post type. Note this is a
- * deliberate reversal of the previous 302: if a file is ever replaced,
- * browsers/proxies that cached the old 301 will keep hitting the stale
- * target until their cache expires. Revisit as a 302 if that turns out to
- * bite in practice.
+ * 302, NOT 301, deliberately: the destination changes whenever the file
+ * attached to the post is replaced, and a 301 tells search engines to
+ * permanently consolidate on that specific file URL rather than treat this
+ * legacy link (or the post's own /download/{slug}/ permalink) as the
+ * canonical, stable one — so a reissue can leave a dead file URL indexed
+ * until the redirect is re-crawled. 302 keeps re-checking behaviour, which
+ * is the reason this indirection exists at all. (Briefly changed to 301 at
+ * an SEO stakeholder's request and reverted.)
  *
  * @return void
  */
@@ -194,8 +198,7 @@ function cb_global42026_legacy_download_redirect() {
 	}
 
 	header( 'X-Robots-Tag: noindex' );
-	header( 'Cache-Control: no-store' ); // Blunts the 301-caching risk noted above — the redirect itself must not be cached, even though its status code says "permanent".
-	wp_redirect( $download_file['url'], 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_policy_redirect()'s own reasoning; a future item could point at an externally hosted file.
+	wp_redirect( $download_file['url'], 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_policy_redirect()'s own reasoning; a future item could point at an externally hosted file.
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_legacy_download_redirect' );
@@ -210,8 +213,7 @@ add_action( 'template_redirect', 'cb_global42026_legacy_download_redirect' );
  * to (a `download` post published before its file was uploaded), showing a
  * "not available" message instead of redirecting to nothing.
  *
- * 301 for the same reason (and the same file-replacement caching caveat) as
- * cb_global42026_legacy_download_redirect() above.
+ * 302 for the same reason as cb_global42026_legacy_download_redirect() above.
  *
  * @return void
  */
@@ -227,8 +229,7 @@ function cb_global42026_download_redirect() {
 	}
 
 	header( 'X-Robots-Tag: noindex' );
-	header( 'Cache-Control: no-store' ); // Blunts the 301-caching risk noted above — the redirect itself must not be cached, even though its status code says "permanent".
-	wp_redirect( $download_file['url'], 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_legacy_download_redirect()'s own reasoning; file may not be same-host.
+	wp_redirect( $download_file['url'], 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- matches cb_global42026_legacy_download_redirect()'s own reasoning; file may not be same-host.
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_download_redirect' );

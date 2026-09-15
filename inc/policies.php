@@ -128,11 +128,15 @@ add_filter( 'query_vars', 'cb_global42026_policy_query_var' );
 /**
  * Sends /policies/{slug}/ on to the current file, or its fallback URL.
  *
- * 301, per an explicit SEO requirement for these footer URLs. This is a
- * deliberate reversal of the previous 302: the target changes every time a
- * policy is reissued, and a permanent redirect will get cached by browsers
- * and proxies against the old file — revisit as a 302 if a reissue turning
- * up stale cached destinations becomes a real problem.
+ * 302, NOT 301, deliberately: the target changes every time a policy is
+ * reissued (new upload = new path), and a 301 tells search engines to
+ * permanently consolidate on that target rather than the stable
+ * /policies/{slug}/ URL — so a reissue can leave a dead/superseded file URL
+ * indexed until Google notices the redirect has moved again. 302 keeps the
+ * front-door URL canonical and tells crawlers to keep re-checking, which is
+ * the whole point of this indirection layer existing at all. (Briefly
+ * changed to 301 at an SEO stakeholder's request and reverted — see the
+ * discussion tied to this file's git history if that comes up again.)
  *
  * Also sends X-Robots-Tag: noindex ahead of the redirect. /policies/{slug}/
  * is a virtual endpoint (matched via the cb_policy query var, not a real
@@ -167,13 +171,12 @@ function cb_global42026_policy_redirect() {
 	}
 
 	header( 'X-Robots-Tag: noindex' );
-	header( 'Cache-Control: no-store' ); // Blunts the 301-caching risk noted above — the redirect itself must not be cached, even though its status code says "permanent".
 
 	// wp_redirect rather than wp_safe_redirect: the value is set by an admin in
 	// Site-Wide Settings, and this leaves the door open to pointing a policy at
 	// an externally hosted document without the redirect being silently
 	// rejected as an off-site host.
-	wp_redirect( $target, 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+	wp_redirect( $target, 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
 	exit;
 }
 add_action( 'template_redirect', 'cb_global42026_policy_redirect' );
