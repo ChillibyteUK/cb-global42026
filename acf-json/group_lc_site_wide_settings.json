@@ -139,6 +139,43 @@
             "append": ""
         },
         {
+            "key": "field_lc_ss_custom_code_tab",
+            "label": "Custom Code",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lc_ss_head_code",
+            "label": "Head Code",
+            "name": "head_code",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Raw HTML/JS inserted just before </head> on every page. Output unescaped, so only trusted markup belongs here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 8,
+            "new_lines": ""
+        },
+        {
             "key": "field_lc_ss_policies_tab",
             "label": "Policies",
             "name": "",
@@ -385,5 +422,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1788279150
+    "modified": 1789686000
 }

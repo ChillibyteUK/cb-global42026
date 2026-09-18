@@ -78,6 +78,21 @@ function cb_global42026_head_tags() {
 add_action( 'wp_head', 'cb_global42026_head_tags', 1 );
 
 /**
+ * Arbitrary head code from the Site-Wide Settings "Head Code" field. Output
+ * unescaped and last, so it can close out the <head> (e.g. an inline script
+ * or style block) — trusted admin input, not user-submitted content.
+ *
+ * @return void
+ */
+function cb_global42026_custom_head_code() {
+	$head_code = get_field( 'head_code', 'option' );
+	if ( $head_code ) {
+		echo $head_code . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- deliberately raw, see field instructions in acf-json
+	}
+}
+add_action( 'wp_head', 'cb_global42026_custom_head_code', 999 );
+
+/**
  * GTM noscript fallback — placed right after <body> opens via wp_body_open,
  * which is exactly where Google's own documentation says it belongs (not
  * buried in the footer).
