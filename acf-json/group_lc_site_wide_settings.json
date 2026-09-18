@@ -161,7 +161,7 @@
             "name": "head_code",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Raw HTML/JS inserted just before </head> on every page. Output unescaped, so only trusted markup belongs here.",
+            "instructions": "Raw HTML/JS inserted just before the closing &lt;/head&gt; tag on every page. Output unescaped, so only trusted markup belongs here.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -422,5 +422,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1789686000
+    "modified": 1789718212
 }
