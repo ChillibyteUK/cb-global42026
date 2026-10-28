@@ -62,22 +62,12 @@
 	/* No background of its own, so (per the project convention) it inherits
 	   the section's text colour rather than setting one. */
 	.cb-areas-we-cover__locations {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0 var(--grid-gutter);
 		color: inherit;
-		/* A balanced top-to-bottom, left-to-right flow (fill column 1 fully
-		   before starting column 2) is exactly what multi-column layout does
-		   natively — CSS Grid can't do this without first knowing a fixed row
-		   count, which isn't knowable here since the number of locations is
-		   open-ended. */
-		column-count: 3;
-		column-gap: var(--grid-gutter);
 	}
 
-	/* border-bottom, not border-top: a divider "belongs" to the item above
-	   it in the same column, so this naturally avoids a stray line above
-	   whichever item lands first in column 2/3 — border-top would draw one
-	   there, since multi-column layout gives no easy way to select "first
-	   item per column" (it depends on how many items balance into each
-	   column, which changes with the location count). */
 	.cb-areas-we-cover__location {
 		display: flex;
 		align-items: center;
@@ -87,15 +77,6 @@
 		color: inherit;
 		text-decoration: none;
 		border-bottom: 1px solid var(--col-grey-300);
-		break-inside: avoid-column;
-	}
-
-	.cb-areas-we-cover__location:first-child {
-		padding-top: 0;
-	}
-
-	.cb-areas-we-cover__location:last-child {
-		border-bottom: 0;
 	}
 
 	.cb-areas-we-cover__location-text {
@@ -119,14 +100,14 @@
 	/* Below "md" (768px, src/build/tokens.config.js) */
 	@media (max-width: 767px) {
 		.cb-areas-we-cover__locations {
-			column-count: 2;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
 	/* Below "sm" (576px, src/build/tokens.config.js) */
 	@media (max-width: 575px) {
 		.cb-areas-we-cover__locations {
-			column-count: 1;
+			grid-template-columns: 1fr;
 		}
 	}
 }
