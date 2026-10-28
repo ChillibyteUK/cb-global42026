@@ -118,8 +118,8 @@
       "label": "Locations",
       "name": "locations",
       "aria-label": "",
-      "type": "relationship",
-      "instructions": "Leave empty to automatically list every child page of this page, in menu order. Select specific pages here instead to control which locations appear and to set their order (drag to reorder within this field).",
+      "type": "repeater",
+      "instructions": "Drag rows to reorder.",
       "required": 0,
       "conditional_logic": 0,
       "wrapper": {
@@ -127,18 +127,55 @@
         "class": "",
         "id": ""
       },
-      "post_type": [
-        "page"
-      ],
-      "taxonomy": [],
-      "filters": [
-        "search"
-      ],
-      "elements": [],
+      "layout": "table",
+      "pagination": 0,
       "min": 0,
       "max": 0,
-      "return_format": "object",
-      "allow_in_bindings": 0
+      "collapsed": "",
+      "button_label": "Add Location",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_areas_we_cover_location_link",
+          "label": "Link",
+          "name": "link",
+          "aria-label": "",
+          "type": "link",
+          "instructions": "Pick the location page — its title is editable here too.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "60",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "allow_in_bindings": 0,
+          "parent_repeater": "field_cb_areas_we_cover_locations"
+        },
+        {
+          "key": "field_cb_areas_we_cover_location_region",
+          "label": "Region",
+          "name": "region",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "e.g. \"West Sussex\". Leave blank to hide.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "40",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_areas_we_cover_locations"
+        }
+      ]
     }
   ],
   "location": [
@@ -152,5 +189,5 @@
   ],
   "active": 1,
   "description": "",
-  "modified": 1793179473
+  "modified": 1793180494
 }

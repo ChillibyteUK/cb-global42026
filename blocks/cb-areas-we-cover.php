@@ -12,22 +12,9 @@ $intro                   = get_field( 'intro' );
 $head_office_label       = get_field( 'head_office_label' );
 $head_office_title       = get_field( 'head_office_title' );
 $head_office_description = get_field( 'head_office_description' );
-$selected_locations      = get_field( 'locations' );
+$has_locations           = have_rows( 'locations' );
 
-// Auto-populate from this page's own child pages, in menu order, unless the
-// editor has picked specific pages in the Locations field — that field
-// doubles as the manual reorder control (ACF relationship fields are
-// drag-to-reorder), so there's no separate "order" UI to build.
-$locations = $selected_locations ? $selected_locations : get_pages(
-	array(
-		'child_of'    => get_the_ID(),
-		'parent'      => get_the_ID(),
-		'sort_column' => 'menu_order',
-		'sort_order'  => 'ASC',
-	)
-);
-
-if ( empty( $locations ) && ! $head_office_title ) {
+if ( ! $has_locations && ! $head_office_title ) {
 	return;
 }
 
@@ -77,17 +64,23 @@ cb_render_anchor( $block );
 			</div>
 				<?php
 			}
-			if ( $locations ) {
+			if ( $has_locations ) {
 				?>
 			<div class="<?= esc_attr( $head_office_title ? 'col-12 col-lg-8' : 'col-12' ); ?>">
 				<div class="cb-areas-we-cover__locations">
 					<?php
-					foreach ( $locations as $location ) {
-						$region = get_field( 'region', $location->ID );
+					while ( have_rows( 'locations' ) ) {
+						the_row();
+						$location_link = get_sub_field( 'link' );
+						$region        = get_sub_field( 'region' );
+
+						if ( empty( $location_link['url'] ) ) {
+							continue;
+						}
 						?>
-					<a class="cb-areas-we-cover__location card-link" href="<?= esc_url( get_permalink( $location->ID ) ); ?>">
+					<a class="cb-areas-we-cover__location card-link" href="<?= esc_url( $location_link['url'] ); ?>"<?= cb_link_target_attrs( $location_link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<span class="cb-areas-we-cover__location-text">
-							<span class="cb-areas-we-cover__location-title"><?= esc_html( get_the_title( $location->ID ) ); ?></span>
+							<span class="cb-areas-we-cover__location-title"><?= esc_html( $location_link['title'] ); ?></span>
 							<?php
 							if ( $region ) {
 								?>
