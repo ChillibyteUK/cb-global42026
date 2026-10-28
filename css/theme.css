@@ -1653,6 +1653,7 @@ select {
 .cb-areas-we-cover .cb-areas-we-cover__intro {
 		max-width: 70ch;
 		margin: 0 0 var(--space-4);
+		text-wrap: pretty;
 	}
 .cb-areas-we-cover .cb-areas-we-cover__row {
 		align-items: stretch;
@@ -1697,6 +1698,7 @@ select {
 .cb-areas-we-cover .cb-areas-we-cover__office-description {
 		margin: 0;
 		color: var(--col-blue-100);
+		text-wrap: pretty;
 	}
 /* No background of its own, so (per the project convention) it inherits
 	   the section's text colour rather than setting one. */
