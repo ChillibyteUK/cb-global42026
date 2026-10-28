@@ -1,0 +1,156 @@
+{
+  "key": "group_cb_areas_we_cover",
+  "title": "CB Areas We Cover",
+  "fields": [
+    {
+      "key": "field_cb_areas_we_cover_title",
+      "label": "CB Areas We Cover",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_areas_we_cover_heading",
+      "label": "Heading",
+      "name": "heading",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "75",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Areas We Cover",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_areas_we_cover_intro",
+      "label": "Intro",
+      "name": "intro",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "75",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "rows": 3,
+      "placeholder": "",
+      "new_lines": "br"
+    },
+    {
+      "key": "field_cb_areas_we_cover_head_office_label",
+      "label": "Head Office Eyebrow",
+      "name": "head_office_label",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Small label above the head office title, e.g. \"Our Head Office\".",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Our Head Office",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_areas_we_cover_head_office_title",
+      "label": "Head Office Title",
+      "name": "head_office_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "e.g. \"Horsham, West Sussex\".",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "33",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_cb_areas_we_cover_head_office_description",
+      "label": "Head Office Description",
+      "name": "head_office_description",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "34",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "rows": 4,
+      "placeholder": "",
+      "new_lines": "br"
+    },
+    {
+      "key": "field_cb_areas_we_cover_locations",
+      "label": "Locations",
+      "name": "locations",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Leave empty to automatically list every child page of this page, in menu order. Select specific pages here instead to control which locations appear and to set their order (drag to reorder within this field).",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "page"
+      ],
+      "taxonomy": [],
+      "filters": [
+        "search"
+      ],
+      "elements": [],
+      "min": 0,
+      "max": 0,
+      "return_format": "object",
+      "allow_in_bindings": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-areas-we-cover"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1793179473
+}

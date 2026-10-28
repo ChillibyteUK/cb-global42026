@@ -183,6 +183,140 @@
 	}
 }
 
+/* --- src/blocks/cb-areas-we-cover.css --- */
+.cb-areas-we-cover {
+	.cb-areas-we-cover__heading {
+		margin: 0 0 var(--space-2);
+	}
+
+	.cb-areas-we-cover__intro {
+		max-width: 70ch;
+		margin: 0 0 var(--space-4);
+	}
+
+	.cb-areas-we-cover__row {
+		align-items: stretch;
+	}
+
+	/* Always its own navy background regardless of the block's own
+	   color/backgroundColor picker (same reasoning as the --filled card
+	   variant in cb-icon-card-grid.css) — so it needs its own text colour
+	   set explicitly too, not inherited from the section. */
+	.cb-areas-we-cover__office {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		padding: var(--space-4);
+		background-color: var(--col-navy-900);
+		color: var(--col-white);
+		border-radius: var(--radius-lg);
+	}
+
+	.cb-areas-we-cover__office-icon {
+		display: block;
+		width: 2.5rem;
+		height: 2.5rem;
+		margin-bottom: var(--space-3);
+		color: var(--col-blue-300);
+	}
+
+	.cb-areas-we-cover__office-icon svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.cb-areas-we-cover__office-eyebrow {
+		margin-bottom: var(--space-1);
+		color: var(--col-blue-300);
+		font-size: var(--fs-small);
+		font-weight: var(--fw-700);
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.cb-areas-we-cover__office-title {
+		margin: 0 0 var(--space-2);
+		color: var(--col-white);
+	}
+
+	.cb-areas-we-cover__office-description {
+		margin: 0;
+		color: var(--col-blue-100);
+	}
+
+	/* No background of its own, so (per the project convention) it inherits
+	   the section's text colour rather than setting one. */
+	.cb-areas-we-cover__locations {
+		color: inherit;
+		/* A balanced top-to-bottom, left-to-right flow (fill column 1 fully
+		   before starting column 2) is exactly what multi-column layout does
+		   natively — CSS Grid can't do this without first knowing a fixed row
+		   count, which isn't knowable here since the number of locations is
+		   open-ended. */
+		column-count: 3;
+		column-gap: var(--grid-gutter);
+	}
+
+	/* border-bottom, not border-top: a divider "belongs" to the item above
+	   it in the same column, so this naturally avoids a stray line above
+	   whichever item lands first in column 2/3 — border-top would draw one
+	   there, since multi-column layout gives no easy way to select "first
+	   item per column" (it depends on how many items balance into each
+	   column, which changes with the location count). */
+	.cb-areas-we-cover__location {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		padding-block: var(--space-3);
+		color: inherit;
+		text-decoration: none;
+		border-bottom: 1px solid var(--col-grey-300);
+		break-inside: avoid-column;
+	}
+
+	.cb-areas-we-cover__location:first-child {
+		padding-top: 0;
+	}
+
+	.cb-areas-we-cover__location:last-child {
+		border-bottom: 0;
+	}
+
+	.cb-areas-we-cover__location-text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.cb-areas-we-cover__location-title {
+		font-weight: var(--fw-700);
+	}
+
+	.cb-areas-we-cover__location-region {
+		color: var(--col-grey-500);
+		font-size: var(--fs-small);
+	}
+
+	.cb-areas-we-cover__location-arrow {
+		flex-shrink: 0;
+	}
+
+	/* Below "md" (768px, src/build/tokens.config.js) */
+	@media (max-width: 767px) {
+		.cb-areas-we-cover__locations {
+			column-count: 2;
+		}
+	}
+
+	/* Below "sm" (576px, src/build/tokens.config.js) */
+	@media (max-width: 575px) {
+		.cb-areas-we-cover__locations {
+			column-count: 1;
+		}
+	}
+}
+
 /* --- src/blocks/cb-awards.css --- */
 .cb-awards {
 
