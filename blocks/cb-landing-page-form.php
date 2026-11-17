@@ -40,7 +40,7 @@ $classes = cb_block_classes(
 	$block
 );
 
-$block['anchor'] = $block['anchor'] ? $block['anchor'] : 'form';
+$block['anchor'] = ! empty( $block['anchor'] ) ? $block['anchor'] : 'form';
 ?>
 <section class="<?= esc_attr( $classes ); ?>">
 	<div class="container">
