@@ -295,3 +295,18 @@ function cb_global42026_cf7_special_mail_tags( $output, $name, $html, $mail_tag 
 	return sanitize_text_field( $posted[ $key ] );
 }
 add_filter( 'wpcf7_special_mail_tags', 'cb_global42026_cf7_special_mail_tags', 10, 4 );
+
+/**
+ * CF7 6.2+ only allows image/audio/video extensions plus pdf/txt through its
+ * upload filename check unmangled — anything else (including doc/docx, used
+ * by the careers CV upload) gets "_.txt" appended to the extension. Add the
+ * office-document extensions actually accepted by forms on this site back to
+ * the safelist so those uploads survive with their real extension intact.
+ *
+ * @param array $safelist Extensions CF7 won't rename on upload.
+ * @return array
+ */
+function cb_global42026_cf7_file_extension_safelist( $safelist ) {
+	return array_merge( $safelist, array( 'doc', 'docx' ) );
+}
+add_filter( 'wpcf7_file_extension_safelist', 'cb_global42026_cf7_file_extension_safelist' );
